@@ -1,7 +1,7 @@
-import React from 'react';
-import Head from 'next/head';
-import Header from '../components/header/header';
-import Button from '../components/button/button';
+import React from "react";
+import Head from "next/head";
+import Header from "../components/header/header";
+import Anchor from "../components/button/button";
 
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
 
       <main>
         <Header />
-        <Button href="/login">Entrar</Button>
+        <Anchor href="/login">Entrar</Anchor>
       </main>
     </div>
   );

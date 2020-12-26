@@ -1,4 +1,9 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
+
+export const Colors = {
+  redPrimary: "#CF1020",
+  blackBackground: "#151515",
+};
 
 export default createGlobalStyle`
     @font-face {
@@ -25,7 +30,7 @@ export default createGlobalStyle`
         list-style: none;
     }
     body{
-        background: ${(props) => props.theme.background};
-        color: ${(props) => props.theme.color};
+        background: ${props => props.theme.background};
+        color: ${props => props.theme.color};
     }
 `;
