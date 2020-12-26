@@ -42,15 +42,15 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <link
-            rel="stylesheet preload"
+            rel="preload"
             href="/fonts/Androgyne/Androgyne.woff2"
-            as="style"
+            as="font"
             crossOrigin="anonymous"
           />
           <link
-            rel="stylesheet preload"
+            rel="preload"
             href="/fonts/Circular Std Book/Circular Std Book.woff2"
-            as="style"
+            as="font"
             crossOrigin="anonymous"
           />
         </Head>

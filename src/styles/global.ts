@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const Colors = {
   redPrimary: "#CF1020",
+  redSecundary: "#e5383b",
   blackBackground: "#151515",
 };
 
@@ -33,4 +34,5 @@ export default createGlobalStyle`
         background: ${props => props.theme.background};
         color: ${props => props.theme.color};
     }
+    
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Header from "../components/header/header";
-import Anchor from "../components/button/button";
+import Anchor from "../components/anchor/anchor";
 
 const Home = () => {
   return (

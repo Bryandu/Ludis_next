@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-export const InputComp = styled.input.attrs(props => ({
-  placeholder: props.placeholder || "",
-  type: props.type || "text",
-}))`
+export const InputComp = styled.input`
   color: #000000;
   background: transparent;
   width: 100%;
@@ -18,7 +15,7 @@ export const InputComp = styled.input.attrs(props => ({
   }
 `;
 export const DivInput = styled.div.attrs((props: any) => ({
-  width: props.width || "1em",
+  width: props.width || "100%",
   height: props.height || "2.5em",
 }))`
   display: flex;

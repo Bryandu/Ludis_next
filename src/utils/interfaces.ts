@@ -3,4 +3,7 @@ export interface Styles {
   height?: string;
   placeholder?: string;
   type?: string;
+  field?: any;
+  form?: any;
+  name?: string;
 }

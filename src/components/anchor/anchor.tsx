@@ -1,6 +1,7 @@
 import Link from "next/link";
-import React, { AnchorHTMLAttributes } from "react";
+import React from "react";
 import styled from "styled-components";
+import { Colors } from "../../styles/global";
 
 interface Hprops {
   href?: string;
@@ -14,7 +15,7 @@ export const BtnComp = styled.a.attrs((props: any) => ({
   text-align: center;
   justify-content: center;
   align-items: center;
-  background: #cf1020;
+  background: ${Colors.redPrimary};
   padding: 8px;
   color: #ffffff;
   border: none;
@@ -26,14 +27,25 @@ export const BtnComp = styled.a.attrs((props: any) => ({
   text-decoration: none;
   &:hover {
     cursor: pointer;
-    background: #e5383b;
+    background: ${Colors.redSecundary};
+  }
+`;
+
+export const A = styled.a`
+  color: #ffffff;
+  margin: 0 0.5rem;
+  text-decoration: none;
+  outline-color: ${Colors.redSecundary};
+  &:hover {
+    cursor: pointer;
+    color: ${Colors.redSecundary};
   }
 `;
 
 const Anchor: React.FC<Hprops> = ({ ...props }) => {
   return (
     <Link href={props.href} passHref>
-      <BtnComp>{props.children}</BtnComp>
+      <BtnComp {...props}>{props.children}</BtnComp>
     </Link>
   );
 };

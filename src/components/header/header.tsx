@@ -1,13 +1,14 @@
-import styled from 'styled-components';
-import Logo from '../logo/logo';
-import { FiBell } from 'react-icons/fi';
-import { FiMap } from 'react-icons/fi';
-import { FiShoppingBag } from 'react-icons/fi';
-import { BsGear } from 'react-icons/bs';
-import { IconContext } from 'react-icons/lib';
-import { BsSearch } from 'react-icons/bs';
-import Input from '../input/input';
-import Eu from '../../assets/img/eu.jpg';
+import styled from "styled-components";
+import Logo from "../logo/logo";
+import { FiBell } from "react-icons/fi";
+import { FiMap } from "react-icons/fi";
+import { FiShoppingBag } from "react-icons/fi";
+import { BsGear } from "react-icons/bs";
+import { IconContext } from "react-icons/lib";
+import { BsSearch } from "react-icons/bs";
+import { DivInput, InputComp } from "../input/input";
+import Eu from "../../assets/img/eu.jpg";
+import { Field, Form } from "formik";
 
 const HeaderComp = styled.header`
   display: flex;
@@ -52,17 +53,11 @@ const Header: React.FC = ({ ...props }) => {
       </div>
       <ImgHeader>
         <img src={Eu} />
-        <Input
-          placeholder="Procure locais, pessoas, grupos, materiais..."
-          width="360px"
-          height="35px"
-        >
-          <BsSearch size="20px" />
-        </Input>
+        <BsSearch size="20px" />
       </ImgHeader>
       <nav>
         <List>
-          <IconContext.Provider value={{ size: '1.5em' }}>
+          <IconContext.Provider value={{ size: "1.5em" }}>
             <li>
               <FiMap title="Locais" />
             </li>
