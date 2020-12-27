@@ -9,7 +9,7 @@ export const SectionLogin = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)),
     url(${ImgLogin});
   background-position: center;
   background-size: cover;
@@ -17,12 +17,15 @@ export const SectionLogin = styled.section`
     position: absolute;
     width: 300px;
     height: 400px;
-    background: #151515;
+    background: ${Colors.blackBackground};
     border-radius: 5px;
     margin: 0 1rem;
     padding: 1.5rem;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 480px) {
+      background: transparent;
+    }
   }
   h1 {
     position: relative;
