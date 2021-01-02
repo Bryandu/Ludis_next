@@ -2,10 +2,10 @@ import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { MdEmail, MdVpnKey } from "react-icons/md";
-import { InputComp, DivInput } from "../input/input";
+import { InputComp, DivInput } from "../input/styles";
 import { Button } from "../button/button";
 import { DivButton, Erros } from "./styleForms";
-import { A } from "../anchor/anchor";
+import { Anchor } from "../anchor/styles";
 import Link from "next/link";
 
 const FormLogin: React.FC = () => {
@@ -20,8 +20,8 @@ const FormLogin: React.FC = () => {
       .required("Senha obrigatório."),
   });
 
-  const onSubmit = (values: {}) => {
-    console.log(values);
+  const onSubmit = (values: any) => {
+    console.log(values.target.value);
   };
 
   return (
@@ -61,8 +61,8 @@ const FormLogin: React.FC = () => {
           </aside>
           <DivButton>
             <Button type="submit">Entrar</Button>
-            <Link href="/">
-              <A>ou cadastre-se</A>
+            <Link href="/singUp">
+              <Anchor>ou cadastre-se</Anchor>
             </Link>
           </DivButton>
         </Form>

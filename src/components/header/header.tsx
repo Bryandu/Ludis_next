@@ -6,9 +6,8 @@ import { FiShoppingBag } from "react-icons/fi";
 import { BsGear } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { BsSearch } from "react-icons/bs";
-import { DivInput, InputComp } from "../input/input";
 import Eu from "../../assets/img/eu.jpg";
-import { Field, Form } from "formik";
+import FormSearch from "../forms/formSearch";
 
 const HeaderComp = styled.header`
   display: flex;
@@ -48,12 +47,10 @@ const ImgHeader = styled.div`
 const Header: React.FC = ({ ...props }) => {
   return (
     <HeaderComp>
-      <div>
-        <Logo>Ludis</Logo>
-      </div>
+      <Logo fontsize="30px">Ludis</Logo>
       <ImgHeader>
         <img src={Eu} />
-        <BsSearch size="20px" />
+        <FormSearch />
       </ImgHeader>
       <nav>
         <List>

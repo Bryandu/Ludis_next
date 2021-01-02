@@ -1,7 +1,7 @@
 import { DivForm, SectionLogin, DivPassword } from "../styles/loginStyle";
 import FormLogin from "../components/forms/formLogin";
 import Link from "next/link";
-import { A } from "../components/anchor/anchor";
+import { Anchor } from "../components/anchor/styles";
 
 const Login: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const Login: React.FC = () => {
         </DivForm>
         <DivPassword>
           <Link href="/">
-            <A>Esqueceu a senha?</A>
+            <Anchor>Esqueceu a senha?</Anchor>
           </Link>
         </DivPassword>
       </article>

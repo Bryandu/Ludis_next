@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Colors } from "./global";
 
 export const SectionLogin = styled.section`
-  position: fixed;
+  position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
