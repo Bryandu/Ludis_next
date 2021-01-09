@@ -16,7 +16,7 @@ export const InputComp = styled.input`
 `;
 export const DivInput = styled.div.attrs((props: any) => ({
   width: props.width || "100%",
-  height: props.height || "2.5em",
+  height: props.height || "100%",
 }))`
   display: flex;
   align-items: center;

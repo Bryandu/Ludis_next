@@ -1,6 +1,6 @@
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import { BsSearch } from "react-icons/bs";
-import { DivInput, InputComp } from "../input/styles";
+import { Input } from "../input/input";
 
 const FormSearch = () => {
   const initialValues = {
@@ -15,10 +15,13 @@ const FormSearch = () => {
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {() => (
         <Form>
-          <DivInput height="30px">
-            <Field name="search" type="text" as={InputComp} />
-            <BsSearch size="20px" />
-          </DivInput>
+          <Input
+            name="search"
+            height="30px"
+            icon={BsSearch}
+            iconColor="#fff"
+            iconSize="20px"
+          />
         </Form>
       )}
     </Formik>
