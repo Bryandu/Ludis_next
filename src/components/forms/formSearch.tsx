@@ -7,7 +7,7 @@ const FormSearch = () => {
     search: "",
   };
 
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: object) => {
     console.log(values);
   };
 

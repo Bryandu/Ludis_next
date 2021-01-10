@@ -22,6 +22,9 @@ export const DivForm = styled.div`
     justify-content: center;
     width: 100%;
   }
+  @media screen and (max-width: 420px) {
+    padding: 0;
+  }
 `;
 
 export const DivImg = styled(DivForm)`
@@ -47,9 +50,11 @@ export const AsideForm = styled.aside`
   align-items: center;
   width: 400px;
   background-color: ${Colors.blackBackground};
+  box-shadow: 14px 14px 25px #0e0e0e, -14px -14px 25px #1c1c1c;
   @media screen and (max-width: 420px) {
-    background-color: transparent;
-    padding: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 1rem;
   }
 `;
 

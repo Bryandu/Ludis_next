@@ -24,7 +24,7 @@ export const FormSingup: React.FC = ({ ...props }) => {
       .required("Campo obrigatório"),
   });
 
-  const onSubmit = (values: {}) => {
+  const onSubmit = (values: object) => {
     console.log(values);
   };
 

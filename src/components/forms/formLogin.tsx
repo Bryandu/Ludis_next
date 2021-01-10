@@ -21,7 +21,7 @@ const FormLogin: React.FC = () => {
       .required("Senha obrigatório."),
   });
 
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: object) => {
     console.log(values);
   };
 
