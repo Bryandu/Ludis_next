@@ -1,12 +1,13 @@
 import React from "react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { MdEmail, MdVpnKey } from "react-icons/md";
-import { InputComp, DivInput } from "../input/styles";
+import { HiOutlineMail } from "react-icons/hi";
+import { BiKey } from "react-icons/bi";
 import { Button } from "../button/button";
-import { DivButton, Erros } from "./styleForms";
+import { DivButton } from "./styleForms";
 import { Anchor } from "../anchor/styles";
 import Link from "next/link";
+import { Input } from "../input/input";
 
 const FormLogin: React.FC = () => {
   const initialValues = {
@@ -21,7 +22,7 @@ const FormLogin: React.FC = () => {
   });
 
   const onSubmit = (values: any) => {
-    console.log(values.target.value);
+    console.log(values);
   };
 
   return (
@@ -33,31 +34,25 @@ const FormLogin: React.FC = () => {
         <Form>
           <aside>
             <label htmlFor="email">Email</label>
-            <DivInput>
-              <Field
-                name="email"
-                type="email"
-                as={InputComp}
-                placeholder="Seu email"
-              />
-              <MdEmail size="25px" />
-            </DivInput>
-            <ErrorMessage component={Erros} name="email" />
-            <br />
+            <Input
+              name="email"
+              icon={HiOutlineMail}
+              iconSize="25px"
+              height="40px"
+              lineDown
+              placeholder="Seu email"
+            />
           </aside>
           <aside>
             <label htmlFor="password">Senha</label>
-            <DivInput>
-              <Field
-                name="password"
-                as={InputComp}
-                type="password"
-                placeholder="Sua senha"
-              />
-              <MdVpnKey size="25px" />
-            </DivInput>
-            <ErrorMessage component={Erros} name="password" />
-            <br />
+            <Input
+              name="password"
+              icon={BiKey}
+              iconSize="25px"
+              height="40px"
+              lineDown
+              placeholder="Sua senha"
+            />
           </aside>
           <DivButton>
             <Button type="submit">Entrar</Button>

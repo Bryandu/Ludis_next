@@ -1,11 +1,11 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { DivInput, InputComp } from "../input/styles";
-import { ContainerField, DivButton, Erros, Label } from "./styleForms";
+import { ContainerField, DivButton, Label } from "./styleForms";
 import { HiOutlineMail } from "react-icons/hi";
 import { BiKey } from "react-icons/bi";
 import { CgPassword } from "react-icons/cg";
 import { Button } from "../button/button";
+import { Input } from "../input/input";
 
 export const FormSingup: React.FC = ({ ...props }) => {
   const initialValues = {
@@ -36,32 +36,37 @@ export const FormSingup: React.FC = ({ ...props }) => {
       <Form>
         <ContainerField>
           <Label>Email</Label>
-          <DivInput>
-            <Field name="email" type="email" as={InputComp} />
-            <HiOutlineMail size="25px" />
-          </DivInput>
-          <ErrorMessage component={Erros} name="email" />
-          <br />
+          <Input
+            name="email"
+            icon={HiOutlineMail}
+            height="40px"
+            iconSize="25px"
+            lineDown
+          />
         </ContainerField>
         <ContainerField>
           <Label>Senha</Label>
-          <DivInput>
-            <Field name="password" type="password" as={InputComp} />
-            <BiKey size="25px" />
-          </DivInput>
-          <ErrorMessage component={Erros} name="password" />
-          <br />
+          <Input
+            name="password"
+            icon={BiKey}
+            iconSize="25px"
+            height="40px"
+            type="password"
+            lineDown
+          />
         </ContainerField>
         <ContainerField>
           <Label>Confirmar senha</Label>
-          <DivInput>
-            <Field name="passwordConfirm" type="password" as={InputComp} />
-            <CgPassword size="25px" />
-          </DivInput>
-          <ErrorMessage component={Erros} name="passwordConfirm" />
-          <br />
+          <Input
+            name="passwordConfirm"
+            icon={CgPassword}
+            height="40px"
+            iconSize="25px"
+            type="password"
+            lineDown
+          />
         </ContainerField>
-        <DivButton>
+        <DivButton center>
           <Button type="submit">Cadastrar</Button>
         </DivButton>
       </Form>

@@ -14,9 +14,9 @@ export const DivForm = styled.div`
   position: relative;
   display: flex;
   width: 50%;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  padding: 1rem 7rem;
+  padding-left: 6rem;
   @media screen and (max-width: 1024px) {
     padding: 1rem;
     justify-content: center;
@@ -39,7 +39,7 @@ export const DivImg = styled(DivForm)`
 export const AsideForm = styled.aside`
   display: flex;
   flex-direction: column;
-  padding: 2rem 2rem;
+  padding: 2rem;
   margin: 0rem;
   border-radius: 5px;
   position: relative;
@@ -49,13 +49,14 @@ export const AsideForm = styled.aside`
   background-color: ${Colors.blackBackground};
   @media screen and (max-width: 420px) {
     background-color: transparent;
+    padding: 0;
   }
 `;
 
 export const DivText = styled.div`
   display: flex;
   width: 100%;
-  margin: 1rem;
+  margin: 1rem 1rem 0 1rem;
   padding: 0.5rem;
   justify-content: center;
   text-align: center;

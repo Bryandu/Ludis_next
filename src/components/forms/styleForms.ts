@@ -1,21 +1,19 @@
-import styled, { css } from "styled-components";
-import { Style } from "util";
+import styled from "styled-components";
 import { Colors } from "../../styles/global";
 
+interface ContainerButton {
+  center?: boolean;
+}
+
 export const Label = styled.label`
-  margin: 0 0 0 0;
+  margin: 0;
 `;
 
-export const DivButton = styled.div`
+export const DivButton = styled.div<ContainerButton>`
   display: flex;
-  margin: 0.5rem 0;
+  margin-top: 1rem;
   align-items: center;
-  justify-content: left;
-  ${props =>
-    props.outline &&
-    css`
-      justify-content: center;
-    `}
+  justify-content: ${props => (props.center ? "center" : "left")};
 `;
 
 export const ContainerField = styled.div`

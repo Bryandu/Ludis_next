@@ -1,11 +1,14 @@
-import styled from "styled-components";
+import { ButtonHTMLAttributes } from "react";
+import styled, { css } from "styled-components";
 import { Colors } from "../../styles/global";
 
-export const Button = styled.button.attrs((props: any) => ({
-  width: props.width || "auto",
-}))`
-  padding: 8px 20px;
-  border-radius: 3px;
+interface Button {
+  outline?: boolean;
+}
+
+export const Button = styled.button<Button>`
+  padding: 9px 18px;
+  border-radius: 4px;
   border-style: none;
   background-color: ${Colors.redPrimary};
   font-size: 1rem;
@@ -15,4 +18,15 @@ export const Button = styled.button.attrs((props: any) => ({
     cursor: pointer;
     background-color: ${Colors.redSecundary};
   }
+  ${props =>
+    props.outline &&
+    css`
+      background: transparent;
+      border: 2px solid ${Colors.redPrimary};
+      color: ${Colors.redPrimary};
+      &:hover {
+        cursor: pointer;
+        color: #ffffff;
+      }
+    `}
 `;
