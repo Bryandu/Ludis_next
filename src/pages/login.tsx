@@ -3,7 +3,7 @@ import FormLogin from "../components/forms/formLogin";
 import Link from "next/link";
 import { Anchor } from "../components/anchor/styles";
 
-const Login: React.FC = () => {
+const Login = () => {
   return (
     <SectionLogin>
       <article>

@@ -8,6 +8,12 @@ import { Button } from "../button/button";
 import { Input } from "../input/input";
 
 export const FormSingup: React.FC = ({ ...props }) => {
+  type SingUp = {
+    email: string;
+    password: string;
+    passwordConfirm: string;
+  };
+
   const initialValues = {
     email: "",
     password: "",
@@ -24,7 +30,7 @@ export const FormSingup: React.FC = ({ ...props }) => {
       .required("Campo obrigatório"),
   });
 
-  const onSubmit = (values: object) => {
+  const onSubmit = (values: SingUp) => {
     console.log(values);
   };
 

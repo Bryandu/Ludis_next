@@ -1,15 +1,22 @@
-import React from "react";
+import Link from "next/link";
+
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { HiOutlineMail } from "react-icons/hi";
-import { BiKey } from "react-icons/bi";
+
 import { Button } from "../button/button";
 import { DivButton } from "./styleForms";
 import { Anchor } from "../anchor/styles";
-import Link from "next/link";
 import { Input } from "../input/input";
 
-const FormLogin: React.FC = () => {
+import { HiOutlineMail } from "react-icons/hi";
+import { BiKey } from "react-icons/bi";
+
+const FormLogin = () => {
+  type Login = {
+    email: string;
+    password: string;
+  };
+
   const initialValues = {
     email: "",
     password: "",
@@ -21,7 +28,7 @@ const FormLogin: React.FC = () => {
       .required("Senha obrigatório."),
   });
 
-  const onSubmit = (values: object) => {
+  const onSubmit = (values: Login) => {
     console.log(values);
   };
 

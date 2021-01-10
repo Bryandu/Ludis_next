@@ -14,7 +14,7 @@ interface Input extends InputHTMLAttributes<HTMLInputElement> {
   lineDown?: boolean;
 }
 
-export const Input: React.FC<Input> = ({ icon: Icon, lineDown, ...props }) => {
+export const Input = ({ icon: Icon, lineDown, ...props }: Input) => {
   const [field, meta] = useField(props);
   return (
     <>

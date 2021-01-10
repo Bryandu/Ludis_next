@@ -44,7 +44,7 @@ const ImgHeader = styled.div`
   }
 `;
 
-const Header: React.FC = ({ ...props }) => {
+const Header = ({ ...props }) => {
   return (
     <HeaderComp>
       <Logo fontsize="30px">Ludis</Logo>

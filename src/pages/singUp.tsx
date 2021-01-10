@@ -1,6 +1,5 @@
 import { FormSingup } from "../components/forms/formSingup";
 import Logo from "../components/logo/logo";
-import Winners from "../assets/img/winners.png";
 import Image from "next/image";
 import {
   AsideForm,
@@ -12,7 +11,7 @@ import {
   Section,
 } from "../styles/singupStyles";
 
-const singUp: React.FC = ({ ...props }): JSX.Element => {
+const singUp = ({ ...props }) => {
   return (
     <Section>
       <DivForm>

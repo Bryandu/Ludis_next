@@ -2,11 +2,11 @@ import { ButtonHTMLAttributes } from "react";
 import styled, { css } from "styled-components";
 import { Colors } from "../../styles/global";
 
-interface Button {
+interface BtnOutline {
   outline?: boolean;
 }
 
-export const Button = styled.button<Button>`
+export const Button = styled.button<BtnOutline>`
   padding: 9px 18px;
   border-radius: 4px;
   border-style: none;

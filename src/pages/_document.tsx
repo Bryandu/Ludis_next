@@ -41,18 +41,6 @@ export default class MyDocument extends Document {
       <Html lang="pt">
         <Head>
           <meta charSet="utf-8" />
-          <link
-            rel="preload"
-            href="/fonts/Androgyne/Androgyne.woff2"
-            as="font"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/Circular Std Book/Circular Std Book.woff2"
-            as="font"
-            crossOrigin="anonymous"
-          />
         </Head>
         <body>
           <Main />
