@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Colors } from "./global";
 
 export const Section = styled.section`
-  position: fixed;
+  position: relative;
   display: flex;
   width: 100%;
   height: 100vh;
@@ -45,7 +45,7 @@ export const AsideForm = styled.aside`
   padding: 2rem;
   margin: 0rem;
   border-radius: 5px;
-  position: relative;
+  position: absolute;
   justify-content: center;
   align-items: center;
   width: 400px;
@@ -76,6 +76,7 @@ export const ImgContainer = styled.div`
   display: flex;
   width: 400px;
   height: 350px;
+  position: absolute;
 `;
 
 export const ImgWinners = styled.img`

@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Header from "../components/header/header";
 import Anchor from "../components/anchor/anchor";
+import { Main } from "../styles/indexStyles";
 
 const Home = () => {
   return (
@@ -11,10 +12,10 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Main>
         <Header />
         <Anchor href="/login">Entrar</Anchor>
-      </main>
+      </Main>
     </div>
   );
 };
