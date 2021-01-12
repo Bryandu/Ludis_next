@@ -1,4 +1,4 @@
-import React from "react";
+import "nprogress/nprogress.css";
 import Head from "next/head";
 import Header from "../components/header/header";
 import Anchor from "../components/anchor/anchor";

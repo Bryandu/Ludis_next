@@ -47,6 +47,7 @@ const FormLogin = () => {
               iconSize="25px"
               height="40px"
               lineDown
+              type="email"
               placeholder="Seu email"
             />
           </aside>
@@ -58,6 +59,7 @@ const FormLogin = () => {
               iconSize="25px"
               height="40px"
               lineDown
+              type="password"
               placeholder="Sua senha"
             />
           </aside>

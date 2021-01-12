@@ -11,19 +11,19 @@ const MenuDrop = () => {
         <ul>
           <IconContext.Provider value={{ size: "1.5em" }}>
             <li>
-              <FiMap title="Locais" />
+              <FiMap className="iconDrop" title="Locais" />
               <p>Locais</p>
             </li>
             <li>
-              <FiShoppingBag title="Lojas" />
+              <FiShoppingBag className="iconDrop" title="Lojas" />
               <p>Lojas</p>
             </li>
             <li>
-              <FiBell title="Notificações" />
+              <FiBell className="iconDrop" title="Notificações" />
               <p>Notificações</p>
             </li>
             <li>
-              <BsGear title="Configurações" />
+              <BsGear className="iconDrop" title="Configurações" />
               <p>Configurações</p>
             </li>
           </IconContext.Provider>
