@@ -54,7 +54,7 @@ export const AsideForm = styled.aside`
   @media screen and (max-width: 420px) {
     width: 100%;
     height: 100vh;
-    padding: 1rem;
+    padding: 2rem;
   }
 `;
 

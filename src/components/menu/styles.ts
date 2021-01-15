@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { Colors } from "../../styles/global";
 
-export const List = styled.ul`
+interface List {
+  colored?: boolean;
+}
+
+export const List = styled.ul<List>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,6 +13,14 @@ export const List = styled.ul`
   margin: 0 0 0 8px;
   #drop {
     display: none;
+    color: ${props => (props.colored ? Colors.redPrimary : "#fff")};
+    &:focus {
+      background-color: #444;
+    }
+    &:hover {
+      cursor: pointer;
+      color: ${Colors.redPrimary};
+    }
     @media screen and (max-width: 767px) {
       display: flex;
     }

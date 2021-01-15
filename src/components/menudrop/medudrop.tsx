@@ -1,12 +1,15 @@
 import { IconContext } from "react-icons/lib";
-import { List } from "../menu/styles";
 import { ContainerDrop } from "./styles";
 import { FiMap, FiShoppingBag, FiBell } from "react-icons/fi";
 import { BsGear } from "react-icons/bs";
+import { useEffect, useState } from "react";
+interface ShowDrop {
+  showDrop?: boolean;
+}
 
-const MenuDrop = () => {
+const MenuDrop = ({ showDrop }: ShowDrop) => {
   return (
-    <ContainerDrop>
+    <ContainerDrop show={showDrop}>
       <nav>
         <ul>
           <IconContext.Provider value={{ size: "1.5em" }}>

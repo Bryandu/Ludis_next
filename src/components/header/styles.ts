@@ -8,6 +8,8 @@ export const HeaderComp = styled.header`
   width: 100%;
   padding: 10px;
   background: #151515;
+  z-index: 100;
+  top: 0;
 `;
 
 export const ImgHeader = styled.div`
