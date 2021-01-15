@@ -40,28 +40,32 @@ const FormLogin = () => {
       {() => (
         <Form>
           <aside>
-            <label htmlFor="email">Email</label>
-            <Input
-              name="email"
-              icon={HiOutlineMail}
-              iconSize="25px"
-              height="40px"
-              lineDown
-              type="email"
-              placeholder="Seu email"
-            />
+            <label htmlFor="email">
+              Email
+              <Input
+                name="email"
+                icon={HiOutlineMail}
+                iconSize="25px"
+                height="40px"
+                lineDown
+                type="email"
+                placeholder="Seu email"
+              />
+            </label>
           </aside>
           <aside>
-            <label htmlFor="password">Senha</label>
-            <Input
-              name="password"
-              icon={BiKey}
-              iconSize="25px"
-              height="40px"
-              lineDown
-              type="password"
-              placeholder="Sua senha"
-            />
+            <label htmlFor="password">
+              Senha
+              <Input
+                name="password"
+                icon={BiKey}
+                iconSize="25px"
+                height="40px"
+                lineDown
+                type="password"
+                placeholder="Sua senha"
+              />
+            </label>
           </aside>
           <DivButton>
             <Button type="submit">Entrar</Button>

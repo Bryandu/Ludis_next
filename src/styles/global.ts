@@ -14,6 +14,7 @@ export default createGlobalStyle`
             url('fonts/Androgyne/Androgyne.ttf') format('ttf'),
             url('fonts/Androgyne/Androgyne.eot') format('eot');
         font-style: normal;
+        font-display: swap;
     }
     @font-face {
         font-family: 'Circular Std Book';
@@ -22,6 +23,7 @@ export default createGlobalStyle`
             url('fonts/Circular Std Book/Circular Std Book.ttf') format('ttf'),
             url('fonts/Circular Std Book/Circular Std Book.eot') format('eot');
         font-style: normal;
+        font-display: swap;
     }
     *{
         margin: 0;

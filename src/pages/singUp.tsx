@@ -10,27 +10,33 @@ import {
   ImgContainer,
   Section,
 } from "../styles/singupStyles";
+import Head from "next/head";
 
 const singUp = ({ ...props }) => {
   return (
-    <Section>
-      <DivForm>
-        <AsideForm>
-          <Logo fontsize="50px">Ludis</Logo>
-          <DivText>
-            <p>Cadastre-se no Ludis preenchendo os campos abaixo.</p>
-          </DivText>
-          <FormContainer>
-            <FormSingup />
-          </FormContainer>
-        </AsideForm>
-      </DivForm>
-      <DivImg>
-        <ImgContainer>
-          <Image alt="Campeões" width={400} height={350} src="/winners.svg" />
-        </ImgContainer>
-      </DivImg>
-    </Section>
+    <>
+      <Head>
+        <title>Ludis - cadastro</title>
+      </Head>
+      <Section>
+        <DivForm>
+          <AsideForm>
+            <Logo fontsize="50px">Ludis</Logo>
+            <DivText>
+              <p>Cadastre-se no Ludis preenchendo os campos abaixo.</p>
+            </DivText>
+            <FormContainer>
+              <FormSingup />
+            </FormContainer>
+          </AsideForm>
+        </DivForm>
+        <DivImg>
+          <ImgContainer>
+            <Image alt="Campeões" width={400} height={350} src="/winners.svg" />
+          </ImgContainer>
+        </DivImg>
+      </Section>
+    </>
   );
 };
 

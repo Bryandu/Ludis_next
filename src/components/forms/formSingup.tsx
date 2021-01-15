@@ -41,36 +41,42 @@ export const FormSingup: React.FC = ({ ...props }) => {
       validationSchema={validationSchema}>
       <Form>
         <ContainerField>
-          <Label>Email</Label>
-          <Input
-            name="email"
-            icon={HiOutlineMail}
-            height="40px"
-            iconSize="25px"
-            lineDown
-          />
+          <Label>
+            Email
+            <Input
+              name="email"
+              icon={HiOutlineMail}
+              height="40px"
+              iconSize="25px"
+              lineDown
+            />
+          </Label>
         </ContainerField>
         <ContainerField>
-          <Label>Senha</Label>
-          <Input
-            name="password"
-            icon={BiKey}
-            iconSize="25px"
-            height="40px"
-            type="password"
-            lineDown
-          />
+          <Label>
+            Senha
+            <Input
+              name="password"
+              icon={BiKey}
+              iconSize="25px"
+              height="40px"
+              type="password"
+              lineDown
+            />
+          </Label>
         </ContainerField>
         <ContainerField>
-          <Label>Confirmar senha</Label>
-          <Input
-            name="passwordConfirm"
-            icon={CgPassword}
-            height="40px"
-            iconSize="25px"
-            type="password"
-            lineDown
-          />
+          <Label>
+            Confirmar senha
+            <Input
+              name="passwordConfirm"
+              icon={CgPassword}
+              height="40px"
+              iconSize="25px"
+              type="password"
+              lineDown
+            />
+          </Label>
         </ContainerField>
         <DivButton center>
           <Button type="submit">Cadastrar</Button>
