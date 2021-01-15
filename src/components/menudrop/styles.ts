@@ -1,6 +1,10 @@
 import styled, { keyframes } from "styled-components";
 import { Colors } from "../../styles/global";
 
+interface ShowDrop {
+  show?: boolean;
+}
+
 const show = keyframes`
   from{
     height: 0;
@@ -12,8 +16,8 @@ const show = keyframes`
   }
 `;
 
-export const ContainerDrop = styled.div`
-  display: flex;
+export const ContainerDrop = styled.div<ShowDrop>`
+  display: ${props => (props.show ? "flex" : "none")};
   position: absolute;
   top: 65px;
   right: 12px;
@@ -21,6 +25,7 @@ export const ContainerDrop = styled.div`
   border-radius: 5px;
   background-color: #151515;
   padding: 0 1rem;
+  z-index: 100;
   li {
     display: flex;
     justify-content: baseline;
@@ -32,7 +37,7 @@ export const ContainerDrop = styled.div`
     }
     &:hover {
       cursor: pointer;
-      color: #cf1020;
+      color: ${Colors.redPrimary};
     }
     p {
       font-size: 1rem;
