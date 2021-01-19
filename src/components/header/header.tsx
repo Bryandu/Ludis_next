@@ -10,7 +10,7 @@ const Header = () => {
       <HeaderComp>
         <Logo fontsize="30px">Ludis</Logo>
         <ImgHeader>
-          <img src={Eu} />
+          <img alt="you" src={Eu} />
           <FormSearch />
         </ImgHeader>
         <Menu />

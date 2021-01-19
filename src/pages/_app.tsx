@@ -20,6 +20,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <link rel="stylesheet" type="text/css" href="nprogress.css" />
+        <meta
+          name="description"
+          content="Encontre lugares e pessoas para jogar, praticar e compartilhar seus esportes e lances favoritos!"
+        />
       </Head>
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
