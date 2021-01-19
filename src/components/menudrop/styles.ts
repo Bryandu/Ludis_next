@@ -1,8 +1,8 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { Colors } from "../../styles/global";
 
 interface ShowDrop {
-  show?: boolean;
+  showDrop?: boolean;
 }
 
 const show = keyframes`
@@ -16,16 +16,34 @@ const show = keyframes`
   }
 `;
 
+export const BackDrop = styled.div`
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+`;
+
 export const ContainerDrop = styled.div<ShowDrop>`
-  display: ${props => (props.show ? "flex" : "none")};
+  display: none;
   position: absolute;
   top: 65px;
   right: 12px;
-  z-index: 1000;
+  z-index: 100;
   border-radius: 5px;
   background-color: #151515;
   padding: 0 1rem;
   z-index: 100;
+  ${props =>
+    props.showDrop &&
+    css`
+      display: flex;
+    `}
   li {
     display: flex;
     justify-content: baseline;

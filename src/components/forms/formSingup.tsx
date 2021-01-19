@@ -6,8 +6,12 @@ import { BiKey } from "react-icons/bi";
 import { CgPassword } from "react-icons/cg";
 import { Button } from "../button/button";
 import { Input } from "../input/input";
+import { POST } from "../../service/axios";
+import { useRouter } from "next/router";
 
 export const FormSingup: React.FC = ({ ...props }) => {
+  const route = useRouter();
+
   type SingUp = {
     email: string;
     password: string;
@@ -31,7 +35,12 @@ export const FormSingup: React.FC = ({ ...props }) => {
   });
 
   const onSubmit = (values: SingUp) => {
-    console.log(values);
+    POST("users", { email: values.email, password: values.password }).then(
+      response => {
+        console.log(response);
+        response.status == 201 || 200 ? route.back() : false;
+      }
+    );
   };
 
   return (
