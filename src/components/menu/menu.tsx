@@ -4,38 +4,41 @@ import { IconContext } from "react-icons/lib";
 import { FiMap, FiShoppingBag, FiBell } from "react-icons/fi";
 import { BsGear } from "react-icons/bs";
 import MenuDrop from "../menudrop/medudrop";
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { Colors } from "../../styles/global";
 
 const Menu = () => {
   const [drop, setDrop] = useState<boolean>();
   const modalRef = useRef();
 
-  const listener = () => {
-    const main = document.querySelector("main");
-    setDrop(!drop);
-    main.addEventListener("click", remove);
-    console.log(drop);
+  const showDrop = () => {
+    if (drop) {
+      setDrop(false);
+    } else {
+      const main = document.querySelector("main");
+      setDrop(true);
+      main.addEventListener("click", removeDrop);
+    }
   };
 
-  function remove(e: Event) {
+  const removeDrop = (e: Event) => {
     let event = e.target as HTMLDivElement;
+    e.stopPropagation();
     if (event.id == "dropmenu") {
       setDrop(true);
     } else {
       const main = document.querySelector("main");
       setDrop(false);
-      main.removeEventListener("click", remove);
+      main.removeEventListener("click", removeDrop);
     }
-  }
+  };
 
   return (
     <>
       <nav>
         <List>
-          <li id="drop">
+          <li id="drop" onClick={showDrop}>
             <IoIosArrowDropdown
-              onClick={listener}
               title="Menu"
               size="2em"
               color={drop ? Colors.redPrimary : "#fff"}
