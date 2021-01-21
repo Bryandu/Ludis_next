@@ -8,7 +8,7 @@ import { GET } from "../service/axios";
 
 const Login = () => {
   useEffect(() => {
-    GET("users");
+    //GET("users");
   });
 
   return (
@@ -20,7 +20,7 @@ const Login = () => {
         <article>
           <h1>
             Conecte<span>.&nbsp;</span>Jogue<span>.</span>
-            Compartilher
+            Compartilhe
           </h1>
           <DivForm>
             <FormLogin />

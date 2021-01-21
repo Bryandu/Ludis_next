@@ -7,8 +7,8 @@ interface BtnOutline {
 }
 
 export const Button = styled.button<BtnOutline>`
-  padding: 9px 18px;
-  border-radius: 4px;
+  padding: 6px 16px;
+  border-radius: 25px;
   border-style: none;
   background-color: ${Colors.redPrimary};
   font-size: 1rem;

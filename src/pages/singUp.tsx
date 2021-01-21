@@ -32,7 +32,12 @@ const singUp = ({ ...props }) => {
         </DivForm>
         <DivImg>
           <ImgContainer>
-            <Image alt="Campeões" width={400} height={350} src="/winners.svg" />
+            <Image
+              alt="Campeões"
+              width={400}
+              height={350}
+              src="/svg/winners.svg"
+            />
           </ImgContainer>
         </DivImg>
       </Section>

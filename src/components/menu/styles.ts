@@ -37,5 +37,8 @@ export const List = styled.ul<List>`
     @media screen and (max-width: 768px) {
       display: none;
     }
+    .iconDrop {
+      transition: 100ms ease-in-out;
+    }
   }
 `;

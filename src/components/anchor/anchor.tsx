@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import { BtnAnchor } from "./styles";
+import { AnchorText, BtnAnchor } from "./styles";
 
 const Anchor = ({ ...props }) => {
   return (
     <Link href={props.href} passHref>
-      <BtnAnchor {...props}>{props.children}</BtnAnchor>
+      <AnchorText {...props}>{props.children}</AnchorText>
     </Link>
   );
 };

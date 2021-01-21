@@ -25,7 +25,7 @@ export const BtnAnchor = styled.a.attrs((props: any) => ({
   }
 `;
 
-export const Anchor = styled.a`
+export const AnchorText = styled.a`
   color: #ffffff;
   margin: 0 0.5rem;
   text-decoration: none;

@@ -15,10 +15,10 @@ export const HeaderComp = styled.header`
 export const ImgHeader = styled.div`
   display: flex;
   align-items: center;
-  img {
+  div {
     margin: 0 10px;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
+    img {
+      border-radius: 50%;
+    }
   }
 `;
