@@ -1,11 +1,18 @@
 import Link from "next/link";
-import React from "react";
+import React, { AnchorHTMLAttributes, HTMLAttributes } from "react";
 import { AnchorText, BtnAnchor } from "./styles";
 
-const Anchor = ({ ...props }) => {
+interface Anchor extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  button?: boolean;
+}
+const Anchor = ({ button, ...props }: Anchor) => {
   return (
     <Link href={props.href} passHref>
-      <AnchorText {...props}>{props.children}</AnchorText>
+      {button ? (
+        <BtnAnchor {...props}>{props.children}</BtnAnchor>
+      ) : (
+        <AnchorText {...props}>{props.children}</AnchorText>
+      )}
     </Link>
   );
 };

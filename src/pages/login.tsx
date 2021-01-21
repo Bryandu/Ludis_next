@@ -1,7 +1,7 @@
 import { DivForm, SectionLogin, DivPassword } from "../styles/loginStyle";
 import FormLogin from "../components/forms/formLogin";
 import Link from "next/link";
-import { Anchor } from "../components/anchor/styles";
+import Anchor from "../components/anchor/anchor";
 import Head from "next/head";
 import { useEffect } from "react";
 import { GET } from "../service/axios";
@@ -26,9 +26,7 @@ const Login = () => {
             <FormLogin />
           </DivForm>
           <DivPassword>
-            <Link href="/">
-              <Anchor>Esqueceu a senha?</Anchor>
-            </Link>
+            <Anchor href="/">Esqueceu a senha?</Anchor>
           </DivPassword>
         </article>
       </SectionLogin>

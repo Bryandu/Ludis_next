@@ -4,6 +4,7 @@ import { ContainerHome, HeaderHome, Img, Main } from "../styles/indexStyles";
 import Logo from "../components/logo/logo";
 import { Button } from "../components/button/button";
 import Anchor from "../components/anchor/anchor";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -18,11 +19,12 @@ const Home = () => {
           <Img>
             <HeaderHome>
               <div>
-                {/* <div>
-                  <Image src="/img/eu.jpg" width={30} height={30} alt="profile" />
-                </div> */}
-                <Button outline>Entrar</Button>
-                <Anchor href="/">cadastrar</Anchor>
+                <Link href="/login">
+                  <Button radius outline>
+                    Entrar
+                  </Button>
+                </Link>
+                <Anchor href="/singUp">cadastrar</Anchor>
               </div>
             </HeaderHome>
             <div className="title">

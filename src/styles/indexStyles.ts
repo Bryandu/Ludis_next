@@ -21,7 +21,7 @@ export const ContainerHome = styled.section`
   .title {
     display: flex;
     align-items: center;
-    Sh1 {
+    h1 {
       margin-right: 20px;
     }
     @media screen and (max-width: 936px) {
@@ -31,6 +31,7 @@ export const ContainerHome = styled.section`
       text-align: center;
       h1 {
         font-size: 4em;
+        margin-right: 0;
       }
       p {
         font-size: 3em !important;
@@ -61,6 +62,7 @@ export const HeaderHome = styled.header`
     background-color: ${Colors.blackBody};
     border-radius: 35px;
     padding: 8px;
+    box-shadow: 20px 20px 60px #000000, -20px -20px 60px #000000;
     div {
       border-radius: 50%;
     }
@@ -76,21 +78,9 @@ export const Img = styled.div`
   top: 0;
   left: 0;
   z-index: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url("/img/baska.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("/img/quadra4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
 `;
-// export const HomeDgrau = styled.div`
-//   display: flex;
-//   position: relative;
-//   top: -130px;
-//   left: 0;
-//   z-index: 1;
-//   width: 100%;
-//   height: 700px;
-//   border-radius: 0 0 0 60px;
-//   border-bottom: ${Colors.redPrimary} solid 2px;
-//   transform: skewY(-5deg);
-//   background-color: #151515;
-//   overflow: hidden;
-// `;

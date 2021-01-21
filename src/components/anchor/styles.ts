@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import { Colors } from "../../styles/global";
 
-export const BtnAnchor = styled.a.attrs((props: any) => ({
-  width: props.width || "5rem",
-}))`
-  position: absolute;
+export const BtnAnchor = styled.a`
+  position: relative;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -15,9 +13,7 @@ export const BtnAnchor = styled.a.attrs((props: any) => ({
   border: none;
   border-radius: 3px;
   outline: none;
-  margin: 15px;
   font-size: 0.9em;
-  width: ${props => props.width};
   text-decoration: none;
   &:hover {
     cursor: pointer;
@@ -32,6 +28,6 @@ export const AnchorText = styled.a`
   outline-color: ${Colors.redSecundary};
   &:hover {
     cursor: pointer;
-    color: ${Colors.redSecundary};
+    color: ${Colors.redPrimary};
   }
 `;

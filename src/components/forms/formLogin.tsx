@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 import { Button } from "../button/button";
 import { DivButton } from "./styleForms";
-import { Anchor } from "../anchor/styles";
+import Anchor from "../anchor/anchor";
 import { Input } from "../input/input";
 
 import { HiOutlineMail } from "react-icons/hi";
@@ -69,9 +69,7 @@ const FormLogin = () => {
           </aside>
           <DivButton>
             <Button type="submit">Entrar</Button>
-            <Link href="/singUp">
-              <Anchor>ou cadastre-se</Anchor>
-            </Link>
+            <Anchor href="/singUp">ou cadastre-se</Anchor>
           </DivButton>
         </Form>
       )}
