@@ -56,13 +56,11 @@ export const HeaderHome = styled.header`
   }
   div {
     display: flex;
-    width: 250px;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     background-color: ${Colors.blackBody};
     border-radius: 35px;
-    padding: 8px;
-    box-shadow: 20px 20px 60px #000000, -20px -20px 60px #000000;
+    padding: 5px 6px;
     div {
       border-radius: 50%;
     }

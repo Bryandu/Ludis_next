@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Nprogres from "nprogress";
 import { AppProps } from "next/app";
 import GlobalStyle from "../styles/global";
+import "nprogress/nprogress.css";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
 import { useRouter } from "next/router";
@@ -19,7 +20,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        <link rel="stylesheet" type="text/css" href="nprogress.css" />
+        {/* <link rel="stylesheet" type="text/css" href="nprogress.css" /> */}
         <meta
           name="description"
           content="Encontre lugares e pessoas para jogar, praticar e compartilhar seus esportes e lances favoritos!"
