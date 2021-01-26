@@ -1,10 +1,10 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const Colors = {
-  redPrimary: "#CF1020",
-  redSecundary: "#DC143C",
-  blackBackground: "#111111",
-  blackBody: "#1c1c1c",
+  redPrimary: '#CF1020',
+  redSecundary: '#DC143C',
+  blackBackground: '#111111',
+  blackBody: '#1c1c1c'
 };
 
 export default createGlobalStyle`

@@ -1,12 +1,11 @@
-import Head from "next/head";
-import Image from "next/image";
-import { ContainerHome, HeaderHome, Img, Main } from "../styles/indexStyles";
-import Logo from "../components/logo/logo";
-import { Button } from "../components/button/button";
-import Anchor from "../components/anchor/anchor";
-import Link from "next/link";
+import Head from 'next/head';
+import Link from 'next/link';
+import { ContainerHome, HeaderHome, Img, Main } from '../styles/indexStyles';
+import Logo from '../components/logo/logo';
+import { Button } from '../components/button/button';
+import Anchor from '../components/anchor/anchor';
 
-const Home = () => {
+const Home = (): JSX.Element => {
   return (
     <div>
       <Head>

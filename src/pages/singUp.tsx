@@ -1,6 +1,6 @@
-import { FormSingup } from "../components/forms/formSingup";
-import Logo from "../components/logo/logo";
-import Image from "next/image";
+import Head from 'next/head';
+import Image from 'next/image';
+import Logo from '../components/logo/logo';
 import {
   AsideForm,
   DivForm,
@@ -8,11 +8,11 @@ import {
   DivText,
   FormContainer,
   ImgContainer,
-  Section,
-} from "../styles/singupStyles";
-import Head from "next/head";
+  Section
+} from '../styles/singupStyles';
+import { FormSingup } from '../components/forms/formSingup';
 
-const singUp = ({ ...props }) => {
+const singUp = (): JSX.Element => {
   return (
     <>
       <Head>
@@ -32,12 +32,7 @@ const singUp = ({ ...props }) => {
         </DivForm>
         <DivImg>
           <ImgContainer>
-            <Image
-              alt="Campeões"
-              width={400}
-              height={350}
-              src="/svg/winners.svg"
-            />
+            <Image alt="Campeões" width={400} height={350} src="/svg/winners.svg" />
           </ImgContainer>
         </DivImg>
       </Section>

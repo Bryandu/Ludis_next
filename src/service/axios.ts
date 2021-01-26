@@ -1,10 +1,10 @@
-import axios, { AxiosInstance, AxiosPromise } from "axios";
+import axios, { AxiosRequestConfig } from 'axios';
 
 export const baseURL = axios.create({
-  baseURL: "http://localhost:3004",
+  baseURL: 'http://localhost:3004'
 });
 
-export const GET = async (path: string, config?: any) => {
+export const GET = async (path: string, config?: AxiosRequestConfig) => {
   try {
     return await baseURL.get(path, config);
   } catch (error) {
@@ -12,7 +12,7 @@ export const GET = async (path: string, config?: any) => {
   }
 };
 
-export const POST = async (path: string, data: any, config?: any) => {
+export const POST = async (path: string, data: unknown, config?: AxiosRequestConfig) => {
   try {
     return await baseURL.post(path, data, config);
   } catch (error) {
@@ -20,7 +20,7 @@ export const POST = async (path: string, data: any, config?: any) => {
   }
 };
 
-export const PUT = async (path: string, data: any, config?: any) => {
+export const PUT = async (path: string, data: unknown, config?: AxiosRequestConfig) => {
   try {
     return await baseURL.post(path, data, config);
   } catch (error) {
@@ -28,7 +28,7 @@ export const PUT = async (path: string, data: any, config?: any) => {
   }
 };
 
-export const DELETE = async (path: string, config?: any) => {
+export const DELETE = async (path: string, config?: AxiosRequestConfig) => {
   try {
     return await baseURL.delete(path, config);
   } catch (error) {

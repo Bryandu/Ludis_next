@@ -1,8 +1,8 @@
-import { HeaderComp, ImgHeader } from "./styles";
-import Logo from "../logo/logo";
-import FormSearch from "../forms/formSearch";
-import Menu from "../menu/menu";
-import Image from "next/image";
+import { HeaderComp, ImgHeader } from './styles';
+import Logo from '../logo/logo';
+import FormSearch from '../forms/formSearch';
+import Menu from '../menu/menu';
+import Image from 'next/image';
 
 const Header = () => {
   return (

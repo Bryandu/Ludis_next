@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Colors } from "../../styles/global";
+import styled from 'styled-components';
+import { Colors } from '../../styles/global';
 
 export const BtnAnchor = styled.a`
   position: relative;

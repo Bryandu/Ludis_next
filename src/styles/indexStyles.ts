@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Colors } from "./global";
+import styled from 'styled-components';
+import { Colors } from './global';
 
 export const Main = styled.main`
   display: flex;
@@ -76,9 +76,8 @@ export const Img = styled.div`
   top: 0;
   left: 0;
   z-index: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("/img/quadra4.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/img/quadra.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: top;
 `;

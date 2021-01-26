@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { Colors } from "../../styles/global";
+import styled, { css } from 'styled-components';
+import { Colors } from '../../styles/global';
 
 interface BtnOutline {
   outline?: boolean;

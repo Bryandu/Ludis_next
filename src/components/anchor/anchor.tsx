@@ -1,6 +1,6 @@
-import Link from "next/link";
-import React, { AnchorHTMLAttributes, HTMLAttributes } from "react";
-import { AnchorText, BtnAnchor } from "./styles";
+import Link from 'next/link';
+import React, { AnchorHTMLAttributes } from 'react';
+import { AnchorText, BtnAnchor } from './styles';
 
 interface Anchor extends AnchorHTMLAttributes<HTMLAnchorElement> {
   button?: boolean;

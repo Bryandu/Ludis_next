@@ -1,10 +1,10 @@
-import { useField } from "formik";
-import React, { InputHTMLAttributes } from "react";
-import { IconBaseProps } from "react-icons/lib";
-import { Erros } from "../forms/styleForms";
-import { InputComp, DivInput } from "./styles";
+import { useField } from 'formik';
+import React, { InputHTMLAttributes } from 'react';
+import { IconBaseProps } from 'react-icons/lib';
+import { Erros } from '../forms/styleForms';
+import { InputComp, DivInput } from './styles';
 
-interface Input extends InputHTMLAttributes<HTMLInputElement> {
+interface InputIF extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   width?: string;
   height?: string;
@@ -14,7 +14,7 @@ interface Input extends InputHTMLAttributes<HTMLInputElement> {
   lineDown?: boolean;
 }
 
-export const Input = ({ icon: Icon, lineDown, ...props }: Input) => {
+export const Input = ({ icon: Icon, lineDown, ...props }: InputIF) => {
   const [field, meta] = useField(props);
   return (
     <>

@@ -1,4 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+
+interface Divinput {
+  width?: string;
+  height?: string;
+}
 
 export const InputComp = styled.input`
   color: #000000;
@@ -14,9 +19,9 @@ export const InputComp = styled.input`
     font-size: 1rem;
   }
 `;
-export const DivInput = styled.div.attrs((props: any) => ({
-  width: props.width || "100%",
-  height: props.height || "100%",
+export const DivInput = styled.div.attrs((props: Divinput) => ({
+  width: props.width || '100%',
+  height: props.height || '100%'
 }))`
   display: flex;
   align-items: center;
