@@ -10,7 +10,7 @@ import {
   ImgContainer,
   Section
 } from '../styles/singupStyles';
-import { FormSingup } from '../components/forms/formSingup';
+import FormSingup from '../components/forms/formSingup';
 
 const singUp = (): JSX.Element => {
   return (

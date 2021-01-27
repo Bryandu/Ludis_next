@@ -5,7 +5,7 @@ import Logo from '../components/logo/logo';
 import { Button } from '../components/button/button';
 import Anchor from '../components/anchor/anchor';
 
-const Home = (): JSX.Element => {
+const Home = () => {
   return (
     <div>
       <Head>

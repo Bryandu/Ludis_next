@@ -1,8 +1,17 @@
 import { combineReducers, createStore } from 'redux';
-import userReducer from './ducks/userReducer';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const reducers = combineReducers({ userReducer });
+import userReducer from './ducks/user/userReducer';
 
-const store = createStore(reducers);
+const persistConfig = {
+  key: 'root',
+  storage
+};
 
-export default store;
+const reducers = combineReducers({ user: userReducer });
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+export const store = createStore(persistedReducer);
+export const persistedStore = persistStore(store);

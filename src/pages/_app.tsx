@@ -1,15 +1,16 @@
-import Head from 'next/head';
-import { useEffect } from 'react';
-import Nprogres from 'nprogress';
-import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { store, persistedStore } from '../store/store';
+import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../styles/global';
 import { theme } from '../styles/theme';
-import { Provider } from 'react-redux';
-import store from '../store/store';
+import Nprogres from 'nprogress';
 
-const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -27,12 +28,14 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
           content="Encontre lugares e pessoas para jogar, praticar e compartilhar seus esportes e lances favoritos!"
         />
       </Head>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-          <GlobalStyle />
-        </ThemeProvider>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <PersistGate persistor={persistedStore}>
+            <Component {...pageProps} />
+            <GlobalStyle />
+          </PersistGate>
+        </Provider>
+      </ThemeProvider>
     </>
   );
 };

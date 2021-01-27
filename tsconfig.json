@@ -18,7 +18,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/input/input.tss"
-, "src/components/input/input.jsx"  ],
+    "src/components/input/input.tss",
+    "src/components/input/input.jsx"
+  ],
   "exclude": ["node_modules"]
 }
