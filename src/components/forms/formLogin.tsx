@@ -8,8 +8,14 @@ import { Input } from '../input/input';
 
 import { HiOutlineMail } from 'react-icons/hi';
 import { BiKey } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
+import { userSelector } from '../../store/ducks/user/userSelectors';
+import { userLogin } from '../../store/ducks/user/user';
 
 const FormLogin = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(userSelector);
+
   type Login = {
     email: string;
     password: string;
@@ -25,7 +31,8 @@ const FormLogin = () => {
   });
 
   const onSubmit = (values: Login) => {
-    console.log(values);
+    dispatch(userLogin(values.email, values.password));
+    console.log(user);
   };
 
   return (

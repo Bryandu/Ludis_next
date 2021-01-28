@@ -6,9 +6,6 @@ import { BiKey } from 'react-icons/bi';
 import { CgPassword } from 'react-icons/cg';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
-import { useDispatch, useSelector } from 'react-redux';
-import { SingUp } from '../../store/ducks/user/userActions';
-import { selectorLogin } from '../../store/ducks/user/userSelector';
 
 interface SingUp {
   email: string;
@@ -17,9 +14,6 @@ interface SingUp {
 }
 
 export const FormSingup = () => {
-  const dispatch = useDispatch();
-  const user = useSelector(selectorLogin);
-
   const initialValues = {
     email: '',
     password: '',
@@ -36,8 +30,6 @@ export const FormSingup = () => {
 
   const onSubmit = (values: SingUp) => {
     const { email, password } = values;
-    dispatch(SingUp({ email: email, password: password, isOn: true }));
-    console.log(user);
   };
 
   return (

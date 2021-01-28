@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import { store, persistedStore } from '../store/store';
+import { store } from '../store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../styles/global';
@@ -30,10 +30,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          <PersistGate persistor={persistedStore}>
-            <Component {...pageProps} />
-            <GlobalStyle />
-          </PersistGate>
+          <Component {...pageProps} />
+          <GlobalStyle />
         </Provider>
       </ThemeProvider>
     </>
