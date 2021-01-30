@@ -1,8 +1,9 @@
-import { HeaderComp, ImgHeader } from "./styles";
-import Logo from "../logo/logo";
-import Eu from "../../assets/img/eu.jpg";
-import FormSearch from "../forms/formSearch";
-import Menu from "../menu/menu";
+import Image from 'next/image';
+
+import FormSearch from '../forms/formSearch';
+import Logo from '../logo/logo';
+import Menu from '../menu/menu';
+import { HeaderComp, ImgHeader } from './styles';
 
 const Header = () => {
   return (
@@ -10,7 +11,7 @@ const Header = () => {
       <HeaderComp>
         <Logo fontsize="30px">Ludis</Logo>
         <ImgHeader>
-          <img alt="you" src={Eu} />
+          {/* <Image src="/img/eu.jpg" alt="You" layout="responsive" /> */}
           <FormSearch />
         </ImgHeader>
         <Menu />

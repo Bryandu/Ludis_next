@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { Colors } from "../../styles/global";
+import styled from 'styled-components';
+
+import { Colors } from '../../styles/global';
 
 interface List {
   colored?: boolean;
@@ -13,7 +14,7 @@ export const List = styled.ul<List>`
   margin: 0 0 0 8px;
   #drop {
     display: none;
-    color: ${props => (props.colored ? Colors.redPrimary : "#fff")};
+    color: ${props => (props.colored ? Colors.redPrimary : '#fff')};
     &:focus {
       background-color: #444;
     }

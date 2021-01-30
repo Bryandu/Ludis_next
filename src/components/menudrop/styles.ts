@@ -1,5 +1,6 @@
-import styled, { keyframes, css } from "styled-components";
-import { Colors } from "../../styles/global";
+import styled, { css, keyframes } from 'styled-components';
+
+import { Colors } from '../../styles/global';
 
 interface ShowDrop {
   showDrop?: boolean;

@@ -1,15 +1,13 @@
-import Link from "next/link";
+import { Form, Formik } from 'formik';
+import Link from 'next/link';
+import { BiKey } from 'react-icons/bi';
+import { HiOutlineMail } from 'react-icons/hi';
+import * as Yup from 'yup';
 
-import { Form, Formik } from "formik";
-import * as Yup from "yup";
-
-import { Button } from "../button/button";
-import { DivButton } from "./styleForms";
-import { Anchor } from "../anchor/styles";
-import { Input } from "../input/input";
-
-import { HiOutlineMail } from "react-icons/hi";
-import { BiKey } from "react-icons/bi";
+import { Anchor } from '../anchor/styles';
+import { Button } from '../button/button';
+import { Input } from '../input/input';
+import { DivButton } from './styleForms';
 
 const FormLogin = () => {
   type Login = {
@@ -18,14 +16,12 @@ const FormLogin = () => {
   };
 
   const initialValues = {
-    email: "",
-    password: "",
+    email: '',
+    password: ''
   };
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Email inválido.").required("Email obrigatório."),
-    password: Yup.string()
-      .min(8, "Minímo oito caractéries.")
-      .required("Senha obrigatório."),
+    email: Yup.string().email('Email inválido.').required('Email obrigatório.'),
+    password: Yup.string().min(8, 'Minímo oito caractéries.').required('Senha obrigatório.')
   });
 
   const onSubmit = (values: Login) => {
@@ -33,10 +29,7 @@ const FormLogin = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}>
+    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
       {() => (
         <Form>
           <aside>

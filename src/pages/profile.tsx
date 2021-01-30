@@ -1,12 +1,12 @@
-import Head from "next/head";
-import { useEffect, useRef, useState } from "react";
-import { Button } from "../components/button/button";
-import Modal from "../components/modal/modal";
-import { SectionProfile } from "../styles/profileStyle";
+import Head from 'next/head';
+import { useState } from 'react';
 
-const profile = () => {
+import { Button } from '../components/button/button';
+import Modal from '../components/modal/modal';
+import { SectionProfile } from '../styles/profileStyle';
+
+const Profile = () => {
   const [dragdrop, setDragdrop] = useState(false);
-  const modalRef = useRef();
 
   const hiddenModal = () => {
     setDragdrop(false);
@@ -34,4 +34,4 @@ const profile = () => {
   );
 };
 
-export default profile;
+export default Profile;

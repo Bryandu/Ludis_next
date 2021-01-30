@@ -1,8 +1,14 @@
-import styled from "styled-components";
-import { Colors } from "../../styles/global";
+import { AnchorHTMLAttributes } from 'react';
+import styled from 'styled-components';
 
-export const BtnAnchor = styled.a.attrs((props: any) => ({
-  width: props.width || "5rem",
+import { Colors } from '../../styles/global';
+
+interface AnchorI extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  width?: string;
+}
+
+export const BtnAnchor = styled.a.attrs((props: AnchorI) => ({
+  width: props.width || '5rem'
 }))`
   position: absolute;
   display: flex;

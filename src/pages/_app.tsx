@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
-import Nprogres from "nprogress";
-import { AppProps } from "next/app";
-import GlobalStyle from "../styles/global";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../styles/theme";
-import { useRouter } from "next/router";
-import Head from "next/head";
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Nprogres from 'nprogress';
+import React, { useEffect } from 'react';
+import { ThemeProvider } from 'styled-components';
+
+import GlobalStyle from '../styles/global';
+import { theme } from '../styles/theme';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
   useEffect(() => {
     Nprogres.configure({ showSpinner: false });
-    router.events.on("routeChangeStart", () => Nprogres.start());
-    router.events.on("routeChangeComplete", () => Nprogres.done());
-  }, []);
+    router.events.on('routeChangeStart', () => Nprogres.start());
+    router.events.on('routeChangeComplete', () => Nprogres.done());
+  }, [router.events]);
 
   return (
     <>

@@ -1,7 +1,8 @@
-import Head from "next/head";
-import Header from "../components/header/header";
-import Anchor from "../components/anchor/anchor";
-import { Main } from "../styles/indexStyles";
+import Head from 'next/head';
+
+import Anchor from '../components/anchor/anchor';
+import Header from '../components/header/header';
+import { Main } from '../styles/indexStyles';
 
 const Home = () => {
   return (
