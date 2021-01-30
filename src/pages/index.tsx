@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import Link from 'next/link';
 
 import Anchor from '../components/anchor/anchor';
-import Header from '../components/header/header';
-import { Main } from '../styles/indexStyles';
+import { Button } from '../components/button/button';
+import Logo from '../components/logo/logo';
+import { ContainerHome, HeaderHome, Img, Main } from '../styles/indexStyles';
 
 const Home = () => {
   return (
@@ -13,8 +15,24 @@ const Home = () => {
       </Head>
 
       <Main>
-        <Header />
-        <Anchor href="/login">Entrar</Anchor>
+        <ContainerHome>
+          <Img>
+            <HeaderHome>
+              <div>
+                <Link href="/login">
+                  <Button curve outline>
+                    Entrar
+                  </Button>
+                </Link>
+                <Anchor href="/singUp">cadastrar</Anchor>
+              </div>
+            </HeaderHome>
+            <div className="title">
+              <Logo fontsize="6em">Ludis,</Logo>
+              <p>seu lugar de jogar.</p>
+            </div>
+          </Img>
+        </ContainerHome>
       </Main>
     </div>
   );

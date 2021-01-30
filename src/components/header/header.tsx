@@ -11,7 +11,14 @@ const Header = () => {
       <HeaderComp>
         <Logo fontsize="30px">Ludis</Logo>
         <ImgHeader>
-          {/* <Image src="/img/eu.jpg" alt="You" layout="responsive" /> */}
+          <Image
+            className="imgProfile"
+            width={18}
+            height={35}
+            title="perfil"
+            alt="perfil"
+            src="/img/eu.jpg"
+          />
           <FormSearch />
         </ImgHeader>
         <Menu />

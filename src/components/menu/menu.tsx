@@ -44,6 +44,7 @@ const Menu = () => {
               title="Menu"
               size="2em"
               color={drop ? Colors.redPrimary : '#fff'}
+              className="iconDrop"
             />
           </li>
           <IconContext.Provider value={{ size: '1.5em' }}>

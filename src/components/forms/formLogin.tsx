@@ -1,10 +1,9 @@
 import { Form, Formik } from 'formik';
-import Link from 'next/link';
 import { BiKey } from 'react-icons/bi';
 import { HiOutlineMail } from 'react-icons/hi';
 import * as Yup from 'yup';
 
-import { Anchor } from '../anchor/styles';
+import Anchor from '../anchor/anchor';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
 import { DivButton } from './styleForms';
@@ -62,9 +61,7 @@ const FormLogin = () => {
           </aside>
           <DivButton>
             <Button type="submit">Entrar</Button>
-            <Link href="/singUp">
-              <Anchor>ou cadastre-se</Anchor>
-            </Link>
+            <Anchor href="/singUp">ou cadastre-se</Anchor>
           </DivButton>
         </Form>
       )}

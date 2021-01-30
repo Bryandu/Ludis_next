@@ -1,15 +1,13 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useEffect } from 'react';
 
-import { Anchor } from '../components/anchor/styles';
+import Anchor from '../components/anchor/anchor';
 import FormLogin from '../components/forms/formLogin';
-import { GET } from '../service/axios';
 import { DivForm, DivPassword, SectionLogin } from '../styles/loginStyle';
 
 const Login = () => {
   useEffect(() => {
-    GET('users');
+    //GET("users");
   });
 
   return (
@@ -21,15 +19,13 @@ const Login = () => {
         <article>
           <h1>
             Conecte<span>.&nbsp;</span>Jogue<span>.</span>
-            Compartilher
+            Compartilhe
           </h1>
           <DivForm>
             <FormLogin />
           </DivForm>
           <DivPassword>
-            <Link href="/">
-              <Anchor>Esqueceu a senha?</Anchor>
-            </Link>
+            <Anchor href="/">Esqueceu a senha?</Anchor>
           </DivPassword>
         </article>
       </SectionLogin>
