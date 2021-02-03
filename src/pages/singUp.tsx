@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import { FormSingup } from '../components/forms/formSingup';
 import Logo from '../components/logo/logo';
+import { wrapper } from '../store/store';
 import {
   AsideForm,
   DivForm,
@@ -33,12 +34,19 @@ const singUp = () => {
         </DivForm>
         <DivImg>
           <ImgContainer>
-            <Image alt="Campeões" width={400} height={350} src="/svg/winners.svg" />
+            <Image alt="Campeões" layout="fill" src="/svg/winners.svg" />
           </ImgContainer>
         </DivImg>
       </Section>
     </>
   );
 };
+
+export const getStaticProps = wrapper.getStaticProps(({ store }) => {
+  store.getState();
+  return {
+    props: {}
+  };
+});
 
 export default singUp;

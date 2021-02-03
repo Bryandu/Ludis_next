@@ -1,5 +1,3 @@
-import 'nprogress/nprogress.css';
-
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -7,6 +5,7 @@ import Nprogres from 'nprogress';
 import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 
+import { wrapper } from '../store/store';
 import GlobalStyle from '../styles/global';
 import { theme } from '../styles/theme';
 
@@ -22,7 +21,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        {/* <link rel="stylesheet" type="text/css" href="nprogress.css" /> */}
+        <link rel="stylesheet" type="text/css" href="nprogress.css" />
         <meta
           name="description"
           content="Encontre lugares e pessoas para jogar, praticar e compartilhar seus esportes e lances favoritos!"
@@ -36,4 +35,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

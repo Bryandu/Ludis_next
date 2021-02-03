@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 export const baseURL = axios.create({
-  baseURL: 'http://localhost:3004'
+  baseURL: 'http://localhost:3001'
 });
 
 export const GET = async (path: string, config?: AxiosRequestConfig) => {

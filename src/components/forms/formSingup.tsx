@@ -1,17 +1,18 @@
 import { Form, Formik } from 'formik';
-import { useRouter } from 'next/router';
 import { BiKey } from 'react-icons/bi';
 import { CgPassword } from 'react-icons/cg';
 import { HiOutlineMail } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
-import { POST } from '../../service/axios';
+import { PUT } from '../../service/axios';
+import { userSingup } from '../../store/ducks/user/userActions';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
 import { ContainerField, DivButton, Label } from './styleForms';
 
 export const FormSingup = () => {
-  const route = useRouter();
+  const dispatch = useDispatch();
 
   type SingUp = {
     email: string;
@@ -34,9 +35,9 @@ export const FormSingup = () => {
   });
 
   const onSubmit = (values: SingUp) => {
-    POST('users', { email: values.email, password: values.password }).then(response => {
+    PUT('users', { email: values.email, password: values.password }).then(response => {
       console.log(response);
-      response.status == 201 ? route.back() : false;
+      response.status == 201 ? dispatch(userSingup(values.email, values.password)) : false;
     });
   };
 
