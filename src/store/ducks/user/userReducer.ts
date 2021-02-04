@@ -7,7 +7,8 @@ const Initial_State: UserState = {
   isOn: false,
   data: {
     email: null,
-    password: null
+    password: null,
+    id: null
   }
 };
 
@@ -22,6 +23,8 @@ export const userReducer = (state = Initial_State, action: ActionUser | AnyActio
       };
     case UserActions.USER_SINGUP:
       return { ...state };
+    case UserActions.USER_SINGUPSUCCSSES:
+      return { ...state, data: action.payload };
     default:
       return state;
   }

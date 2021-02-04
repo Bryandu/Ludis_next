@@ -42,11 +42,8 @@ const singUp = () => {
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(({ store }) => {
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   store.getState();
-  return {
-    props: {}
-  };
 });
 
 export default singUp;

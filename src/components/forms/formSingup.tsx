@@ -5,7 +5,6 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
-import { PUT } from '../../service/axios';
 import { userSingup } from '../../store/ducks/user/userActions';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
@@ -35,10 +34,7 @@ export const FormSingup = () => {
   });
 
   const onSubmit = (values: SingUp) => {
-    PUT('users', { email: values.email, password: values.password }).then(response => {
-      console.log(response);
-      response.status == 201 ? dispatch(userSingup(values.email, values.password)) : false;
-    });
+    dispatch(userSingup(values.email, values.password));
   };
 
   return (

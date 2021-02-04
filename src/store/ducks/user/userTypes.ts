@@ -1,14 +1,17 @@
+export type UserData = {
+  email: string;
+  password: string;
+  id: string | number;
+};
 export interface UserState {
   isOn: boolean;
-  data: {
-    email: string;
-    password: string;
-  };
+  data: UserData;
 }
 
 export enum UserActions {
   USER_ISON = 'USER_ISON',
   USER_SINGUP = 'USER_SINGUP',
+  USER_SINGUPSUCCSSES = 'USER_SINGUPSUCCSSES',
   __NEXT_REDUX_WRAPPER_HYDRATE__ = '__NEXT_REDUX_WRAPPER_HYDRATE__'
 }
 
@@ -27,4 +30,9 @@ export interface UserActionSingUp {
   };
 }
 
-export type ActionUser = UserActionLogin | UserActionSingUp;
+export interface UserActionSingupSuccsses {
+  type: UserActions.USER_SINGUPSUCCSSES;
+  payload: UserData;
+}
+
+export type ActionUser = UserActionLogin | UserActionSingUp | UserActionSingupSuccsses;

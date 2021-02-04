@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 export const baseURL = axios.create({
-  baseURL: 'http://localhost:3001'
+  baseURL: 'http://localhost:3001/'
 });
 
 export const GET = async (path: string, config?: AxiosRequestConfig) => {
@@ -12,7 +12,11 @@ export const GET = async (path: string, config?: AxiosRequestConfig) => {
   }
 };
 
-export const POST = async (path: string, data: unknown, config?: AxiosRequestConfig) => {
+export const POST = async (
+  path: string,
+  data: unknown,
+  config?: AxiosRequestConfig
+): Promise<unknown> => {
   try {
     return await baseURL.post(path, data, config);
   } catch (error) {
@@ -20,7 +24,11 @@ export const POST = async (path: string, data: unknown, config?: AxiosRequestCon
   }
 };
 
-export const PUT = async (path: string, data: unknown, config?: AxiosRequestConfig) => {
+export const PUT = async (
+  path: string,
+  data: unknown,
+  config?: AxiosRequestConfig
+): Promise<unknown> => {
   try {
     return await baseURL.post(path, data, config);
   } catch (error) {
@@ -28,7 +36,7 @@ export const PUT = async (path: string, data: unknown, config?: AxiosRequestConf
   }
 };
 
-export const DELETE = async (path: string, config?: AxiosRequestConfig) => {
+export const DELETE = async (path: string, config?: AxiosRequestConfig): Promise<unknown> => {
   try {
     return await baseURL.delete(path, config);
   } catch (error) {
