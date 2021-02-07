@@ -28,7 +28,7 @@ const FormLogin = () => {
   });
 
   const onSubmit = (values: Login) => {
-    dispacth(userLogin(values.email));
+    dispacth(userLogin(values.email, values.password));
   };
 
   return (

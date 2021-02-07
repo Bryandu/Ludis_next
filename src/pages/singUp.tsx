@@ -34,7 +34,7 @@ const singUp = () => {
         </DivForm>
         <DivImg>
           <ImgContainer>
-            <Image alt="Campeões" layout="fill" src="/svg/winners.svg" />
+            <Image alt="Campeões" priority layout="fill" src="/svg/winners.svg" />
           </ImgContainer>
         </DivImg>
       </Section>

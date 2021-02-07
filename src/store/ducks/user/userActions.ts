@@ -1,7 +1,13 @@
-import { UserActions, UserActionSingUp, UserActionSingupSuccsses, UserData } from './userTypes';
+import {
+  UserActionLoginSuccsses,
+  UserActions,
+  UserActionSingUp,
+  UserActionSingupSuccsses,
+  UserData
+} from './userTypes';
 
-export const userLogin = (datauser: unknown) => {
-  return { type: UserActions.USER_ISON, payload: datauser };
+export const userLogin = (email: string, password: string) => {
+  return { type: UserActions.USER_LOGIN, payload: { email, password } };
 };
 
 export const userSingup = (email: string, password: string): UserActionSingUp => {
@@ -18,5 +24,24 @@ export const userSingupSeccsses = (data: UserData): UserActionSingupSuccsses => 
   return {
     type: UserActions.USER_SINGUPSUCCSSES,
     payload: data
+  };
+};
+
+export const userSingupFail = () => {
+  return {
+    type: UserActions.USER_SINGUPFAIL
+  };
+};
+
+export const userLoginSuccsses = (data: UserData): UserActionLoginSuccsses => {
+  return {
+    type: UserActions.USER_LOGINSUCCSSES,
+    payload: data
+  };
+};
+
+export const userLoginFail = () => {
+  return {
+    type: UserActions.USER_LOGINFAIL
   };
 };

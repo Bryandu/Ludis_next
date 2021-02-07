@@ -3,28 +3,33 @@ import { AnyAction } from 'redux';
 
 import { ActionUser, UserActions, UserState } from './userTypes';
 
-const Initial_State: UserState = {
+const User: UserState = {
   isOn: false,
   data: {
     email: null,
-    password: null,
-    id: null
+    id: null,
+    password: null
   }
 };
 
-export const userReducer = (state = Initial_State, action: ActionUser | AnyAction): UserState => {
+export const userReducer = (state = User, action: ActionUser | AnyAction): UserState => {
   switch (action.type) {
     case HYDRATE:
-      return { ...state, ...action.payload };
-    case UserActions.USER_ISON:
-      return {
-        ...state,
-        isOn: true
-      };
-    case UserActions.USER_SINGUP:
-      return { ...state };
+      state == action.payload ? state : (state = action.payload);
+      return state;
+
+    case UserActions.USER_SINGUPFAIL:
+      return { ...state, isOn: false };
+
     case UserActions.USER_SINGUPSUCCSSES:
       return { ...state, data: action.payload };
+
+    case UserActions.USER_LOGINFAIL:
+      return { ...state, isOn: false };
+
+    case UserActions.USER_LOGINSUCCSSES:
+      return { ...state, isOn: true, data: action.payload };
+
     default:
       return state;
   }
