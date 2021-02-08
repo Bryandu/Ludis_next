@@ -11,8 +11,8 @@ import { UserActionLoginSuccsses, UserActions, UserActionSingUp } from './ducks/
 
 function* userSingupSaga(action: UserActionSingUp) {
   try {
-    const { data } = yield call(POST, 'user', action.payload);
-    yield put(userSingupSeccsses(data));
+    const { status } = yield call(POST, 'user', action.payload);
+    yield status == 201 ? yield put(userSingupSeccsses()) : yield put(userSingupFail());
   } catch (error) {
     yield put(userSingupFail());
     console.log(error);

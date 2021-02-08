@@ -1,10 +1,11 @@
 export type UserData = {
-  id: number;
+  id: number | string;
   email: string;
   password: string;
 };
 export interface UserState {
   isOn: boolean;
+  isActive: boolean;
   data: UserData;
 }
 
@@ -18,15 +19,29 @@ export enum UserActions {
   __NEXT_REDUX_WRAPPER_HYDRATE__ = '__NEXT_REDUX_WRAPPER_HYDRATE__'
 }
 
-export interface UserActionLoginSuccsses {
-  type: UserActions.USER_LOGINSUCCSSES;
+export interface UserActionHydrate {
+  type: UserActions.__NEXT_REDUX_WRAPPER_HYDRATE__;
+  payload: UserState;
+}
+
+export interface UserActionLogin {
+  type: UserActions.USER_LOGIN;
   payload: {
-    id: string | number;
     email: string;
     password: string;
   };
 }
-
+export interface UserActionLoginSuccsses {
+  type: UserActions.USER_LOGINSUCCSSES;
+  payload: {
+    id: number | string;
+    email: string;
+    password: string;
+  };
+}
+export interface UserActionLoginFail {
+  type: UserActions.USER_LOGINFAIL;
+}
 export interface UserActionSingUp {
   type: UserActions.USER_SINGUP;
   payload: {
@@ -34,10 +49,18 @@ export interface UserActionSingUp {
     password: string;
   };
 }
-
 export interface UserActionSingupSuccsses {
   type: UserActions.USER_SINGUPSUCCSSES;
-  payload: UserData;
+}
+export interface UserActionSingupFail {
+  type: UserActions.USER_SINGUPFAIL;
 }
 
-export type ActionUser = UserActionSingUp | UserActionSingupSuccsses | UserActionLoginSuccsses;
+export type ActionUser =
+  | UserActionHydrate
+  | UserActionSingUp
+  | UserActionSingupSuccsses
+  | UserActionSingupFail
+  | UserActionLogin
+  | UserActionLoginSuccsses
+  | UserActionLoginFail;

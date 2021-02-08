@@ -1,14 +1,3 @@
 {
-  "user": [
-    {
-      "email": "animeronumero1@hotmail.com",
-      "password": "12345678",
-      "id": 1
-    },
-    {
-      "email": "lucianamedes@hotmail.com",
-      "password": "12345678",
-      "id": 2
-    }
-  ]
+  "user": []
 }

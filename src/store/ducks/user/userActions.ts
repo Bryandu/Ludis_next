@@ -20,10 +20,9 @@ export const userSingup = (email: string, password: string): UserActionSingUp =>
   };
 };
 
-export const userSingupSeccsses = (data: UserData): UserActionSingupSuccsses => {
+export const userSingupSeccsses = (): UserActionSingupSuccsses => {
   return {
-    type: UserActions.USER_SINGUPSUCCSSES,
-    payload: data
+    type: UserActions.USER_SINGUPSUCCSSES
   };
 };
 
