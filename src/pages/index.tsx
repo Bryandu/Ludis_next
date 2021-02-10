@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { ContainerHome, HeaderHome, Img, Main } from '../styles/indexStyles';
-import Logo from '../components/logo/logo';
-import { Button } from '../components/button/button';
+
 import Anchor from '../components/anchor/anchor';
+import { Button } from '../components/button/button';
+import Logo from '../components/logo/logo';
+import { ContainerHome, HeaderHome, Img, Main } from '../styles/indexStyles';
 
 const Home = () => {
   return (
@@ -19,7 +20,7 @@ const Home = () => {
             <HeaderHome>
               <div>
                 <Link href="/login">
-                  <Button radius outline>
+                  <Button curve outline>
                     Entrar
                   </Button>
                 </Link>

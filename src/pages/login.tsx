@@ -1,15 +1,11 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
-import { DivForm, SectionLogin, DivPassword } from '../styles/loginStyle';
-import FormLogin from '../components/forms/formLogin';
+
 import Anchor from '../components/anchor/anchor';
-// import { GET } from "../service/axios";
+import FormLogin from '../components/forms/formLogin';
+import { wrapper } from '../store/store';
+import { DivForm, DivPassword, SectionLogin } from '../styles/loginStyle';
 
 const Login = () => {
-  useEffect(() => {
-    // GET("users");
-  });
-
   return (
     <>
       <Head>
@@ -32,5 +28,9 @@ const Login = () => {
     </>
   );
 };
+
+export const getStaticsProps = wrapper.getStaticProps(async ({ store }) => {
+  store.getState();
+});
 
 export default Login;

@@ -1,11 +1,12 @@
-import { List } from './styles';
+import { useRef, useState } from 'react';
+import { BsGear } from 'react-icons/bs';
+import { FiBell, FiMap, FiShoppingBag } from 'react-icons/fi';
 import { IoIosArrowDropdown } from 'react-icons/io';
 import { IconContext } from 'react-icons/lib';
-import { FiMap, FiShoppingBag, FiBell } from 'react-icons/fi';
-import { BsGear } from 'react-icons/bs';
-import MenuDrop from '../menudrop/medudrop';
-import { useRef, useState } from 'react';
+
 import { Colors } from '../../styles/global';
+import MenuDrop from '../menudrop/medudrop';
+import { List } from './styles';
 
 const Menu = () => {
   const [drop, setDrop] = useState<boolean>();
@@ -37,9 +38,8 @@ const Menu = () => {
     <>
       <nav>
         <List>
-          <li>
+          <li id="drop">
             <IoIosArrowDropdown
-              id="drop"
               onClick={showDrop}
               title="Menu"
               size="2em"

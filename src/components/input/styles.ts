@@ -1,6 +1,7 @@
+import { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-interface Divinput {
+interface DivInputI extends HTMLAttributes<HTMLDivElement> {
   width?: string;
   height?: string;
 }
@@ -19,7 +20,7 @@ export const InputComp = styled.input`
     font-size: 1rem;
   }
 `;
-export const DivInput = styled.div.attrs((props: Divinput) => ({
+export const DivInput = styled.div.attrs((props: DivInputI) => ({
   width: props.width || '100%',
   height: props.height || '100%'
 }))`

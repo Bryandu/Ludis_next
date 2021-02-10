@@ -1,7 +1,9 @@
-import { UserState } from './user';
+import { UserState } from './userTypes';
 
-interface UserSelectors {
+interface UserSelector {
   user: UserState;
 }
 
-export const userSelector = (state: UserSelectors) => state.user;
+export const userSelector = (state: UserSelector): UserState => {
+  return state.user;
+};

@@ -1,8 +1,9 @@
-import { HeaderComp, ImgHeader } from './styles';
-import Logo from '../logo/logo';
-import FormSearch from '../forms/formSearch';
-import Menu from '../menu/menu';
 import Image from 'next/image';
+
+import FormSearch from '../forms/formSearch';
+import Logo from '../logo/logo';
+import Menu from '../menu/menu';
+import { HeaderComp, ImgHeader } from './styles';
 
 const Header = () => {
   return (

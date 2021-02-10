@@ -1,25 +1,22 @@
 import { Form, Formik } from 'formik';
+import { BiKey } from 'react-icons/bi';
+import { HiOutlineMail } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
-import { Button } from '../button/button';
-import { DivButton } from './styleForms';
+import { userLogin } from '../../store/ducks/user/userActions';
 import Anchor from '../anchor/anchor';
+import { Button } from '../button/button';
 import { Input } from '../input/input';
+import { DivButton } from './styleForms';
 
-import { HiOutlineMail } from 'react-icons/hi';
-import { BiKey } from 'react-icons/bi';
-import { useDispatch, useSelector } from 'react-redux';
-import { userSelector } from '../../store/ducks/user/userSelectors';
-import { userLogin } from '../../store/ducks/user/user';
+type Login = {
+  email: string;
+  password: string;
+};
 
 const FormLogin = () => {
-  const dispatch = useDispatch();
-  const user = useSelector(userSelector);
-
-  type Login = {
-    email: string;
-    password: string;
-  };
+  const dispacth = useDispatch();
 
   const initialValues = {
     email: '',
@@ -27,12 +24,11 @@ const FormLogin = () => {
   };
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Email inválido.').required('Email obrigatório.'),
-    password: Yup.string().min(8, 'Minímo oito caractéries.').required('Senha é obrigatório.')
+    password: Yup.string().min(8, 'Minímo oito caractéries.').required('Senha obrigatório.')
   });
 
   const onSubmit = (values: Login) => {
-    dispatch(userLogin(values.email, values.password));
-    console.log(user);
+    dispacth(userLogin(values.email, values.password));
   };
 
   return (
@@ -53,6 +49,7 @@ const FormLogin = () => {
               />
             </label>
           </aside>
+
           <aside>
             <label htmlFor="password">
               Senha

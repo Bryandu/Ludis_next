@@ -1,14 +1,13 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { Provider } from 'react-redux';
-import { store } from '../store/store';
-import { PersistGate } from 'redux-persist/integration/react';
+import Nprogres from 'nprogress';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
+
+import { wrapper } from '../store/store';
 import GlobalStyle from '../styles/global';
 import { theme } from '../styles/theme';
-import Nprogres from 'nprogress';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
@@ -29,13 +28,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <Component {...pageProps} />
-          <GlobalStyle />
-        </Provider>
+        <Component {...pageProps} />
+        <GlobalStyle />
       </ThemeProvider>
     </>
   );
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

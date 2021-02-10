@@ -1,6 +1,13 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
+import { FormSingup } from '../components/forms/formSingup';
 import Logo from '../components/logo/logo';
+import { userSelector } from '../store/ducks/user/userSelectors';
+import { UserState } from '../store/ducks/user/userTypes';
+import { wrapper } from '../store/store';
 import {
   AsideForm,
   DivForm,
@@ -10,9 +17,14 @@ import {
   ImgContainer,
   Section
 } from '../styles/singupStyles';
-import FormSingup from '../components/forms/formSingup';
 
-const singUp = (): JSX.Element => {
+const SingUp = () => {
+  const user: UserState = useSelector(userSelector);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   return (
     <>
       <Head>
@@ -32,7 +44,7 @@ const singUp = (): JSX.Element => {
         </DivForm>
         <DivImg>
           <ImgContainer>
-            <Image alt="Campeões" width={400} height={350} src="/svg/winners.svg" />
+            <Image alt="Campeões" priority layout="fill" src="/svg/winners.svg" />
           </ImgContainer>
         </DivImg>
       </Section>
@@ -40,4 +52,8 @@ const singUp = (): JSX.Element => {
   );
 };
 
-export default singUp;
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+  store.getState();
+});
+
+export default SingUp;

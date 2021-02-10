@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Colors } from './global';
 
 export const SectionLogin = styled.section`

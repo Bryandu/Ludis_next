@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
+
 import { Colors } from '../../styles/global';
 
 interface BtnOutline {
   outline?: boolean;
-  radius?: boolean;
+  curve?: boolean;
 }
 
 export const Button = styled.button<BtnOutline>`
@@ -30,7 +31,7 @@ export const Button = styled.button<BtnOutline>`
       }
     `}
   ${props =>
-    props.radius &&
+    props.curve &&
     css`
       border-radius: 25px;
       padding: 6px 16px;

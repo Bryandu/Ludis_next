@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import { BsSearch } from 'react-icons/bs';
+
 import { Input } from '../input/input';
 
 const FormSearch = () => {
@@ -7,7 +8,7 @@ const FormSearch = () => {
     search: ''
   };
 
-  const onSubmit = (values: Record<'search', string>) => {
+  const onSubmit = (values: Record<string, unknown>) => {
     console.log(values);
   };
 

@@ -1,19 +1,24 @@
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { ContainerField, DivButton, Label } from './styleForms';
-import { HiOutlineMail } from 'react-icons/hi';
+import { Form, Formik } from 'formik';
 import { BiKey } from 'react-icons/bi';
 import { CgPassword } from 'react-icons/cg';
+import { HiOutlineMail } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
+
+import { userSingup } from '../../store/ducks/user/userActions';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
-
-interface SingUp {
-  email: string;
-  password: string;
-  passwordConfirm: string;
-}
+import { ContainerField, DivButton, Label } from './styleForms';
 
 export const FormSingup = () => {
+  const dispatch = useDispatch();
+
+  type SingUp = {
+    email: string;
+    password: string;
+    passwordConfirm: string;
+  };
+
   const initialValues = {
     email: '',
     password: '',
@@ -29,7 +34,7 @@ export const FormSingup = () => {
   });
 
   const onSubmit = (values: SingUp) => {
-    const { email, password } = values;
+    dispatch(userSingup(values.email, values.password));
   };
 
   return (

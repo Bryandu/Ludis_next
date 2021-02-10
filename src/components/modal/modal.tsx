@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactChild } from 'react';
+
 import { ModalBody, ModalContainer } from './styles';
 
 interface Modal extends HTMLAttributes<HTMLDivElement> {
@@ -7,7 +8,7 @@ interface Modal extends HTMLAttributes<HTMLDivElement> {
   children?: ReactChild;
 }
 
-const Modal = ({ showModal, hiddenModal, children }: Modal): JSX.Element => {
+const Modal = ({ showModal, hiddenModal, children }: Modal) => {
   const closeModal = e => {
     console.log(e);
     e.id == 'modal' ? hiddenModal() : false;
