@@ -44,6 +44,11 @@ const Home = () => {
                     Facebook
                   </div>
                 </HomeIcons>
+                <div className="line">
+                  <span></span>
+                  <p>Ou</p>
+                  <span></span>
+                </div>
                 <FormLogin />
                 <aside>
                   <AnchorText href="/">Esqueceu a senha?</AnchorText>

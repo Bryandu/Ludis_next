@@ -56,7 +56,7 @@ export const HomeImg = styled.div`
       text-align: center;
       font-weight: normal;
       span {
-        color: ${Colors.redSecundary};
+        //color: ${Colors.redSecundary};
       }
     }
     & > div {
@@ -79,16 +79,31 @@ export const HomeImg = styled.div`
       padding: 2rem 2.5rem 0;
       border-radius: 6px;
       width: 350px;
+      .line {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 1rem;
+        & > span {
+          background-color: ${Colors.redPrimary};
+          width: 50%;
+          height: 2px;
+          margin: 0 1rem 0 0;
+          & :last-child {
+            margin: 0 0 0 1rem;
+            height: 2px;
+          }
+        }
+      }
       & > h1 {
         text-align: center;
         margin-bottom: 1rem;
       }
       & > h3 {
         text-align: center;
-        margin: 1rem 0;
+        margin: 0 0 1rem;
         font-size: 1.8rem;
         font-weight: normal;
-        font-family: Androgyne;
       }
       & > aside {
         display: block;
@@ -97,15 +112,6 @@ export const HomeImg = styled.div`
         & > div {
           display: flex;
           align-items: center;
-          & > span {
-            background-color: ${Colors.redPrimary};
-            width: 100%;
-            height: 2px;
-            margin-right: 1rem;
-            &:last-child {
-              margin: 0 0 0 1rem;
-            }
-          }
         }
       }
     }
