@@ -1,10 +1,12 @@
 import Head from 'next/head';
-import Link from 'next/link';
+import Image from 'next/image';
+import { FcGoogle } from 'react-icons/fc';
+import { IoLogoFacebook } from 'react-icons/io';
 
-import Anchor from '../components/anchor/anchor';
-import { Button } from '../components/button/button';
+import { AnchorText } from '../components/anchor/styles';
+import FormLogin from '../components/forms/formLogin';
 import Logo from '../components/logo/logo';
-import { ContainerHome, HeaderHome, Img, Main } from '../styles/indexStyles';
+import { ContainerHome, HomeContainer, HomeIcons, HomeImg, Main } from '../styles/indexStyles';
 
 const Home = () => {
   return (
@@ -16,22 +18,39 @@ const Home = () => {
 
       <Main>
         <ContainerHome>
-          <Img>
-            <HeaderHome>
+          <header>
+            <Logo fontsize="2.5em">Ludis</Logo>
+          </header>
+          <HomeContainer>
+            <HomeImg>
+              <h2>
+                <span>Conecte-se&nbsp;</span>com seus&nbsp;<span>amigos,&nbsp;</span>encontre
+                <span>&nbsp;lugares</span>&nbsp;e bora jogar!
+              </h2>
               <div>
-                <Link href="/login">
-                  <Button curve outline>
-                    Entrar
-                  </Button>
-                </Link>
-                <Anchor href="/singUp">cadastrar</Anchor>
+                <Image alt="time" src="/svg/team.svg" layout="fill" />
               </div>
-            </HeaderHome>
-            <div className="title">
-              <Logo fontsize="6em">Ludis,</Logo>
-              <p>seu lugar de jogar.</p>
-            </div>
-          </Img>
+            </HomeImg>
+            <HomeImg>
+              <div>
+                <h3>Faça seu login</h3>
+                <HomeIcons>
+                  <div>
+                    <FcGoogle size="1.5em" />
+                    Google
+                  </div>
+                  <div>
+                    <IoLogoFacebook size="1.5em" />
+                    Facebook
+                  </div>
+                </HomeIcons>
+                <FormLogin />
+                <aside>
+                  <AnchorText href="/">Esqueceu a senha?</AnchorText>
+                </aside>
+              </div>
+            </HomeImg>
+          </HomeContainer>
         </ContainerHome>
       </Main>
     </div>

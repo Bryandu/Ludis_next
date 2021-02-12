@@ -8,7 +8,7 @@ export const BtnAnchor = styled.a`
   text-align: center;
   justify-content: center;
   align-items: center;
-  background: ${Colors.redPrimary};
+  background: ${Colors.redSecundary};
   padding: 8px;
   color: #ffffff;
   border: none;
@@ -27,8 +27,9 @@ export const AnchorText = styled.a`
   margin: 0 0.5rem;
   text-decoration: none;
   outline-color: ${Colors.redSecundary};
+  transition: 200ms ease-in-out;
   &:hover {
     cursor: pointer;
-    color: ${Colors.redPrimary};
+    color: ${Colors.redSecundary};
   }
 `;

@@ -34,7 +34,7 @@ const FormLogin = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
       {() => (
-        <Form>
+        <Form style={{ width: '100%', height: '100%' }}>
           <aside>
             <label htmlFor="email">
               Email
@@ -66,7 +66,9 @@ const FormLogin = () => {
           </aside>
           <DivButton>
             <Button type="submit">Entrar</Button>
-            <Anchor href="/singUp">ou cadastre-se</Anchor>
+            <div>
+              <Anchor href="/singUp">ou então faça o seu cadastro.</Anchor>
+            </div>
           </DivButton>
         </Form>
       )}
