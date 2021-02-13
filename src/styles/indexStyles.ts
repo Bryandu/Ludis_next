@@ -55,9 +55,6 @@ export const HomeImg = styled.div`
     & > h2 {
       text-align: center;
       font-weight: normal;
-      span {
-        //color: ${Colors.redSecundary};
-      }
     }
     & > div {
       display: flex;

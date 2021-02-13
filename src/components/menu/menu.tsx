@@ -16,7 +16,7 @@ const Menu = () => {
     if (drop) {
       setDrop(false);
     } else {
-      const main = document.querySelector('main');
+      const main = document.querySelector('div');
       setDrop(true);
       main.addEventListener('click', removeDrop);
     }
@@ -28,7 +28,7 @@ const Menu = () => {
     if (event.id == 'dropmenu') {
       setDrop(true);
     } else {
-      const main = document.querySelector('main');
+      const main = document.querySelector('div');
       setDrop(false);
       main.removeEventListener('click', removeDrop);
     }
