@@ -14,7 +14,7 @@ export const Button = styled.button<BtnOutline>`
   background-color: ${Colors.redPrimary};
   font-size: 1rem;
   color: #ffffff;
-  outline: none;
+  outline: ${Colors.redSecundary};
   &:hover {
     cursor: pointer;
     background-color: ${Colors.redSecundary};

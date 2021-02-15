@@ -9,6 +9,7 @@ export const Section = styled.section`
   height: 100vh;
   justify-content: center;
   align-items: center;
+  background-color: ${Colors.blackBackground};
 `;
 
 export const DivForm = styled.div`
@@ -49,8 +50,7 @@ export const AsideForm = styled.aside`
   justify-content: center;
   align-items: center;
   width: 400px;
-  background-color: ${Colors.blackBackground};
-  box-shadow: 14px 14px 25px #0e0e0e, -14px -14px 25px #1c1c1c;
+  background-color: ${Colors.blackBody};
   @media screen and (max-width: 420px) {
     width: 100%;
     height: 100vh;

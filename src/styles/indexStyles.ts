@@ -29,6 +29,11 @@ export const ContainerHome = styled.section`
     justify-content: flex-start;
     align-items: center;
     padding: 1rem;
+    @media screen and (max-width: 1024px) {
+      justify-content: center;
+      height: 100px;
+      padding: 1rem 0 0;
+    }
   }
 `;
 
@@ -47,11 +52,14 @@ export const HomeImg = styled.div`
   flex-direction: column;
   position: relative;
   width: 100%;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   &:first-child {
-    padding-left: 3rem;
     font-size: 1.2rem;
+    padding-left: 3rem;
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
     & > h2 {
       text-align: center;
       font-weight: normal;
@@ -65,8 +73,12 @@ export const HomeImg = styled.div`
     }
   }
   &:last-child {
-    padding-right: 2.5rem;
     bottom: 38px;
+    padding-right: 2rem;
+    @media screen and (max-width: 1024px) {
+      bottom: 18px;
+      padding: 0;
+    }
     & > div {
       display: flex;
       flex-direction: column;
@@ -76,6 +88,11 @@ export const HomeImg = styled.div`
       padding: 2rem 2.5rem 0;
       border-radius: 6px;
       width: 350px;
+      @media screen and (max-width: 360px) {
+        background: transparent;
+        padding: 2rem 1rem 0;
+        width: 320px;
+      }
       .line {
         display: flex;
         width: 100%;
@@ -143,5 +160,19 @@ export const HomeIcons = styled.div`
         cursor: pointer;
       }
     }
+  }
+`;
+
+export const ToastLogin = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  & > h6 {
+    width: 100%;
+  }
+  div {
+    display: flex;
+    width: 100%;
+    height: 50px;
   }
 `;

@@ -15,7 +15,12 @@ type Login = {
   password: string;
 };
 
-const FormLogin = () => {
+interface FormLogin {
+  click?: VoidFunction;
+  submit?: VoidFunction;
+}
+
+const FormLogin = ({ click, submit }: FormLogin) => {
   const dispacth = useDispatch();
 
   const initialValues = {
@@ -29,6 +34,7 @@ const FormLogin = () => {
 
   const onSubmit = (values: Login) => {
     dispacth(userLogin(values.email, values.password));
+    return submit();
   };
 
   return (
@@ -65,9 +71,11 @@ const FormLogin = () => {
             </label>
           </aside>
           <DivButton>
-            <Button type="submit">Entrar</Button>
+            <Button onClick={() => click && click()} type="submit">
+              Entrar
+            </Button>
             <div>
-              <Anchor href="/singUp">ou então faça o seu cadastro.</Anchor>
+              <Anchor href="/singUp">Ou então faça o seu cadastro aqui.</Anchor>
             </div>
           </DivButton>
         </Form>

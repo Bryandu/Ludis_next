@@ -27,10 +27,10 @@ export const DivInput = styled.div.attrs((props: DivInputI) => ({
   display: flex;
   align-items: center;
   padding: 0 5px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  //border: 2px solid rgba(0, 0, 0, 1);
   border-radius: 5px;
   color: ${props => props.theme.color};
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.9);
   width: ${props => props.width};
   height: ${props => props.height};
 `;

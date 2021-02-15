@@ -3,8 +3,8 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { ActionUser, UserActions, UserState } from './userTypes';
 
 const User: UserState = {
-  isOn: false,
-  isActive: false,
+  isOn: null,
+  isActive: null,
   data: {
     id: null,
     email: null,
@@ -15,8 +15,7 @@ const User: UserState = {
 export const userReducer = (state = User, action: ActionUser): UserState => {
   switch (action.type) {
     case HYDRATE:
-      state == action.payload ? state : (state = action.payload);
-      return state;
+      return { ...state, ...action.payload };
 
     case UserActions.USER_SINGUPFAIL:
       return { ...state, isActive: false };

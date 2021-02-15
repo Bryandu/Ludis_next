@@ -2,6 +2,7 @@ import { useField } from 'formik';
 import React, { InputHTMLAttributes } from 'react';
 import { IconBaseProps } from 'react-icons/lib';
 
+import { Colors } from '../../styles/global';
 import { Erros } from '../forms/styleForms';
 import { DivInput, InputComp } from './styles';
 
@@ -21,7 +22,7 @@ export const Input = ({ icon: Icon, lineDown, ...props }: InputI) => {
     <>
       <DivInput width={props.width} height={props.height}>
         <InputComp {...field} {...props} />
-        {Icon && <Icon size={props.iconSize} color={props.iconColor} />}
+        {Icon && <Icon size={props.iconSize} color={props.iconColor || Colors.blackBody} />}
       </DivInput>
       {meta.error && meta.touched && <Erros>{meta.error}</Erros>}
       {lineDown && <br />}

@@ -1,13 +1,16 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { FiAlertCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 
 import { FormSingup } from '../components/forms/formSingup';
 import Logo from '../components/logo/logo';
+import Toast from '../components/toast/toast';
 import { userSelector } from '../store/ducks/user/userSelectors';
 import { UserState } from '../store/ducks/user/userTypes';
-import { wrapper } from '../store/store';
+import { Colors } from '../styles/global';
 import {
   AsideForm,
   DivForm,
@@ -20,10 +23,19 @@ import {
 
 const SingUp = () => {
   const user: UserState = useSelector(userSelector);
+  const [toast, setToast] = useState<boolean>();
+  const router = useRouter();
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    user.isActive && router.push('/');
+  }, [user, router]);
+
+  const showToast = () => {
+    setToast(true);
+    setTimeout(() => {
+      setToast(false);
+    }, 5000);
+  };
 
   return (
     <>
@@ -31,6 +43,14 @@ const SingUp = () => {
         <title>Ludis - cadastro</title>
       </Head>
       <Section>
+        <Toast
+          Icon={FiAlertCircle}
+          colorIcon={Colors.redSecundary}
+          hide={() => setToast(false)}
+          top
+          show={toast && !user.isActive}>
+          Não foi possível realizar o seu cadastro.
+        </Toast>
         <DivForm>
           <AsideForm>
             <Logo fontsize="50px">Ludis</Logo>
@@ -38,7 +58,7 @@ const SingUp = () => {
               <p>Cadastre-se no Ludis preenchendo os campos abaixo.</p>
             </DivText>
             <FormContainer>
-              <FormSingup />
+              <FormSingup submit={showToast} />
             </FormContainer>
           </AsideForm>
         </DivForm>
@@ -51,9 +71,5 @@ const SingUp = () => {
     </>
   );
 };
-
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  store.getState();
-});
 
 export default SingUp;

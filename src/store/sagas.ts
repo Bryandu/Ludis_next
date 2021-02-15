@@ -12,7 +12,7 @@ import { UserActionLoginSuccsses, UserActions, UserActionSingUp } from './ducks/
 function* userSingupSaga(action: UserActionSingUp) {
   try {
     const { status } = yield call(POST, 'user', action.payload);
-    yield status == 201 ? yield put(userSingupSeccsses()) : yield put(userSingupFail());
+    status === 201 ? yield put(userSingupSeccsses()) : yield put(userSingupFail());
   } catch (error) {
     yield put(userSingupFail());
     console.log(error);
@@ -36,8 +36,8 @@ function* userLoginSaga(action: UserActionLoginSuccsses) {
 
 function* rootSaga() {
   yield all([
-    takeLatest(UserActions.USER_SINGUP, userSingupSaga),
-    takeLatest(UserActions.USER_LOGIN, userLoginSaga)
+    takeLatest(UserActions.USER_LOGIN, userLoginSaga),
+    takeLatest(UserActions.USER_SINGUP, userSingupSaga)
   ]);
 }
 

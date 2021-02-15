@@ -10,14 +10,19 @@ import { Button } from '../button/button';
 import { Input } from '../input/input';
 import { ContainerField, DivButton, Label } from './styleForms';
 
-export const FormSingup = () => {
-  const dispatch = useDispatch();
+type SingUp = {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
 
-  type SingUp = {
-    email: string;
-    password: string;
-    passwordConfirm: string;
-  };
+interface FormSingup {
+  click?: VoidFunction;
+  submit?: VoidFunction;
+}
+
+export const FormSingup = ({ click, submit }: FormSingup) => {
+  const dispatch = useDispatch();
 
   const initialValues = {
     email: '',
@@ -35,48 +40,55 @@ export const FormSingup = () => {
 
   const onSubmit = (values: SingUp) => {
     dispatch(userSingup(values.email, values.password));
+    return submit();
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-      <Form>
-        <ContainerField>
-          <Label>
-            Email
-            <Input name="email" icon={HiOutlineMail} height="40px" iconSize="25px" lineDown />
-          </Label>
-        </ContainerField>
-        <ContainerField>
-          <Label>
-            Senha
-            <Input
-              name="password"
-              icon={BiKey}
-              iconSize="25px"
-              height="40px"
-              type="password"
-              lineDown
-            />
-          </Label>
-        </ContainerField>
-        <ContainerField>
-          <Label>
-            Confirmar senha
-            <Input
-              name="passwordConfirm"
-              icon={CgPassword}
-              height="40px"
-              iconSize="25px"
-              type="password"
-              lineDown
-            />
-          </Label>
-        </ContainerField>
-        <DivButton center>
-          <Button type="submit">Cadastrar</Button>
-        </DivButton>
-      </Form>
-    </Formik>
+    <>
+      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+        {() => (
+          <Form>
+            <ContainerField>
+              <Label>
+                Email
+                <Input name="email" icon={HiOutlineMail} height="40px" iconSize="25px" lineDown />
+              </Label>
+            </ContainerField>
+            <ContainerField>
+              <Label>
+                Senha
+                <Input
+                  name="password"
+                  icon={BiKey}
+                  iconSize="25px"
+                  height="40px"
+                  type="password"
+                  lineDown
+                />
+              </Label>
+            </ContainerField>
+            <ContainerField>
+              <Label>
+                Confirmar senha
+                <Input
+                  name="passwordConfirm"
+                  icon={CgPassword}
+                  height="40px"
+                  iconSize="25px"
+                  type="password"
+                  lineDown
+                />
+              </Label>
+            </ContainerField>
+            <DivButton center>
+              <Button onClick={() => click && click()} type="submit">
+                Cadastrar
+              </Button>
+            </DivButton>
+          </Form>
+        )}
+      </Formik>
+    </>
   );
 };
 

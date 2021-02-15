@@ -2,16 +2,6 @@
   "name": "ludis-next",
   "version": "0.1.0",
   "private": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "./**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
-    ]
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -47,7 +37,6 @@
     "@types/next": "^9.0.0",
     "@types/node": "^14.14.21",
     "@types/nprogress": "^0.2.0",
-    "@types/react": "^17.0.0",
     "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
@@ -66,7 +55,6 @@
     "husky": "^4.3.8",
     "json-server": "^0.16.3",
     "lint-staged": "^10.5.3",
-    "next-images": "^1.6.2",
     "next-redux-wrapper": "^6.0.2",
     "prettier": "^2.2.1",
     "react-icons": "^4.1.0",
