@@ -27,15 +27,8 @@ const SingUp = () => {
   const router = useRouter();
 
   useEffect(() => {
-    user.isActive && router.push('/');
+    console.log(user);
   }, [user, router]);
-
-  const showToast = () => {
-    setToast(true);
-    setTimeout(() => {
-      setToast(false);
-    }, 5000);
-  };
 
   return (
     <>
@@ -58,7 +51,7 @@ const SingUp = () => {
               <p>Cadastre-se no Ludis preenchendo os campos abaixo.</p>
             </DivText>
             <FormContainer>
-              <FormSingup submit={showToast} />
+              <FormSingup submit={() => useEffect} />
             </FormContainer>
           </AsideForm>
         </DivForm>

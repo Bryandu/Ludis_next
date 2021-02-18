@@ -1,3 +1,4 @@
+import { signOut } from 'next-auth/client';
 import { forwardRef, HTMLAttributes, RefObject } from 'react';
 import { BsGear } from 'react-icons/bs';
 import { FiBell, FiMap, FiShoppingBag } from 'react-icons/fi';
@@ -27,7 +28,7 @@ const MenuDrop = forwardRef(({ showDrop }: ShowDrop, ref: RefObject<HTMLDivEleme
               <p>Notificações</p>
             </li>
             <li>
-              <BsGear className="iconDrop" title="Configurações" />
+              <BsGear onClick={() => signOut()} className="iconDrop" title="Configurações" />
               <p>Configurações</p>
             </li>
           </IconContext.Provider>

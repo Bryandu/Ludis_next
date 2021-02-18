@@ -19,7 +19,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/input/input.tss",
-    "src/components/input/input.jsx"
+    "src/components/input/input.jsx",
+    "src/pages/api/auth/[...nextauth].ts"
   ],
   "exclude": ["node_modules"]
 }

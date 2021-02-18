@@ -18,7 +18,6 @@ export const ContainerHome = styled.section`
   height: 100vh;
   align-items: center;
   justify-content: center;
-  background-color: ${Colors.blackBackground};
   header {
     display: flex;
     position: relative;
