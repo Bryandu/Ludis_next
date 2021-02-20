@@ -1,24 +1,11 @@
 import Head from 'next/head';
-import { useSession } from 'next-auth/client';
-import { useState } from 'react';
+import { signOut } from 'next-auth/client';
 
 import { Button } from '../components/button/button';
 import Header from '../components/header/header';
-import { wrapper } from '../store/store';
 import { SectionProfile } from '../styles/profileStyle';
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  store.getState();
-});
-
 const Profile = () => {
-  const [session, loading] = useSession();
-  const [dragdrop, setDragdrop] = useState(false);
-
-  if (loading) {
-    return <p>loading</p>;
-  }
-
   return (
     <>
       <Head>
@@ -26,13 +13,10 @@ const Profile = () => {
       </Head>
       <Header />
       <SectionProfile id="profile">
-        {session ? <p>bj</p> : <p>asas</p>}
         <Button
           onClick={() => {
-            setDragdrop(!dragdrop);
-          }}>
-          Modal
-        </Button>
+            signOut({ callbackUrl: `${window.location.origin}/` });
+          }}></Button>
       </SectionProfile>
     </>
   );

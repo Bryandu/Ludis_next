@@ -8,24 +8,23 @@ const providers = [
     name: 'Credentials',
     authorize: async credentials => {
       try {
+        let user = null;
         const { data } = await GET(
           `user/?email=${credentials.email}&password=${credentials.password}`
         );
-        if (data[0]) {
-          return data[0];
-        } else {
-          return null;
+        data[0] ? (user = data[0]) : (user = null);
+        if (user) {
+          return user;
         }
-      } catch (error) {
-        console.log(error);
-        return null;
+      } catch (e) {
+        throw new Error(e);
       }
     }
   })
 ];
 
 const pages = {
-  signIn: '/'
+  error: '/'
 };
 
 const callbacks = {

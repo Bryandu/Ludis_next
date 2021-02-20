@@ -7,7 +7,11 @@ const Toast = ({ right, left, bottom, top, show, hide, Icon, colorIcon, ...props
     <ToastBody show={show} left={left} right={right} top={top} bottom={bottom}>
       <article>
         {hide && <IoClose onClick={() => hide()} size="20px" />}
-        <aside>{Icon && <Icon size="45px" color={colorIcon} />}</aside>
+        {Icon && (
+          <aside>
+            <Icon size="45px" color={colorIcon} />
+          </aside>
+        )}
         {props.children}
       </article>
     </ToastBody>

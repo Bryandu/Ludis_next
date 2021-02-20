@@ -2,10 +2,10 @@ import { Form, Formik } from 'formik';
 import { signIn } from 'next-auth/client';
 import { BiKey } from 'react-icons/bi';
 import { HiOutlineMail } from 'react-icons/hi';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
-// import { userLogin } from '../../store/ducks/user/userActions';
+import { userLogin } from '../../store/ducks/user/userActions';
 import Anchor from '../anchor/anchor';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
@@ -22,7 +22,7 @@ interface FormLogin {
 }
 
 const FormLogin = ({ click, submit }: FormLogin) => {
-  //const dispacth = useDispatch();
+  const dispatch = useDispatch();
 
   const initialValues = {
     email: '',
@@ -35,8 +35,10 @@ const FormLogin = ({ click, submit }: FormLogin) => {
 
   const onSubmit = async (values: Login) => {
     const { email, password } = values;
-    //dispacth(userLogin(values.email, values.password));
+    dispatch(userLogin(email, password));
+
     signIn('credentials', { email, password, callbackUrl: `${window.location.origin}/profile` });
+
     submit();
   };
 
