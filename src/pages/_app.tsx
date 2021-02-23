@@ -4,7 +4,6 @@ import '../../public/nprogress.css';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Provider } from 'next-auth/client';
 import Nprogres from 'nprogress';
 import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -31,10 +30,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        <Provider session={pageProps.session}>
-          <Component {...pageProps} />
-          <GlobalStyle />
-        </Provider>
+        <Component {...pageProps} />
+        <GlobalStyle />
       </ThemeProvider>
     </>
   );
