@@ -12,10 +12,7 @@ const Profile = () => {
       </Head>
       <Header />
       <SectionProfile id="profile">
-        <Button
-          onClick={() => {
-            signOut({ callbackUrl: `${window.location.origin}/` });
-          }}></Button>
+        <Button>s</Button>
       </SectionProfile>
     </>
   );
