@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 
 import Header from '../../components/header/header';
 import withAuth from '../../HOC/auth/withAuth';
-import { GET } from '../../service/axios';
+// import { GET } from '../../service/axios';
 import { userSelector } from '../../store/ducks/user/userSelectors';
-import { UserData } from '../../store/ducks/user/userTypes';
+// import { UserData } from '../../store/ducks/user/userTypes';
 import { wrapper } from '../../store/store';
 
 const Home = () => {
