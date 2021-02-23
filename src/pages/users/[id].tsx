@@ -39,7 +39,7 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await GET('/user');
-  const usersid = await response.data.map((user: UserData) => {
+  const usersid = await response.data?.map((user: UserData) => {
     return { params: { id: String(user.id) } };
   });
 
