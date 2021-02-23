@@ -1,6 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { GET, POST } from '../service/axios';
+import { loadingAction, loadingEndAction } from './ducks/genericActions';
 import {
   userLoginFail,
   userLoginSuccsses,
@@ -21,6 +22,7 @@ function* userSingupSaga(action: UserActionSingUp) {
 
 function* userLoginSaga(action: UserActionLoginSuccsses) {
   try {
+    yield put(loadingAction());
     const response = yield call(
       GET,
       `user/?email=${action.payload.email}&password=${action.payload.password}`
@@ -28,8 +30,10 @@ function* userLoginSaga(action: UserActionLoginSuccsses) {
     response.data[0] == undefined
       ? yield put(userLoginFail())
       : yield put(userLoginSuccsses(response.data[0]));
+    yield put(loadingEndAction());
   } catch (error) {
     yield put(userLoginFail());
+    yield put(loadingEndAction());
     console.log(error);
   }
 }

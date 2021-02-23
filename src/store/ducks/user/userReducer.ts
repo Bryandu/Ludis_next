@@ -1,10 +1,13 @@
 import { HYDRATE } from 'next-redux-wrapper';
+import { Action } from 'redux';
 
+import { GenericActions } from '../genericActions';
 import { ActionUser, UserActions, UserState } from './userTypes';
 
 const User: UserState = {
   isOn: null,
   isActive: null,
+  loading: false,
   data: {
     id: null,
     email: null,
@@ -12,7 +15,10 @@ const User: UserState = {
   }
 };
 
-export const userReducer = (state = User, action: ActionUser): UserState => {
+export const userReducer = (
+  state = User,
+  action: ActionUser | Action<GenericActions>
+): UserState => {
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload };
@@ -28,6 +34,12 @@ export const userReducer = (state = User, action: ActionUser): UserState => {
 
     case UserActions.USER_LOGINSUCCSSES:
       return { ...state, isOn: true, data: action.payload };
+
+    case GenericActions.LOADING:
+      return { ...state, loading: true };
+
+    case GenericActions.LOADINGEND:
+      return { ...state, loading: false };
 
     default:
       return state;

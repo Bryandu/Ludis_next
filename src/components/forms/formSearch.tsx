@@ -16,7 +16,7 @@ const FormSearch = () => {
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {() => (
         <Form>
-          <Input name="search" height="30px" icon={BsSearch} iconColor="#fff" iconSize="20px" />
+          <Input name="search" height="30px" icon={BsSearch} iconSize="20px" />
         </Form>
       )}
     </Formik>

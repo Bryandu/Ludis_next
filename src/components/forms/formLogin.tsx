@@ -1,11 +1,13 @@
 import { Form, Formik } from 'formik';
-import { signIn } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { BiKey } from 'react-icons/bi';
 import { HiOutlineMail } from 'react-icons/hi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 import { userLogin } from '../../store/ducks/user/userActions';
+import { userSelector } from '../../store/ducks/user/userSelectors';
 import Anchor from '../anchor/anchor';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
@@ -23,6 +25,14 @@ interface FormLogin {
 
 const FormLogin = ({ click, submit }: FormLogin) => {
   const dispatch = useDispatch();
+  const user = useSelector(userSelector);
+  const route = useRouter();
+
+  useEffect(() => {
+    if (user.isOn) {
+      route.push(`users/${user.data.id}`);
+    }
+  }, [user, route]);
 
   const initialValues = {
     email: '',
@@ -36,10 +46,7 @@ const FormLogin = ({ click, submit }: FormLogin) => {
   const onSubmit = async (values: Login) => {
     const { email, password } = values;
     dispatch(userLogin(email, password));
-
-    signIn('credentials', { email, password, callbackUrl: `${window.location.origin}/profile` });
-
-    submit();
+    return submit && submit();
   };
 
   return (

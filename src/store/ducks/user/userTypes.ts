@@ -6,6 +6,7 @@ export type UserData = {
 export interface UserState {
   isOn: boolean;
   isActive: boolean;
+  loading: boolean;
   data: UserData;
 }
 

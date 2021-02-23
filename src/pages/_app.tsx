@@ -1,3 +1,6 @@
+import '../../public/fonts.css';
+import '../../public/nprogress.css';
+
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -22,7 +25,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        <link rel="stylesheet" type="text/css" href="nprogress.css" />
         <meta
           name="description"
           content="Encontre lugares e pessoas para jogar, praticar e compartilhar seus esportes e lances favoritos!"
