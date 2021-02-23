@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { signOut } from 'next-auth/client';
 
 import { Button } from '../components/button/button';
 import Header from '../components/header/header';
