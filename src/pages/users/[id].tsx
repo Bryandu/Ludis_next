@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 
 import Header from '../../components/header/header';
 import withAuth from '../../HOC/auth/withAuth';
-// import { GET } from '../../service/axios';
+import { GET } from '../../service/axios';
 import { userSelector } from '../../store/ducks/user/userSelectors';
-// import { UserData } from '../../store/ducks/user/userTypes';
+import { UserData } from '../../store/ducks/user/userTypes';
 import { wrapper } from '../../store/store';
 
 const Home = () => {
@@ -38,13 +38,13 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
 });
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const response = await GET('/user');
-  // const usersid = await response.data?.map((user: UserData) => {
-  //   return { params: { id: String(user.id) } };
-  // });
+  const response = await GET('/user');
+  const paths = await response.data?.map((user: UserData) => {
+    return { params: { id: String(user.id) } };
+  });
 
   return {
-    paths: [{ params: { id: '1' } }],
+    paths,
     fallback: false
   };
 };
