@@ -1,19 +1,34 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FiAlertCircle } from 'react-icons/fi';
 import { IoLogoFacebook } from 'react-icons/io';
+import { useSelector } from 'react-redux';
 
 import { AnchorText } from '../components/anchor/styles';
 import FormLogin from '../components/forms/formLogin';
 import Logo from '../components/logo/logo';
 import Toast from '../components/toast/toast';
+import { userSelector } from '../store/ducks/user/userSelectors';
 import { Colors } from '../styles/global';
 import { ContainerHome, HomeContainer, HomeIcons, HomeImg, Main } from '../styles/indexStyles';
 
 const Home = () => {
   const [toast, setToast] = useState<boolean>();
+  const route = useRouter();
+  const user = useSelector(userSelector);
+
+  useEffect(() => {
+    if (route.query.error) {
+      setToast(true);
+      console.log(route.query);
+    }
+    if (user.isOn == false) {
+      console.log('noOn');
+    }
+  }, [route, user]);
 
   return (
     <div>
@@ -29,7 +44,7 @@ const Home = () => {
             Icon={FiAlertCircle}
             colorIcon={Colors.redSecundary}
             top
-            show={toast}>
+            show={(toast && user.isOn == false) || route.query.error ? true : false}>
             Algo deu errado.
             <br />
             Email ou senha incorretos.
@@ -65,7 +80,7 @@ const Home = () => {
                   <p>Ou</p>
                   <span></span>
                 </div>
-                <FormLogin />
+                <FormLogin submit={() => setToast(true)} />
                 <aside>
                   <AnchorText href="/">Esqueceu a senha?</AnchorText>
                 </aside>

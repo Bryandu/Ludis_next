@@ -10,13 +10,15 @@ function WithAuth<T>(WrappedComponent: ComponentType<PropsWithChildren<T>>) {
     const user = useSelector(userSelector);
 
     useEffect(() => {
-      if (!user.isOn) {
-        router.push('/');
-        return null;
+      // if (!localStorage.getItem('token')) {
+      //   router.push({ pathname: '/', query: 'error' });
+      // }
+      if (!user?.isOn) {
+        router.push({ pathname: '/', query: 'error' });
       }
-    }, [router, user.isOn]);
+    }, [router, user]);
 
-    return <WrappedComponent {...props} />;
+    return <WrappedComponent {...props} {...user} />;
   };
 
   return WithAuthRedirect;

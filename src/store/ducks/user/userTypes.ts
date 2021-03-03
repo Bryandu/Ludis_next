@@ -7,6 +7,7 @@ export interface UserState {
   isOn: boolean;
   isActive: boolean;
   loading: boolean;
+  token: string;
   data: UserData;
 }
 

@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
+import { Colors } from '../../styles/global';
+
 export const HeaderComp = styled.header`
   display: flex;
-  position: fixed;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   padding: 10px;
-  background: #151515;
-  z-index: 100;
-  top: 0;
+  background: ${Colors.blackBody};
 `;
 
 export const ImgHeader = styled.div`

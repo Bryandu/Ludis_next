@@ -9,7 +9,7 @@ export const Section = styled.section`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: ${Colors.blackBackground};
+  background-color: transparent;
 `;
 
 export const DivForm = styled.div`

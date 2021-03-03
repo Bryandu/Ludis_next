@@ -25,7 +25,7 @@ const Menu = () => {
   const removeDrop = (e: Event) => {
     const event = e.target as HTMLDivElement;
     e.stopPropagation();
-    if (event.id == 'dropmenu') {
+    if (event.id === 'dropmenu') {
       setDrop(true);
     } else {
       const main = document.querySelector('div');

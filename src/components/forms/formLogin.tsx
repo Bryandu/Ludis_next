@@ -30,7 +30,7 @@ const FormLogin = ({ click, submit }: FormLogin) => {
 
   useEffect(() => {
     if (user.isOn) {
-      route.push(`users/${user.data.id}`);
+      route.push({ pathname: '/timeline' });
     }
   }, [user, route]);
 

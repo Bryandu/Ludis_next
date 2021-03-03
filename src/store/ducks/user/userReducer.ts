@@ -8,6 +8,7 @@ const User: UserState = {
   isOn: null,
   isActive: null,
   loading: false,
+  token: null,
   data: {
     id: null,
     email: null,
