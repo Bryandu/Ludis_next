@@ -4,13 +4,13 @@ export const baseURL = axios.create({
   baseURL: 'http://localhost:3002/'
 });
 
-export const GET = async (path: string, config?: AxiosRequestConfig): Promise<AxiosResponse> => {
+export async function GET<T>(path: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
   try {
     return await baseURL.get(path, config);
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 export const POST = async (
   path: string,

@@ -6,8 +6,10 @@ export const TimelineContainer = styled.section`
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 91.8vh;
+  min-height: 93.41vh;
+  top: 55px;
   background-color: transparent;
+  padding: 1rem 0;
 `;
 
 export const TimelinePosts = styled.div`

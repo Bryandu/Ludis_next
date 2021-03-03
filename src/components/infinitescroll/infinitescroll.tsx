@@ -21,7 +21,6 @@ const InfineScroll = ({ loadmore }: InfinitScroll) => {
     }, options);
 
     observer.observe(observerRef.current);
-    console.log(observerRef);
 
     return () => {
       observer.disconnect();
