@@ -1,22 +1,67 @@
-import { PostContainer } from './styles';
+import Image from 'next/image';
+import { BsFillLightningFill } from 'react-icons/bs';
+import { MdChatBubble, MdLocationOn } from 'react-icons/md';
+import { RiShareForwardFill } from 'react-icons/ri';
+
+import {
+  PostBody,
+  PostComment,
+  PostCommentsContainer,
+  PostContainer,
+  PostDescription,
+  PostFooter,
+  PostFooterHeader
+} from './styles';
 
 interface Post {
   name: string;
   body: string;
+  title: string;
+  profile: string;
 }
 
-const Post = ({ name, body }: Post) => {
+const Post = ({ name, body, title, profile }: Post) => {
   return (
     <PostContainer>
-      <header>
+      <PostBody>
+        <Image layout="fill" alt="foto" src={body} />
+      </PostBody>
+      <PostFooter>
+        <PostFooterHeader>
+          <div>
+            <div>
+              <Image alt="you" layout="fill" src={profile} />
+            </div>
+            <p>{name}</p>
+          </div>
+          <div>
+            Varginha, MG
+            <MdLocationOn color="#EA4335" size="24px" />
+          </div>
+        </PostFooterHeader>
+        <PostDescription>
+          <p>{title}</p>
+        </PostDescription>
         <div>
-          <p>{name}</p>
+          <BsFillLightningFill color="yellow" size="24px" />
+          <div>
+            <MdChatBubble size="24px" />
+            <RiShareForwardFill size="24px" />
+          </div>
         </div>
-      </header>
-      <div>
-        <p>{body}</p>
-      </div>
-      <footer></footer>
+        <hr />
+      </PostFooter>
+      <PostCommentsContainer>
+        <PostComment>
+          <div>
+            <Image alt="friend" layout="fill" src={profile} />
+          </div>
+          <div>
+            <p>{name}</p>
+            <p>{title}</p>
+          </div>
+        </PostComment>
+      </PostCommentsContainer>
     </PostContainer>
   );
 };

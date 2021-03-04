@@ -9,6 +9,11 @@
       "email": "lucianamedes@hotmail.com",
       "password": "12345678",
       "id": 2
+    },
+    {
+      "email": "dales@hotmail.com",
+      "password": "12345678",
+      "id": 3
     }
   ]
 }

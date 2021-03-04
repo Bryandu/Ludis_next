@@ -44,13 +44,13 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
 });
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await GET('/user');
-  const paths = await response.data.map((user: UserData) => {
+  const response = await GET<[]>('/user');
+  const paths = response.data.map((user: UserData) => {
     return { params: { id: String(user.id) } };
   });
 
   return {
     paths,
-    fallback: true
+    fallback: false
   };
 };

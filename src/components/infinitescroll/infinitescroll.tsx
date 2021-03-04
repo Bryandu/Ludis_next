@@ -5,12 +5,12 @@ type InfinitScroll = {
 };
 
 const InfineScroll = ({ loadmore }: InfinitScroll) => {
-  const observerRef = useRef<HTMLDivElement>();
+  const observerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '0px',
-      threshold: 1.0
+      rootMargin: '2000px',
+      threshold: 0.1
     };
 
     const observer = new IntersectionObserver(([entry]) => {
@@ -20,7 +20,7 @@ const InfineScroll = ({ loadmore }: InfinitScroll) => {
       }
     }, options);
 
-    observer.observe(observerRef.current);
+    observerRef.current && observer.observe(observerRef.current);
 
     return () => {
       observer.disconnect();

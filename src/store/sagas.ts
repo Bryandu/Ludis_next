@@ -30,7 +30,7 @@ function* userLoginSaga(action: UserActionLoginSuccsses) {
     response.data[0] == undefined
       ? yield put(userLoginFail())
       : yield put(userLoginSuccsses(response.data[0]));
-    //localStorage.setItem('token', String(Math.random()));
+    localStorage.setItem('token', String(Math.random()));
     yield put(loadingEndAction());
   } catch (error) {
     yield put(userLoginFail());

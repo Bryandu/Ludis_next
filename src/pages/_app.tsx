@@ -30,8 +30,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-        <GlobalStyle />
+        <React.StrictMode>
+          <Component {...pageProps} />
+          <GlobalStyle />
+        </React.StrictMode>
       </ThemeProvider>
     </>
   );
