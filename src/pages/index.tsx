@@ -23,7 +23,6 @@ const Home = () => {
   useEffect(() => {
     if (route.query.error) {
       setToast(true);
-      console.log(route.query);
     }
     if (user.isOn == false) {
       console.log('noOn');

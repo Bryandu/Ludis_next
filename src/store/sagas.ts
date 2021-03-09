@@ -1,7 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { GET, POST } from '../service/axios';
-import { loadingAction, loadingEndAction } from './ducks/genericActions';
+import { loadingEndAction } from './ducks/genericActions';
 import {
   userLoginFail,
   userLoginSuccsses,
@@ -21,7 +21,6 @@ function* userSingupSaga(action: UserActionSingUp) {
 }
 
 function* userLoginSaga(action: UserActionLoginSuccsses) {
-  yield put(loadingAction());
   try {
     const response = yield call(
       GET,

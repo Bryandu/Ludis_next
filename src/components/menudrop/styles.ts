@@ -52,7 +52,7 @@ export const ContainerDrop = styled.div<ShowDrop>`
       animation: ${show} 200ms linear;
     }
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     display: none;
   }
 `;

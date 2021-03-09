@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { AiOutlineHeart } from 'react-icons/ai';
 import { BsFillLightningFill } from 'react-icons/bs';
 import { MdChatBubble, MdLocationOn } from 'react-icons/md';
 import { RiShareForwardFill } from 'react-icons/ri';
@@ -56,9 +57,14 @@ const Post = ({ name, body, title, profile }: Post) => {
           <div>
             <Image alt="friend" layout="fill" src={profile} />
           </div>
-          <div>
-            <p>{name}</p>
-            <p>{title}</p>
+          <div className="postComments">
+            <div>
+              <p>{name}</p>
+              <p>{title}</p>
+            </div>
+            <div>
+              <AiOutlineHeart />
+            </div>
           </div>
         </PostComment>
       </PostCommentsContainer>

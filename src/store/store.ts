@@ -1,4 +1,4 @@
-import { Context, createWrapper, MakeStore } from 'next-redux-wrapper';
+import { createWrapper, MakeStore } from 'next-redux-wrapper';
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware, { Task } from 'redux-saga';
@@ -15,8 +15,7 @@ const reducers = combineReducers({
   user: userReducer
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const makeStore: MakeStore<UserState> = (context: Context) => {
+const makeStore: MakeStore<UserState> = () => {
   const sagaMiddleware = createSagaMiddleware();
   const store: SagaStore = createStore(
     reducers,

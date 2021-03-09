@@ -11,7 +11,7 @@ export const HeaderComp = styled.header<IHeader>`
   width: 100%;
   padding: 10px;
   background: ${Colors.blackBody};
-  z-index: 10000;
+  z-index: 99;
 `;
 
 export const ImgHeader = styled.div`

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import Header from '../components/header/header';
 import InfineScroll from '../components/infinitescroll/infinitescroll';
+import NewPost from '../components/newPost/newPost';
 import Post from '../components/posts/post';
 import { Spinner } from '../components/spinner/spiner';
 import withAuth from '../HOC/auth/withAuth';
@@ -53,7 +54,9 @@ const Timeline = () => {
     <>
       <Header position="fixed" />
       <TimelineContainer>
-        <TimelineLeft />
+        <TimelineLeft>
+          <NewPost />
+        </TimelineLeft>
         <TimelinePosts>
           {post?.map(post => {
             return (
@@ -69,7 +72,7 @@ const Timeline = () => {
           <InfineScroll loadmore={loadMore} />
           {post?.length === fullposts - 1 ? <div>Não há mais posts</div> : <Spinner />}
         </TimelinePosts>
-        <TimelineRight />
+        <TimelineRight></TimelineRight>
       </TimelineContainer>
     </>
   );

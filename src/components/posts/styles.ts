@@ -2,10 +2,13 @@ import styled from 'styled-components';
 
 import { Colors } from '../../styles/global';
 
+export const NewPost = styled.div`
+  display: flex;
+`;
+
 export const PostContainer = styled.article`
   display: block;
   position: relative;
-  width: 100%;
   margin: 1rem;
   background-color: ${Colors.blackBody};
   border-radius: 5px;
@@ -47,8 +50,7 @@ export const PostFooterHeader = styled.div`
 export const PostBody = styled.div`
   display: block;
   position: relative;
-  width: 100%;
-  min-height: 400px;
+  min-height: 310px;
   div {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -86,9 +88,7 @@ export const PostDescription = styled.div`
 `;
 
 export const PostCommentsContainer = styled.aside`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
   padding: 0 1rem 1rem;
 `;
 
@@ -96,7 +96,8 @@ export const PostComment = styled.div`
   display: flex;
   position: relative;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: initial;
+  width: 100%;
   div {
     & :first-child {
       display: flex;
@@ -111,6 +112,21 @@ export const PostComment = styled.div`
     & :last-child {
       font-size: 0.8em;
       font-weight: normal;
+    }
+  }
+  .postComments {
+    display: flex;
+    width: 100%;
+    div {
+      & :first-child {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      & :last-child {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 `;

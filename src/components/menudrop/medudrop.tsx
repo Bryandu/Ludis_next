@@ -1,4 +1,4 @@
-import { forwardRef, HTMLAttributes, RefObject } from 'react';
+import { ForwardedRef, forwardRef, HTMLAttributes } from 'react';
 import { BsGear } from 'react-icons/bs';
 import { FiBell, FiMap, FiShoppingBag } from 'react-icons/fi';
 import { IconContext } from 'react-icons/lib';
@@ -8,7 +8,7 @@ interface ShowDrop extends HTMLAttributes<HTMLDivElement> {
   showDrop?: boolean;
 }
 
-const MenuDrop = forwardRef(({ showDrop }: ShowDrop, ref: RefObject<HTMLDivElement>) => {
+const MenuDrop = forwardRef(({ showDrop }: ShowDrop, ref: ForwardedRef<HTMLDivElement>) => {
   return (
     <ContainerDrop showDrop={showDrop} id="dropmenu" ref={ref}>
       <nav>

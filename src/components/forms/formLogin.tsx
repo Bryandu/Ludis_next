@@ -6,6 +6,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
+import { loadingAction } from '../../store/ducks/genericActions';
 import { userLogin } from '../../store/ducks/user/userActions';
 import { userSelector } from '../../store/ducks/user/userSelectors';
 import Anchor from '../anchor/anchor';
@@ -45,6 +46,7 @@ const FormLogin = ({ click, submit }: FormLogin) => {
 
   const onSubmit = async (values: Login) => {
     const { email, password } = values;
+    dispatch(loadingAction());
     dispatch(userLogin(email, password));
     return submit && submit();
   };

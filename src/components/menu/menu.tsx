@@ -10,7 +10,7 @@ import { List } from './styles';
 
 const Menu = () => {
   const [drop, setDrop] = useState<boolean>();
-  const modalRef = useRef();
+  const modalRef = useRef(null);
 
   const showDrop = () => {
     if (drop) {
@@ -18,7 +18,7 @@ const Menu = () => {
     } else {
       const main = document.querySelector('div');
       setDrop(true);
-      main.addEventListener('click', removeDrop);
+      main?.addEventListener('click', removeDrop);
     }
   };
 
@@ -30,7 +30,7 @@ const Menu = () => {
     } else {
       const main = document.querySelector('div');
       setDrop(false);
-      main.removeEventListener('click', removeDrop);
+      main?.removeEventListener('click', removeDrop);
     }
   };
 
