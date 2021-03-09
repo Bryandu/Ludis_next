@@ -1,7 +1,7 @@
 export type UserData = {
-  id: number | string | null;
-  email: string | null;
-  password: string | null;
+  id: number | string | undefined;
+  email: string | undefined;
+  password: string | undefined;
 };
 export interface UserState {
   isOn: boolean | null;
@@ -36,9 +36,9 @@ export interface UserActionLogin {
 export interface UserActionLoginSuccsses {
   type: UserActions.USER_LOGINSUCCSSES;
   payload: {
-    id: number | string;
-    email: string;
-    password: string;
+    id: number | string | undefined;
+    email: string | undefined;
+    password: string | undefined;
   };
 }
 export interface UserActionLoginFail {
