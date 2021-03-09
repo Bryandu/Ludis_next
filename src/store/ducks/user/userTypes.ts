@@ -1,14 +1,14 @@
 export type UserData = {
-  id: number | string;
-  email: string;
-  password: string;
+  id: number | string | null;
+  email: string | null;
+  password: string | null;
 };
 export interface UserState {
-  isOn: boolean;
-  isActive: boolean;
-  loading: boolean;
-  token: string;
-  data: UserData;
+  isOn: boolean | null;
+  isActive: boolean | null;
+  loading: boolean | null;
+  token: string | null;
+  data: UserData | null;
 }
 
 export enum UserActions {

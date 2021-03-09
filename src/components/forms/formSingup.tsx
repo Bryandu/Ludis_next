@@ -40,7 +40,7 @@ export const FormSingup = ({ click, submit }: FormSingup) => {
 
   const onSubmit = (values: SingUp) => {
     dispatch(userSingup(values.email, values.password));
-    return submit();
+    return submit && submit();
   };
 
   return (

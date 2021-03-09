@@ -11,6 +11,7 @@ interface Modal extends HTMLAttributes<HTMLDivElement> {
 
 const Modal = ({ showModal, hiddenModal, children }: Modal) => {
   const [isWindow, setWindow] = useState(false);
+  const divmodal = document.getElementById('modal-root');
 
   useEffect(() => {
     setWindow(true);
@@ -25,8 +26,8 @@ const Modal = ({ showModal, hiddenModal, children }: Modal) => {
     </ModalContainer>
   ) : null;
 
-  if (isWindow) {
-    return createPortal(modal, document.getElementById('modal-root'));
+  if (isWindow && divmodal) {
+    return createPortal(modal, divmodal);
   } else {
     return null;
   }
