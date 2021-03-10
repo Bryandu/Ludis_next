@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 
 import Header from '../components/header/header';
 import InfineScroll from '../components/infinitescroll/infinitescroll';
@@ -23,29 +24,29 @@ type Posts = {
 };
 
 const Timeline = () => {
+  const fetcher = (url: string) => GET<Posts[]>(url).then(res => res?.data);
   const [post, setPosts] = useState<Posts[]>();
   const [fullposts, setFullposts] = useState(0);
   const [postCount, setPostcount] = useState(5);
+  const { data } = useSWR('https://jsonplaceholder.typicode.com/photos', fetcher);
 
   useEffect(() => {
-    GET<Posts[]>('https://jsonplaceholder.typicode.com/photos').then(response => {
-      setPosts(response?.data.slice(0, postCount));
-      if (response) {
-        setFullposts(response?.data.length);
-      }
-    });
-  }, [postCount]);
+    if (data) {
+      setPosts(data?.slice(0, postCount));
+      setFullposts(data?.length);
+    }
+    console.log(data);
+  }, [postCount, data]);
 
   async function loadMore() {
     if (!post) {
       return null;
     }
     if (post.length < fullposts - 1) {
-      const response = await GET<Posts[]>('https://jsonplaceholder.typicode.com/photos');
-      const res = response?.data.slice(postCount, postCount + 5);
+      data?.slice(postCount, postCount + 5);
       setPostcount(postCount + 5);
-      if (res) {
-        setPosts(el => el?.concat(res));
+      if (data) {
+        setPosts(el => el?.concat(data));
       }
     }
   }
