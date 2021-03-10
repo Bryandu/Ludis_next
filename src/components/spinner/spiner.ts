@@ -5,6 +5,7 @@ import { Colors } from '../../styles/global';
 
 interface Spin extends HTMLAttributes<HTMLDivElement> {
   text?: string;
+  size?: string;
 }
 
 const spin = keyframes`
@@ -14,12 +15,11 @@ const spin = keyframes`
 
 export const Spinner = styled.span<Spin>`
   display: block;
-  width: 40px;
-  height: 40px;
-  margin: 20px 0;
+  width: ${props => (props.size ? props.size : '40px')};
+  height: ${props => (props.size ? props.size : '40px')};
   border-radius: 50%;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
   border-left-color: ${Colors.redSecundary};
   background: transparent;
-  animation: ${spin} 700ms linear infinite;
+  animation: ${spin} 500ms linear infinite;
 `;

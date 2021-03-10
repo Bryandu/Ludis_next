@@ -18,6 +18,15 @@ export const DivButton = styled.div<ContainerButton>`
   justify-content: center;
   div {
     display: flex;
+    position: relative;
+    span {
+      position: absolute;
+      left: 80px;
+      top: calc(50% - 13px);
+    }
+  }
+  footer {
+    display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: center;

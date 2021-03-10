@@ -12,6 +12,7 @@ import { userSelector } from '../../store/ducks/user/userSelectors';
 import Anchor from '../anchor/anchor';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
+import { Spinner } from '../spinner/spiner';
 import { DivButton } from './styleForms';
 
 type Login = {
@@ -85,12 +86,15 @@ const FormLogin = ({ click, submit }: FormLogin) => {
             </label>
           </aside>
           <DivButton>
-            <Button onClick={() => click && click()} type="submit">
-              Entrar
-            </Button>
             <div>
-              <Anchor href="/singUp">Ou então faça o seu cadastro aqui.</Anchor>
+              <Button onClick={() => click && click()} type="submit">
+                Entrar
+              </Button>
+              {user.loading && <Spinner size="26px" />}
             </div>
+            <footer>
+              <Anchor href="/singUp">Ou então faça o seu cadastro aqui.</Anchor>
+            </footer>
           </DivButton>
         </Form>
       )}

@@ -39,13 +39,13 @@ const Home = () => {
       <Main>
         <ContainerHome>
           <Toast
-            hide={() => setToast(false)}
+            hide={() => {
+              setToast(false);
+            }}
             Icon={FiAlertCircle}
             colorIcon={Colors.redSecundary}
             top
-            show={(toast && user.isOn == false) || route.query.error ? true : false}>
-            Algo deu errado.
-            <br />
+            show={toast && !user.loading && !user.isOn}>
             Email ou senha incorretos.
           </Toast>
           <header>

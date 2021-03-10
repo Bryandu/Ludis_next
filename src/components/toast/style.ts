@@ -15,41 +15,41 @@ export interface ToastI extends HTMLAttributes<HTMLDivElement> {
   colorIcon?: string;
 }
 
-const ToastShow = keyframes`
-  from{
-    width: 0;
-    height: 0;
-  }
-  to{
-    width: 300px;
-    height: 80px;
-  }
+const ToastShowTop = keyframes`
+  from{height: 0;}
+  to{height: 50px;}
+`;
+
+const ToastShowBottom = keyframes`
+  from{height: 0;}
+  to{height: 50px;}
 `;
 
 export const ToastBody = styled.div<ToastI>`
   position: absolute;
   z-index: 999;
   display: none;
-  width: 300px;
-  height: 80px;
-  border-radius: 6px;
+  width: 100%;
+  max-height: 50px;
+  justify-content: center;
+  align-items: center;
   background-color: ${Colors.blackBody};
   overflow: hidden;
   border: solid 1px ${Colors.blackBackground};
-  animation: ${ToastShow} 150ms ease-in-out;
   & > article {
     display: flex;
     z-index: 2;
     width: 100%;
     height: 100%;
     padding: 5px;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     & > svg {
       display: block;
       position: absolute;
-      right: 2px;
-      top: 2px;
+      right: 15px;
+      top: calc(50% - 10px);
+      transition: 200ms ease-in-out;
       & :hover {
         cursor: pointer;
         color: ${Colors.redPrimary};
@@ -60,32 +60,26 @@ export const ToastBody = styled.div<ToastI>`
       justify-content: center;
       align-items: center;
       margin: 0 0.5rem;
+      svg {
+        width: 30px;
+      }
     }
   }
   ${props =>
     props.top &&
     css`
-      top: 10px;
+      top: 0;
+      animation: ${ToastShowTop} 150ms ease-in;
     `};
   ${props =>
     props.bottom &&
     css`
-      bottom: 10px;
+      bottom: 0;
+      animation: ${ToastShowBottom} 150ms ease-in;
     `}
-  ${props =>
-    props.right &&
-    css`
-      right: 10px;
-    `};
-  ${props =>
-    props.left &&
-    css`
-      left: 10px;
-    `};
   ${props =>
     props.show &&
     css`
       display: flex;
-      flex-direction: column;
     `}
 `;
