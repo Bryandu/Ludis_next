@@ -26,8 +26,10 @@ export const ModalContainer = styled.div<ModalStyle>`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  transition: 1500ms ease-in-out;
   animation: ${modalshow} 100ms ease-in-out;
+  & :hover {
+    cursor: pointer;
+  }
   ${props =>
     props.showModal &&
     css`
@@ -42,4 +44,7 @@ export const ModalBody = styled.article`
   z-index: 1000;
   background-color: ${Colors.blackBackground};
   box-shadow: 0px 0px 20px 2px rgba (0, 0, 0, 0.7);
+  & :hover {
+    cursor: default;
+  }
 `;

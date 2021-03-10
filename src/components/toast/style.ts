@@ -42,7 +42,7 @@ export const ToastBody = styled.div<ToastI>`
     width: 100%;
     height: 100%;
     padding: 5px;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     & > svg {
       display: block;

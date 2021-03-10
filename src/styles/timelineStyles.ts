@@ -21,10 +21,14 @@ export const TimelineContainer = styled.section`
 `;
 
 export const TimelinePosts = styled.div`
-  max-width: 600px;
+  width: 550px;
   flex-direction: column;
   position: relative;
   justify-content: center;
+  @media screen and (max-width: 1024px) {
+    width: auto;
+    max-width: 500px;
+  }
 `;
 
 export const TimelineLeft = styled.div`
@@ -39,6 +43,7 @@ export const TimelineLeft = styled.div`
     top: 0;
     margin: 0;
     height: auto;
+    max-width: 500px;
   }
 `;
 
