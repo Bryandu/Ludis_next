@@ -1,24 +1,26 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const HeaderComp = styled.header`
+import { Colors } from '../../styles/global';
+import { IHeader } from './header';
+
+export const HeaderComp = styled.header<IHeader>`
   display: flex;
-  position: fixed;
+  position: ${props => props.position || 'inherit'};
   align-items: center;
   justify-content: space-between;
   width: 100%;
   padding: 10px;
-  background: #151515;
-  z-index: 100;
-  top: 0;
+  background: ${Colors.blackBody};
+  z-index: 99;
 `;
 
 export const ImgHeader = styled.div`
   display: flex;
   align-items: center;
-  img {
+  div {
     margin: 0 10px;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
+    img {
+      border-radius: 50%;
+    }
   }
 `;

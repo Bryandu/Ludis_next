@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { Colors } from "./global";
+import styled from 'styled-components';
+
+import { Colors } from './global';
 
 export const Section = styled.section`
   position: relative;
@@ -8,17 +9,17 @@ export const Section = styled.section`
   height: 100vh;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
 `;
 
 export const DivForm = styled.div`
   position: relative;
   display: flex;
   width: 50%;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  padding-left: 6rem;
+  padding: 4rem;
   @media screen and (max-width: 1024px) {
-    padding: 1rem;
     justify-content: center;
     width: 100%;
   }
@@ -33,7 +34,7 @@ export const DivImg = styled(DivForm)`
   width: 50%;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 4rem;
+  padding: 4rem;
   @media screen and (max-width: 1024px) {
     display: none;
   }
@@ -49,12 +50,10 @@ export const AsideForm = styled.aside`
   justify-content: center;
   align-items: center;
   width: 400px;
-  background-color: ${Colors.blackBackground};
-  box-shadow: 14px 14px 25px #0e0e0e, -14px -14px 25px #1c1c1c;
+  background-color: ${Colors.blackBody};
   @media screen and (max-width: 420px) {
     width: 100%;
     height: 100vh;
-    padding: 2rem;
   }
 `;
 

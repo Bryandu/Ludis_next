@@ -1,37 +1,21 @@
-import Head from "next/head";
-import { useEffect, useRef, useState } from "react";
-import { Button } from "../components/button/button";
-import Modal from "../components/modal/modal";
-import { SectionProfile } from "../styles/profileStyle";
+import Head from 'next/head';
 
-const profile = () => {
-  const [dragdrop, setDragdrop] = useState(false);
-  const modalRef = useRef();
+import { Button } from '../components/button/button';
+import Header from '../components/header/header';
+import { SectionProfile } from '../styles/profileStyle';
 
-  const hiddenModal = () => {
-    setDragdrop(false);
-    console.log(dragdrop);
-  };
-
+const Profile = () => {
   return (
     <>
       <Head>
         <title>Ludis - profile</title>
       </Head>
+      <Header />
       <SectionProfile id="profile">
-        <Button
-          onClick={() => {
-            setDragdrop(true);
-            console.log(dragdrop);
-          }}>
-          Modal
-        </Button>
+        <Button>s</Button>
       </SectionProfile>
-      <Modal showModal={dragdrop} hiddenModal={hiddenModal}>
-        <p>hf</p>
-      </Modal>
     </>
   );
 };
 
-export default profile;
+export default Profile;

@@ -1,16 +1,11 @@
-import { DivForm, SectionLogin, DivPassword } from "../styles/loginStyle";
-import FormLogin from "../components/forms/formLogin";
-import Link from "next/link";
-import { Anchor } from "../components/anchor/styles";
-import Head from "next/head";
-import { useEffect } from "react";
-import { GET } from "../service/axios";
+import Head from 'next/head';
+
+import Anchor from '../components/anchor/anchor';
+import FormLogin from '../components/forms/formLogin';
+import { wrapper } from '../store/store';
+import { DivForm, DivPassword, SectionLogin } from '../styles/loginStyle';
 
 const Login = () => {
-  useEffect(() => {
-    GET("users");
-  });
-
   return (
     <>
       <Head>
@@ -20,20 +15,22 @@ const Login = () => {
         <article>
           <h1>
             Conecte<span>.&nbsp;</span>Jogue<span>.</span>
-            Compartilher
+            Compartilhe
           </h1>
           <DivForm>
             <FormLogin />
           </DivForm>
           <DivPassword>
-            <Link href="/">
-              <Anchor>Esqueceu a senha?</Anchor>
-            </Link>
+            <Anchor href="/">Esqueceu a senha?</Anchor>
           </DivPassword>
         </article>
       </SectionLogin>
     </>
   );
 };
+
+export const getStaticsProps = wrapper.getStaticProps(async ({ store }) => {
+  store.getState();
+});
 
 export default Login;

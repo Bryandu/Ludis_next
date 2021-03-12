@@ -1,44 +1,61 @@
-import Link from "next/link";
+import { Form, Formik } from 'formik';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { BiKey } from 'react-icons/bi';
+import { HiOutlineMail } from 'react-icons/hi';
+import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
 
-import { Form, Formik } from "formik";
-import * as Yup from "yup";
+import { loadingAction } from '../../store/ducks/genericActions';
+import { userLogin } from '../../store/ducks/user/userActions';
+import { userSelector } from '../../store/ducks/user/userSelectors';
+import Anchor from '../anchor/anchor';
+import { Button } from '../button/button';
+import { Input } from '../input/input';
+import { Spinner } from '../spinner/spiner';
+import { DivButton } from './styleForms';
 
-import { Button } from "../button/button";
-import { DivButton } from "./styleForms";
-import { Anchor } from "../anchor/styles";
-import { Input } from "../input/input";
+type Login = {
+  email: string;
+  password: string;
+};
 
-import { HiOutlineMail } from "react-icons/hi";
-import { BiKey } from "react-icons/bi";
+interface FormLogin {
+  click?: VoidFunction;
+  submit?: VoidFunction;
+}
 
-const FormLogin = () => {
-  type Login = {
-    email: string;
-    password: string;
-  };
+const FormLogin = ({ click, submit }: FormLogin) => {
+  const dispatch = useDispatch();
+  const user = useSelector(userSelector);
+  const route = useRouter();
+
+  useEffect(() => {
+    if (user.isOn) {
+      route.push('/timeline');
+    }
+  }, [user, route]);
 
   const initialValues = {
-    email: "",
-    password: "",
+    email: '',
+    password: ''
   };
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Email inválido.").required("Email obrigatório."),
-    password: Yup.string()
-      .min(8, "Minímo oito caractéries.")
-      .required("Senha obrigatório."),
+    email: Yup.string().email('Email inválido.').required('Email obrigatório.'),
+    password: Yup.string().min(8, 'Minímo oito caractéries.').required('Senha obrigatório.')
   });
 
-  const onSubmit = (values: Login) => {
-    console.log(values);
+  const onSubmit = async (values: Login) => {
+    const { email, password } = values;
+    dispatch(loadingAction());
+    dispatch(userLogin(email, password));
+    return submit && submit();
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}>
+    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
       {() => (
-        <Form>
+        <Form style={{ width: '100%', height: '100%' }}>
           <aside>
             <label htmlFor="email">
               Email
@@ -53,6 +70,7 @@ const FormLogin = () => {
               />
             </label>
           </aside>
+
           <aside>
             <label htmlFor="password">
               Senha
@@ -68,10 +86,15 @@ const FormLogin = () => {
             </label>
           </aside>
           <DivButton>
-            <Button type="submit">Entrar</Button>
-            <Link href="/singUp">
-              <Anchor>ou cadastre-se</Anchor>
-            </Link>
+            <div>
+              <Button onClick={() => click && click()} type="submit">
+                Entrar
+              </Button>
+              {user.loading && <Spinner size="26px" />}
+            </div>
+            <footer>
+              <Anchor href="/singUp">Ou então faça o seu cadastro aqui.</Anchor>
+            </footer>
           </DivButton>
         </Form>
       )}

@@ -1,5 +1,6 @@
-import styled, { keyframes, css } from "styled-components";
-import { Colors } from "../../styles/global";
+import styled, { css, keyframes } from 'styled-components';
+
+import { Colors } from '../../styles/global';
 
 interface ShowDrop {
   showDrop?: boolean;
@@ -16,19 +17,6 @@ const show = keyframes`
   }
 `;
 
-export const BackDrop = styled.div`
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  z-index: 90;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: transparent;
-`;
-
 export const ContainerDrop = styled.div<ShowDrop>`
   display: none;
   position: absolute;
@@ -38,7 +26,7 @@ export const ContainerDrop = styled.div<ShowDrop>`
   border-radius: 5px;
   background-color: #151515;
   padding: 0 1rem;
-  z-index: 100;
+  transition: 100ms ease-in-out;
   ${props =>
     props.showDrop &&
     css`
@@ -64,7 +52,7 @@ export const ContainerDrop = styled.div<ShowDrop>`
       animation: ${show} 200ms linear;
     }
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     display: none;
   }
 `;
