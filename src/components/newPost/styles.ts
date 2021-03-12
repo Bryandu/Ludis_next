@@ -26,7 +26,7 @@ export const PostTypes = styled.footer`
   justify-content: center;
   span {
     display: block;
-    width: 1px;
+    width: 2px;
     background: ${Colors.redSecundary};
     height: 20px;
   }

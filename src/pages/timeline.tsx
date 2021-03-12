@@ -35,7 +35,6 @@ const Timeline = () => {
       setPosts(data?.slice(0, postCount));
       setFullposts(data?.length);
     }
-    console.log(data);
   }, [postCount, data]);
 
   async function loadMore() {
@@ -46,7 +45,7 @@ const Timeline = () => {
       data?.slice(postCount, postCount + 5);
       setPostcount(postCount + 5);
       if (data) {
-        setPosts(el => el?.concat(data));
+        setPosts(posts => posts?.concat(data));
       }
     }
   }

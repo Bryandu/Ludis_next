@@ -31,7 +31,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider theme={theme}>
         <React.StrictMode>
-          <div id="modal-root"></div>
           <GlobalStyle />
           <Component {...pageProps} />
         </React.StrictMode>

@@ -24,9 +24,6 @@ const Home = () => {
     if (route.query.error) {
       setToast(true);
     }
-    if (user.isOn == false) {
-      console.log('noOn');
-    }
   }, [route, user]);
 
   return (

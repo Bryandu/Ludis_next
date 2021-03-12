@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export const baseURL = axios.create({
-  baseURL: process.env.NEXT_APP_API //'https://my-json-server.typicode.com/Bryandu/fake_dbludis'
+  baseURL: 'http://localhost:3002'
 });
 
 export async function GET<T>(

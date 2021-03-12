@@ -40,6 +40,7 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
         </Head>
         <body>
+          <div id="modal-root"></div>
           <Main />
           <NextScript />
         </body>
