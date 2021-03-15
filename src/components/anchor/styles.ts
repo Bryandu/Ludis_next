@@ -24,7 +24,6 @@ export const BtnAnchor = styled.a`
 
 export const AnchorText = styled.a`
   color: #ffffff;
-  margin: 0 0.5rem;
   text-decoration: none;
   outline-color: ${Colors.redSecundary};
   transition: 200ms ease-in-out;

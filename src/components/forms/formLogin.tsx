@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { HTMLAttributes, useEffect } from 'react';
 import { BiKey } from 'react-icons/bi';
 import { HiOutlineMail } from 'react-icons/hi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,23 +9,20 @@ import * as Yup from 'yup';
 import { loadingAction } from '../../store/ducks/genericActions';
 import { userLogin } from '../../store/ducks/user/userActions';
 import { userSelector } from '../../store/ducks/user/userSelectors';
-import Anchor from '../anchor/anchor';
-import { Button } from '../button/button';
+import { AnchorText } from '../anchor/styles';
 import { Input } from '../input/input';
-import { Spinner } from '../spinner/spiner';
-import { DivButton } from './styleForms';
+import { DivButton, Rememberme } from './styleForms';
 
 type Login = {
   email: string;
   password: string;
 };
 
-interface FormLogin {
-  click?: VoidFunction;
+interface FormLogin extends HTMLAttributes<HTMLDivElement> {
   submit?: VoidFunction;
 }
 
-const FormLogin = ({ click, submit }: FormLogin) => {
+const FormLogin = ({ submit, ...props }: FormLogin) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const route = useRouter();
@@ -55,7 +52,7 @@ const FormLogin = ({ click, submit }: FormLogin) => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
       {() => (
-        <Form style={{ width: '100%', height: '100%' }}>
+        <Form style={{ width: '100%' }}>
           <aside>
             <label htmlFor="email">
               Email
@@ -85,17 +82,16 @@ const FormLogin = ({ click, submit }: FormLogin) => {
               />
             </label>
           </aside>
-          <DivButton>
+          <Rememberme>
             <div>
-              <Button onClick={() => click && click()} type="submit">
-                Entrar
-              </Button>
-              {user.loading && <Spinner size="26px" />}
+              <label>
+                <input type="checkbox" name="remenber" />
+                &nbsp;lembre-me
+              </label>
             </div>
-            <footer>
-              <Anchor href="/singUp">Ou então faça o seu cadastro aqui.</Anchor>
-            </footer>
-          </DivButton>
+            <AnchorText>Esqueceu a senha?</AnchorText>
+          </Rememberme>
+          <DivButton>{props.children}</DivButton>
         </Form>
       )}
     </Formik>

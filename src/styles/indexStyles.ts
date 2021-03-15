@@ -20,15 +20,17 @@ export const ContainerHome = styled.section`
   justify-content: center;
   header {
     display: flex;
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
+    z-index: 10;
     width: 100%;
     height: 75px;
-    justify-content: flex-start;
+    left: 50%;
     align-items: center;
     padding: 1rem;
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 768px) {
+      left: 0;
       justify-content: center;
       height: 100px;
       padding: 1rem 0 0;
@@ -37,95 +39,67 @@ export const ContainerHome = styled.section`
 `;
 
 export const HomeContainer = styled.section`
-  display: flex;
+  display: grid;
   position: relative;
+  top: 0;
+  left: 0;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   width: 100%;
   height: 100vh;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const HomeImg = styled.div`
   display: flex;
-  position: absolute;
   flex-direction: column;
   position: relative;
   width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  &:first-child {
-    font-size: 1.2rem;
-    padding-left: 3rem;
-    @media screen and (max-width: 1024px) {
-      display: none;
-    }
-    & > h2 {
-      text-align: center;
-      font-weight: normal;
-    }
-    & > div {
-      display: flex;
-      display: flex;
-      position: relative;
-      width: 100%;
-      height: 400px;
-    }
+  background: #000;
+  @media screen and (max-width: 768px) {
+    display: none;
   }
-  &:last-child {
-    bottom: 38px;
-    padding-right: 2rem;
-    @media screen and (max-width: 1024px) {
-      bottom: 18px;
-      padding: 0;
+  h2 {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    font-size: 4em;
+    margin-left: 3rem;
+  }
+`;
+
+export const HomeImgTwo = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  .line {
+    margin: 1rem 0;
+  }
+  & > div {
+    width: 100%;
+    max-width: 350px;
+    position: relative;
+    @media screen and (max-width: 768px) {
+      top: -20px;
+    }
+    @media screen and (max-width: 415px) {
+      width: 300px;
     }
     & > div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      background-color: ${Colors.blackBody};
-      padding: 2rem 2.5rem 0;
-      border-radius: 6px;
-      width: 350px;
-      @media screen and (max-width: 360px) {
-        background: transparent;
-        padding: 2rem 1rem 0;
-        width: 320px;
-      }
-      .line {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        margin-bottom: 1rem;
-        & > span {
-          background-color: ${Colors.redPrimary};
-          width: 50%;
-          height: 2px;
-          margin: 0 1rem 0 0;
-          & :last-child {
-            margin: 0 0 0 1rem;
-            height: 2px;
-          }
-        }
-      }
-      & > h1 {
-        text-align: center;
-        margin-bottom: 1rem;
-      }
-      & > h3 {
-        text-align: center;
-        margin: 0 0 1rem;
-        font-size: 1.8rem;
-        font-weight: normal;
-      }
-      & > aside {
-        display: block;
-        text-align: center;
-        margin: 0rem 0 2rem;
-        & > div {
-          display: flex;
-          align-items: center;
-        }
+      margin: 1rem 0;
+      h2 {
+        font-size: 2.5em;
       }
     }
   }
@@ -133,33 +107,45 @@ export const HomeImg = styled.div`
 
 export const HomeIcons = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin: 1.5rem 0;
+  justify-content: flex-start;
+  margin: 0.5rem 0;
   width: 100%;
   div {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 1rem;
-    border-radius: 2px;
-    width: 100%;
-    & :first-child {
-      color: #000;
-      background-color: #fff;
-      margin-right: 2px;
-      & :hover {
-        cursor: pointer;
-      }
-    }
-    & :last-child {
-      color: #fff;
-      background-color: #3c5a9a;
-      margin-left: 2px;
-      & :hover {
-        cursor: pointer;
-      }
+    padding: 0.7rem;
+    border-radius: 50%;
+    border: 2px solid ${Colors.redSecundary};
+    margin-right: 10px;
+    color: ${Colors.redSecundary};
+    transition: 200ms ease-in-out;
+    & :hover {
+      cursor: pointer;
+      background: ${Colors.redSecundary};
+      color: ${Colors.blackBackground};
+      border-color: ${Colors.blackBody};
     }
   }
+`;
+
+export const SingUpLogin = styled.span`
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  a {
+    text-decoration: underline ${Colors.redSecundary} 2px;
+    & :hover {
+      color: ${Colors.redSecundary};
+    }
+  }
+`;
+
+export const SpinnerPosition = styled.div`
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 `;
 
 export const ToastLogin = styled.div`

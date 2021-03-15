@@ -19,20 +19,6 @@ export const DivButton = styled.div<ContainerButton>`
   div {
     display: flex;
     position: relative;
-    span {
-      position: absolute;
-      left: 80px;
-      top: calc(50% - 13px);
-    }
-  }
-  footer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    margin: 2rem 0 1rem;
-    font-size: 1rem;
-    text-align: center;
   }
 `;
 
@@ -43,4 +29,12 @@ export const ContainerField = styled.div`
 export const Erros = styled.bdo`
   color: ${Colors.redSecundary};
   font-size: 0.85rem;
+`;
+
+export const Rememberme = styled.span`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.2rem 0;
 `;

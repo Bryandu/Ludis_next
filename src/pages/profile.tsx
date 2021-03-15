@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { Button } from '../components/button/button';
+import Button from '../components/button/button';
 import Header from '../components/header/header';
 import { SectionProfile } from '../styles/profileStyle';
 

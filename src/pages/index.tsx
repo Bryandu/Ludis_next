@@ -2,21 +2,32 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
+import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
-import { IoLogoFacebook } from 'react-icons/io';
 import { useSelector } from 'react-redux';
 
 import { AnchorText } from '../components/anchor/styles';
+import Button from '../components/button/button';
 import FormLogin from '../components/forms/formLogin';
 import Logo from '../components/logo/logo';
+import { Spinner } from '../components/spinner/spiner';
 import Toast from '../components/toast/toast';
 import { userSelector } from '../store/ducks/user/userSelectors';
 import { Colors } from '../styles/global';
-import { ContainerHome, HomeContainer, HomeIcons, HomeImg, Main } from '../styles/indexStyles';
+import {
+  ContainerHome,
+  HomeContainer,
+  HomeIcons,
+  HomeImg,
+  HomeImgTwo,
+  Main,
+  SingUpLogin,
+  SpinnerPosition
+} from '../styles/indexStyles';
 
 const Home = () => {
   const [toast, setToast] = useState<boolean>();
+  const [disabled, setDisabled] = useState<boolean>();
   const route = useRouter();
   const user = useSelector(userSelector);
 
@@ -24,6 +35,8 @@ const Home = () => {
     if (route.query.error) {
       setToast(true);
     }
+
+    route.events.on('routeChangeStart', () => setDisabled(true));
   }, [route, user]);
 
   return (
@@ -32,7 +45,6 @@ const Home = () => {
         <title>Ludis</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Main>
         <ContainerHome>
           <Toast
@@ -51,40 +63,46 @@ const Home = () => {
           <HomeContainer>
             <HomeImg>
               <h2>
-                <span>Conecte-se&nbsp;</span>com seus&nbsp;<span>amigos,&nbsp;</span>encontre
-                <span>&nbsp;lugares</span>&nbsp;e bora jogar!
+                <span>Conecte-se com amigos,</span>
+                <br />
+                <span>encontre lugares.</span>
+                <br />
+                <span>Jogue.</span>
               </h2>
-              <div>
-                <Image alt="time" src="/svg/team.svg" layout="fill" />
-              </div>
+              <Image objectFit="cover" alt="time" src="/img/quadra.jpg" layout="fill" />
             </HomeImg>
-            <HomeImg>
+            <HomeImgTwo>
               <div>
-                <h3>Faça seu login</h3>
+                <div>
+                  <p>Bem vindo</p>
+                  <h2>Faça seu login</h2>
+                </div>
                 <HomeIcons>
                   <div>
-                    <FcGoogle size="1.5em" />
-                    Google
+                    <FaGoogle size="1em" />
                   </div>
                   <div>
-                    <IoLogoFacebook size="1.5em" />
-                    Facebook
+                    <FaFacebookF size="1em" />
                   </div>
                 </HomeIcons>
-                <div className="line">
-                  <span></span>
-                  <p>Ou</p>
-                  <span></span>
-                </div>
-                <FormLogin submit={() => setToast(true)} />
-                <aside>
-                  <AnchorText href="/">Esqueceu a senha?</AnchorText>
-                </aside>
+                <div className="line">ou use seu email e senha</div>
+                <FormLogin submit={() => setToast(true)}>
+                  <Button
+                    width="100%"
+                    disabled={user.loading || (disabled && user.isOn)}
+                    name="Entrar"
+                    type="submit"></Button>
+                </FormLogin>
               </div>
-            </HomeImg>
+              <SingUpLogin>
+                Não tem um aconta?
+                <AnchorText>&nbsp;Cadastre-se aqui.</AnchorText>
+              </SingUpLogin>
+            </HomeImgTwo>
           </HomeContainer>
         </ContainerHome>
       </Main>
+      <SpinnerPosition>{user.loading && <Spinner size="26px" />}</SpinnerPosition>
     </div>
   );
 };
