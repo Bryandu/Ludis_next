@@ -1,7 +1,8 @@
+import { FormikProps } from 'formik';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
@@ -30,14 +31,17 @@ const Home = () => {
   const [disabled, setDisabled] = useState<boolean>();
   const route = useRouter();
   const user = useSelector(userSelector);
+  const refFormik = createRef<
+    FormikProps<{
+      email: string;
+      password: string;
+    }>
+  >();
 
   useEffect(() => {
-    if (route.query.error) {
-      setToast(true);
-    }
-
+    console.log(refFormik.current?.isSubmitting);
     route.events.on('routeChangeStart', () => setDisabled(true));
-  }, [route, user]);
+  }, [route.events, refFormik]);
 
   return (
     <div>
@@ -86,10 +90,10 @@ const Home = () => {
                   </div>
                 </HomeIcons>
                 <div className="line">ou use seu email e senha</div>
-                <FormLogin submit={() => setToast(true)}>
+                <FormLogin ref={refFormik} submit={() => setToast(true)}>
                   <Button
                     width="100%"
-                    disabled={user.loading || (disabled && user.isOn)}
+                    disabled={user.loading || disabled}
                     name="Entrar"
                     type="submit"></Button>
                 </FormLogin>
