@@ -39,9 +39,12 @@ const Home = () => {
   >();
 
   useEffect(() => {
-    console.log(refFormik.current?.isSubmitting);
     route.events.on('routeChangeStart', () => setDisabled(true));
-  }, [route.events, refFormik]);
+  }, [route.events]);
+
+  useEffect(() => {
+    console.log(refFormik.current?.isSubmitting);
+  }, [refFormik]);
 
   return (
     <div>
@@ -70,7 +73,7 @@ const Home = () => {
                 <br />
                 <span>Jogue.</span>
               </h2>
-              <Image objectFit="cover" alt="time" src="/img/quadra.jpg" layout="fill" />
+              <Image objectFit="cover" alt="esportes" src="/img/quadra.jpg" layout="fill" />
             </HomeImg>
             <HomeImgTwo>
               <header>
@@ -82,10 +85,10 @@ const Home = () => {
                   <h2>Faça seu login</h2>
                 </div>
                 <HomeIcons>
-                  <div>
+                  <div title="Entrar com Google">
                     <FaGoogle size="1em" />
                   </div>
-                  <div>
+                  <div title="Entrar com Facebook">
                     <FaFacebookF size="1em" />
                   </div>
                 </HomeIcons>
@@ -93,20 +96,22 @@ const Home = () => {
                 <FormLogin ref={refFormik} submit={() => setToast(true)}>
                   <Button
                     width="100%"
-                    disabled={user.loading || disabled}
+                    disabled={refFormik.current?.isSubmitting || disabled}
                     name="Entrar"
                     type="submit"></Button>
                 </FormLogin>
               </div>
               <SingUpLogin>
-                Não tem um aconta?
+                Não tem uma aconta?
                 <AnchorText>&nbsp;Cadastre-se aqui.</AnchorText>
               </SingUpLogin>
             </HomeImgTwo>
           </HomeContainer>
         </ContainerHome>
       </Main>
-      <SpinnerPosition>{user.loading && <Spinner size="26px" />}</SpinnerPosition>
+      <SpinnerPosition>
+        {refFormik.current?.isSubmitting && <Spinner size="26px" />}
+      </SpinnerPosition>
     </div>
   );
 };

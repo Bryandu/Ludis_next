@@ -79,10 +79,9 @@ export const HomeImgTwo = styled.div`
     }
   }
   & > div {
-    width: 100%;
     width: 310px;
-    top: 15%;
     position: relative;
+    top: calc(45% - 212px);
     & > div {
       margin: 1rem 0;
       h2 {
