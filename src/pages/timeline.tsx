@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { END } from 'redux-saga';
+import { useSWRInfinite } from 'swr';
 
 import Header from '../components/header/header';
 import InfineScroll from '../components/infinitescroll/infinitescroll';
@@ -8,6 +10,10 @@ import Post from '../components/posts/post';
 import { Spinner } from '../components/spinner/spiner';
 import withAuth from '../HOC/auth/withAuth';
 import { GET } from '../service/axios';
+import { userGetInitialPosts } from '../store/ducks/user/userActions';
+import { postSelector } from '../store/ducks/user/userSelectors';
+import { Posts } from '../store/ducks/user/userTypes';
+import { SagaStore, storeWrapper } from '../store/store';
 import {
   TimelineContainer,
   TimelineLeft,
@@ -15,40 +21,28 @@ import {
   TimelineRight
 } from '../styles/timelineStyles';
 
-type Posts = {
-  id: number;
-  albumId: number;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
-};
-
 const Timeline = () => {
   const fetcher = (url: string) => GET<Posts[]>(url).then(res => res?.data);
-  const [post, setPosts] = useState<Posts[]>();
-  const [fullposts, setFullposts] = useState(0);
-  const [postCount, setPostcount] = useState(5);
-  const { data } = useSWR('https://jsonplaceholder.typicode.com/photos', fetcher);
+  const posts = useSelector(postSelector);
+
+  const { data, size, setSize } = useSWRInfinite(
+    index => `https://jsonplaceholder.typicode.com/photos?_page=${index}`,
+    fetcher
+  );
 
   useEffect(() => {
-    if (data) {
-      setPosts(data?.slice(0, postCount));
-      setFullposts(data?.length);
-    }
-  }, [postCount, data]);
+    console.log('size: ' + size);
+  }, [size]);
 
-  async function loadMore() {
-    if (!post) {
-      return null;
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  const loadMore = () => {
+    if (!data) {
+      setSize(size + 1);
     }
-    if (post.length < fullposts - 1) {
-      data?.slice(postCount, postCount + 5);
-      setPostcount(postCount + 5);
-      if (data) {
-        setPosts(posts => posts?.concat(data));
-      }
-    }
-  }
+  };
 
   return (
     <>
@@ -58,19 +52,22 @@ const Timeline = () => {
           <NewPost />
         </TimelineLeft>
         <TimelinePosts>
-          {post?.map(post => {
-            return (
-              <Post
-                key={post.id}
-                name={String(post.id)}
-                body={post.url}
-                title={post.title}
-                profile={post.thumbnailUrl}
-              />
-            );
-          })}
+          {data &&
+            data[0]?.map(post => {
+              return (
+                post && (
+                  <Post
+                    key={post?.id}
+                    name={String(post?.id)}
+                    body={post?.url}
+                    title={post?.title}
+                    profile={post?.thumbnailUrl}
+                  />
+                )
+              );
+            })}
+          {posts?.length ? <div>Não há mais posts</div> : <Spinner />}
           <InfineScroll loadmore={loadMore} />
-          {post?.length === fullposts - 1 ? <div>Não há mais posts</div> : <Spinner />}
         </TimelinePosts>
         <TimelineRight></TimelineRight>
       </TimelineContainer>
@@ -79,3 +76,11 @@ const Timeline = () => {
 };
 
 export default withAuth(Timeline);
+
+export const getStaticProps = storeWrapper.getStaticProps(async ({ store }) => {
+  if (!store.getState().posts) {
+    store.dispatch(userGetInitialPosts());
+    store.dispatch(END);
+  }
+  await (store as SagaStore).sagaTask?.toPromise();
+});

@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import { loadingAction } from '../../store/ducks/genericActions';
 import { userLogin } from '../../store/ducks/user/userActions';
 import { userSelector } from '../../store/ducks/user/userSelectors';
+import { UserState } from '../../store/ducks/user/userTypes';
 import { AnchorText } from '../anchor/styles';
 import { Input } from '../input/input';
 import { DivButton, Rememberme } from './styleForms';
@@ -29,9 +30,10 @@ const FormLogin = forwardRef(
     const route = useRouter();
 
     useEffect(() => {
-      if (user.isOn) {
+      if (user?.isOn) {
         route.push('/timeline');
       }
+      console.log(user);
     }, [user, route]);
 
     const initialValues = {
@@ -49,7 +51,7 @@ const FormLogin = forwardRef(
       dispatch(loadingAction());
       dispatch(userLogin(email, password));
       submit && submit();
-      user.isOn && actions.setSubmitting(false);
+      user?.isOn && actions.setSubmitting(false);
     };
 
     return (

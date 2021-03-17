@@ -1,4 +1,6 @@
 import {
+  Posts,
+  UserActionGetInitilPosts,
   UserActionLoginSuccsses,
   UserActions,
   UserActionSingUp,
@@ -42,5 +44,18 @@ export const userLoginSuccsses = (data: UserData): UserActionLoginSuccsses => {
 export const userLoginFail = () => {
   return {
     type: UserActions.USER_LOGINFAIL
+  };
+};
+
+export const userGetInitialPosts = (): UserActionGetInitilPosts => {
+  return {
+    type: UserActions.USER_GETINITIALPOSTS
+  };
+};
+
+export const userGetInitialPostsSucsses = (posts: Posts[]) => {
+  return {
+    type: UserActions.USER_GETINITIALPOSTSSUCSSES,
+    payload: posts
   };
 };

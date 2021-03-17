@@ -3,12 +3,21 @@ export type UserData = {
   email: string | null;
   password: string | null;
 };
+
+export type Posts = {
+  id: number;
+  albumId: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
+};
 export interface UserState {
-  isOn: boolean | undefined;
-  isActive: boolean | undefined;
-  loading: boolean | undefined;
-  token: string | undefined;
-  data: UserData | undefined;
+  isOn: boolean | null;
+  isActive: boolean | null;
+  loading: boolean | null;
+  token: string | null;
+  data: UserData | null;
+  posts: Posts[] | null;
 }
 
 export enum UserActions {
@@ -18,6 +27,8 @@ export enum UserActions {
   USER_LOGINSUCCSSES = 'USER_LOGINSUCCSSES',
   USER_LOGINFAIL = 'USER_LOGINFAIL',
   USER_SINGUPFAIL = 'USER_SINGUPFAIL',
+  USER_GETINITIALPOSTS = 'USER_GETINITIALPOSTS',
+  USER_GETINITIALPOSTSSUCSSES = 'USER_GETINITIALPOSTSSUCSSES',
   __NEXT_REDUX_WRAPPER_HYDRATE__ = '__NEXT_REDUX_WRAPPER_HYDRATE__'
 }
 
@@ -58,6 +69,15 @@ export interface UserActionSingupFail {
   type: UserActions.USER_SINGUPFAIL;
 }
 
+export interface UserActionGetInitilPosts {
+  type: UserActions.USER_GETINITIALPOSTS;
+}
+
+export interface UserActionGetInitilPostsSucsses {
+  type: UserActions.USER_GETINITIALPOSTSSUCSSES;
+  payload: Posts[];
+}
+
 export type ActionUser =
   | UserActionHydrate
   | UserActionSingUp
@@ -65,4 +85,6 @@ export type ActionUser =
   | UserActionSingupFail
   | UserActionLogin
   | UserActionLoginSuccsses
-  | UserActionLoginFail;
+  | UserActionLoginFail
+  | UserActionGetInitilPosts
+  | UserActionGetInitilPostsSucsses;

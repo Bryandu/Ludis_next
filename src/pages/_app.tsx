@@ -8,7 +8,7 @@ import Nprogres from 'nprogress';
 import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { wrapper } from '../store/store';
+import { storeWrapper } from '../store/store';
 import GlobalStyle from '../styles/global';
 import { theme } from '../styles/theme';
 
@@ -39,4 +39,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default wrapper.withRedux(MyApp);
+export default storeWrapper.withRedux(MyApp);

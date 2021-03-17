@@ -42,10 +42,6 @@ const Home = () => {
     route.events.on('routeChangeStart', () => setDisabled(true));
   }, [route.events]);
 
-  useEffect(() => {
-    console.log(refFormik.current?.isSubmitting);
-  }, [refFormik]);
-
   return (
     <div>
       <Head>
