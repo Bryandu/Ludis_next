@@ -17,15 +17,15 @@ const modalshow = keyframes`
 
 export const ModalContainer = styled.div<ModalStyle>`
   display: block;
-  position: fixed;
+  position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: #000;
-  z-index: 2;
+  z-index: 999;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  overflow: hidden;
+  overflow: auto;
   animation: ${modalshow} 100ms ease-in-out;
   & :hover {
     cursor: pointer;
@@ -44,6 +44,7 @@ export const ModalBody = styled.article`
   z-index: 1000;
   background-color: ${Colors.blackBackground};
   box-shadow: 0px 0px 20px 2px rgba (0, 0, 0, 0.7);
+  border-radius: 5px;
   & :hover {
     cursor: default;
   }

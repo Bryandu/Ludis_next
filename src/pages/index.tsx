@@ -57,9 +57,6 @@ const Home = () => {
             show={toast && !user.loading && !user.isOn}>
             Email ou senha incorretos.
           </Toast>
-          <header>
-            <Logo fontsize="2.5em">Ludis</Logo>
-          </header>
           <HomeContainer>
             <HomeImg>
               <h2>
@@ -72,6 +69,9 @@ const Home = () => {
               <Image objectFit="cover" alt="time" src="/img/quadra.jpg" layout="fill" />
             </HomeImg>
             <HomeImgTwo>
+              <header>
+                <Logo fontsize="2.5em">Ludis</Logo>
+              </header>
               <div>
                 <div>
                   <p>Bem vindo</p>

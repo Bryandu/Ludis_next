@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BiImage, BiPlus, BiVideo } from 'react-icons/bi';
 
 import Modal from '../modal/modal';
-import { NewpostContainer, PostTypes } from './styles';
+import { NewpostContainer, PostTypes, SetPost, SetPostHeader } from './styles';
 
 const NewPost = () => {
   const [modal, setModal] = useState(false);
@@ -11,7 +11,11 @@ const NewPost = () => {
     <>
       <NewpostContainer>
         <Modal showModal={modal} hiddenModal={() => setModal(!modal)}>
-          <p>{modal ? 'svdsvsvsvsv' : 'k'}</p>
+          <SetPost>
+            <SetPostHeader>
+              <h1>Nova publicação</h1>
+            </SetPostHeader>
+          </SetPost>
         </Modal>
         <p>Nova publicação</p>
         <PostTypes>

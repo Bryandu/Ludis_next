@@ -18,24 +18,6 @@ export const ContainerHome = styled.section`
   height: 100vh;
   align-items: center;
   justify-content: center;
-  header {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    width: 100%;
-    height: 75px;
-    left: 50%;
-    align-items: center;
-    padding: 1rem;
-    @media screen and (max-width: 768px) {
-      left: 0;
-      justify-content: center;
-      height: 100px;
-      padding: 1rem 0 0;
-    }
-  }
 `;
 
 export const HomeContainer = styled.section`
@@ -62,7 +44,6 @@ export const HomeImg = styled.div`
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: #000;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -79,23 +60,29 @@ export const HomeImgTwo = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   position: relative;
   .line {
     margin: 1rem 0;
   }
+  & > header {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    align-items: center;
+    padding: 0 1rem;
+    @media screen and (max-width: 768px) {
+      justify-content: center;
+    }
+  }
   & > div {
     width: 100%;
-    max-width: 350px;
+    width: 310px;
+    top: 15%;
     position: relative;
-    @media screen and (max-width: 768px) {
-      top: -20px;
-    }
-    @media screen and (max-width: 415px) {
-      width: 300px;
-    }
     & > div {
       margin: 1rem 0;
       h2 {
@@ -131,8 +118,7 @@ export const HomeIcons = styled.div`
 
 export const SingUpLogin = styled.span`
   display: flex;
-  position: absolute;
-  bottom: 20px;
+  padding: 1rem;
   a {
     text-decoration: underline ${Colors.redSecundary} 2px;
     & :hover {
