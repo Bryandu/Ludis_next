@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import Anchor from '../components/anchor/anchor';
 import FormLogin from '../components/forms/formLogin';
-import { wrapper } from '../store/store';
+import { storeWrapper } from '../store/store';
 import { DivForm, DivPassword, SectionLogin } from '../styles/loginStyle';
 
 const Login = () => {
@@ -29,7 +29,7 @@ const Login = () => {
   );
 };
 
-export const getStaticsProps = wrapper.getStaticProps(async ({ store }) => {
+export const getStaticsProps = storeWrapper.getStaticProps(async ({ store }) => {
   store.getState();
 });
 

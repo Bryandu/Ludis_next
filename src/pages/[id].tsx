@@ -8,7 +8,7 @@ import { GET } from '../service/axios';
 import { userGetInitialPosts } from '../store/ducks/user/userActions';
 import { userSelector } from '../store/ducks/user/userSelectors';
 import { UserData } from '../store/ducks/user/userTypes';
-import { wrapper } from '../store/store';
+import { storeWrapper } from '../store/store';
 
 const Home = () => {
   const user = useSelector(userSelector);
@@ -31,7 +31,7 @@ const Home = () => {
 
 export default withAuth(Home);
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+export const getStaticProps = storeWrapper.getStaticProps(async ({ store }) => {
   store.dispatch(userGetInitialPosts());
 });
 

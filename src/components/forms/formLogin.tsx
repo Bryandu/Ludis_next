@@ -9,7 +9,6 @@ import * as Yup from 'yup';
 import { loadingAction } from '../../store/ducks/genericActions';
 import { userLogin } from '../../store/ducks/user/userActions';
 import { userSelector } from '../../store/ducks/user/userSelectors';
-import { UserState } from '../../store/ducks/user/userTypes';
 import { AnchorText } from '../anchor/styles';
 import { Input } from '../input/input';
 import { DivButton, Rememberme } from './styleForms';
