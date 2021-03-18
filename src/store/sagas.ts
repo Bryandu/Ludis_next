@@ -3,7 +3,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { GET, POST } from '../service/axios';
 import { loadingEndAction } from './ducks/genericActions';
 import {
-  userGetInitialPostsSucsses,
+  userGetPostsSucsses,
   userLoginFail,
   userLoginSuccsses,
   userSingupFail,
@@ -41,12 +41,21 @@ function* userLoginSaga(action: UserActionLoginSuccsses) {
 
 function* userInitialPostsSaga() {
   try {
-    const response = yield call(GET, 'https://jsonplaceholder.typicode.com/photos');
-    yield put(userGetInitialPostsSucsses(response.data));
+    const response = yield call(GET, 'https://jsonplaceholder.typicode.com/photos?_page=1');
+    yield put(userGetPostsSucsses(response.data));
   } catch (error) {
     console.log(error);
   }
 }
+
+// function* userGetMorePostsSaga(action: UserActionGetMorePosts) {
+//   try {
+//     const response = yield call(GET, 'https://jsonplaceholder.typicode.com/photos?_page=1');
+//     yield put(userGetPostsSucsses(response.data));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 function* rootSaga() {
   yield all([

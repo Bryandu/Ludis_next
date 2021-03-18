@@ -53,9 +53,16 @@ export const userGetInitialPosts = (): UserActionGetInitilPosts => {
   };
 };
 
-export const userGetInitialPostsSucsses = (posts: Posts[]) => {
+export const userGetPostsSucsses = (posts: Posts[]) => {
   return {
-    type: UserActions.USER_GETINITIALPOSTSSUCSSES,
+    type: UserActions.USER_GETPOSTSSUCSSES,
+    payload: posts
+  };
+};
+
+export const userGetMorePosts = (posts: (Posts | undefined)[] | undefined) => {
+  return {
+    type: UserActions.USER_GETMOREPOSTS,
     payload: posts
   };
 };

@@ -25,6 +25,14 @@ export const TimelinePosts = styled.div`
   flex-direction: column;
   position: relative;
   justify-content: center;
+  align-items: center;
+  .warnings {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
   @media screen and (max-width: 1024px) {
     width: auto;
     max-width: 500px;

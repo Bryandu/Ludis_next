@@ -17,7 +17,7 @@ export interface UserState {
   loading: boolean | null;
   token: string | null;
   data: UserData | null;
-  posts: Posts[] | null;
+  posts: Posts[] | undefined;
 }
 
 export enum UserActions {
@@ -28,7 +28,8 @@ export enum UserActions {
   USER_LOGINFAIL = 'USER_LOGINFAIL',
   USER_SINGUPFAIL = 'USER_SINGUPFAIL',
   USER_GETINITIALPOSTS = 'USER_GETINITIALPOSTS',
-  USER_GETINITIALPOSTSSUCSSES = 'USER_GETINITIALPOSTSSUCSSES',
+  USER_GETMOREPOSTS = 'USER_GETMOREPOSTS',
+  USER_GETPOSTSSUCSSES = 'USER_GETINITIALPOSTSSUCSSES',
   __NEXT_REDUX_WRAPPER_HYDRATE__ = '__NEXT_REDUX_WRAPPER_HYDRATE__'
 }
 
@@ -73,8 +74,13 @@ export interface UserActionGetInitilPosts {
   type: UserActions.USER_GETINITIALPOSTS;
 }
 
-export interface UserActionGetInitilPostsSucsses {
-  type: UserActions.USER_GETINITIALPOSTSSUCSSES;
+export interface UserActionGetMorePosts {
+  type: UserActions.USER_GETMOREPOSTS;
+  payload: Posts[];
+}
+
+export interface UserActionGetPostsSucsses {
+  type: UserActions.USER_GETPOSTSSUCSSES;
   payload: Posts[];
 }
 
@@ -87,4 +93,5 @@ export type ActionUser =
   | UserActionLoginSuccsses
   | UserActionLoginFail
   | UserActionGetInitilPosts
-  | UserActionGetInitilPostsSucsses;
+  | UserActionGetMorePosts
+  | UserActionGetPostsSucsses;

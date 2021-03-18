@@ -14,7 +14,7 @@ const User: UserState = {
     email: null,
     password: null
   },
-  posts: null
+  posts: undefined
 };
 
 const reducer = (state = User, action: ActionUser | Action<GenericActions>): UserState => {
@@ -34,7 +34,10 @@ const reducer = (state = User, action: ActionUser | Action<GenericActions>): Use
     case UserActions.USER_LOGINSUCCSSES:
       return { ...state, isOn: true, data: action.payload };
 
-    case UserActions.USER_GETINITIALPOSTSSUCSSES:
+    case UserActions.USER_GETPOSTSSUCSSES:
+      return { ...state, posts: action.payload };
+
+    case UserActions.USER_GETMOREPOSTS:
       return { ...state, posts: action.payload };
 
     case GenericActions.LOADING:

@@ -1,11 +1,10 @@
-import { UserState } from './userTypes';
+import { Posts, UserState } from './userTypes';
 interface UserSelector {
   user: UserState;
 }
-
 interface PostSelector {
   user: {
-    user: UserState;
+    posts: Posts[];
   };
 }
 
@@ -14,5 +13,5 @@ export const userSelector = (state: UserSelector) => {
 };
 
 export const postSelector = (state: PostSelector) => {
-  return state.user.user?.posts;
+  return state.user?.posts;
 };

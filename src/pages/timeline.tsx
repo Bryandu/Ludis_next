@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 import { useSWRInfinite } from 'swr';
 
@@ -10,7 +10,7 @@ import Post from '../components/posts/post';
 import { Spinner } from '../components/spinner/spiner';
 import withAuth from '../HOC/auth/withAuth';
 import { GET } from '../service/axios';
-import { userGetInitialPosts } from '../store/ducks/user/userActions';
+import { userGetInitialPosts, userGetMorePosts } from '../store/ducks/user/userActions';
 import { postSelector } from '../store/ducks/user/userSelectors';
 import { Posts } from '../store/ducks/user/userTypes';
 import { SagaStore, storeWrapper } from '../store/store';
@@ -24,25 +24,28 @@ import {
 const Timeline = () => {
   const fetcher = (url: string) => GET<Posts[]>(url).then(res => res?.data);
   const posts = useSelector(postSelector);
+  const [postlist, setPostlist] = useState(2);
+  const dispatch = useDispatch();
 
   const { data, size, setSize } = useSWRInfinite(
     index => `https://jsonplaceholder.typicode.com/photos?_page=${index}`,
-    fetcher
+    fetcher,
+    {
+      revalidateOnReconnect: true,
+      initialSize: 2
+    }
   );
 
   useEffect(() => {
-    console.log('size: ' + size);
-  }, [size]);
+    dispatch(userGetMorePosts(data?.flat(1)));
+  }, [data, dispatch]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  const loadMore = () => {
-    if (!data) {
+  function loadMore() {
+    setPostlist(postlist + 10);
+    if (data?.flat(1) === posts) {
       setSize(size + 1);
     }
-  };
+  }
 
   return (
     <>
@@ -52,8 +55,8 @@ const Timeline = () => {
           <NewPost />
         </TimelineLeft>
         <TimelinePosts>
-          {data &&
-            data[0]?.map(post => {
+          {posts &&
+            posts?.slice(10, postlist).map(post => {
               return (
                 post && (
                   <Post
@@ -66,8 +69,10 @@ const Timeline = () => {
                 )
               );
             })}
-          {posts?.length ? <div>Não há mais posts</div> : <Spinner />}
-          <InfineScroll loadmore={loadMore} />
+          <div className="warnings">
+            {posts?.length !== data?.flat(1).length ? <div>Não há mais posts</div> : <Spinner />}
+          </div>
+          {posts && <InfineScroll loadmore={loadMore} />}
         </TimelinePosts>
         <TimelineRight></TimelineRight>
       </TimelineContainer>
