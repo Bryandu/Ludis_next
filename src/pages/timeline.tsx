@@ -37,6 +37,10 @@ const Timeline = () => {
     }
   }, [postCount, data]);
 
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   async function loadMore() {
     if (!post) {
       return null;
