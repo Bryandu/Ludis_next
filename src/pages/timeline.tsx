@@ -42,9 +42,7 @@ const Timeline = () => {
 
   function loadMore() {
     setPostlist(postlist + 10);
-    if (data?.flat(1) === posts) {
-      setSize(size + 1);
-    }
+    setSize(size + 1);
   }
 
   return (
