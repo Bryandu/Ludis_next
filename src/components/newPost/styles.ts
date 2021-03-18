@@ -54,3 +54,22 @@ export const PostTypes = styled.footer`
     }
   }
 `;
+
+export const SetPost = styled.section`
+  display: block;
+  flex-direction: column;
+  width: 600px;
+  min-height: 350px;
+  justify-content: space-between;
+  background-color: ${Colors.blackBody};
+`;
+
+export const SetPostHeader = styled.header`
+  display: flex;
+  border-bottom: 1px solid #000;
+  align-items: center;
+  padding: 0.5rem;
+  h1 {
+    font-weight: normal;
+  }
+`;

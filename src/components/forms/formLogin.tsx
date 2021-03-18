@@ -1,4 +1,4 @@
-import { Form, Formik, FormikProps } from 'formik';
+import { Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { useRouter } from 'next/router';
 import { ForwardedRef, forwardRef, HTMLAttributes, useEffect } from 'react';
 import { BiKey } from 'react-icons/bi';
@@ -43,11 +43,13 @@ const FormLogin = forwardRef(
       password: Yup.string().min(8, 'Minímo oito caractéries.').required('Senha obrigatório.')
     });
 
-    const onSubmit = async (values: Login) => {
+    const onSubmit = async (values: Login, actions: FormikHelpers<Login>) => {
       const { email, password } = values;
+      actions.setSubmitting(true);
       dispatch(loadingAction());
       dispatch(userLogin(email, password));
-      return submit && submit();
+      submit && submit();
+      user.isOn && actions.setSubmitting(false);
     };
 
     return (
