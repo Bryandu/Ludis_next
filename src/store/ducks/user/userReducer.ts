@@ -22,7 +22,8 @@ export const userReducer = (
 ): UserState => {
   switch (action.type) {
     case HYDRATE:
-      return { ...state, ...action.payload };
+      state === action.payload ? { ...state } : (state = action.payload);
+      return { ...state };
 
     case UserActions.USER_SINGUPFAIL:
       return { ...state, isActive: false };
