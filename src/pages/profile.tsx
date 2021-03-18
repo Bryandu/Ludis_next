@@ -12,7 +12,7 @@ const Profile = () => {
       </Head>
       <Header />
       <SectionProfile id="profile">
-        <Button>s</Button>
+        <Button name="s" />
       </SectionProfile>
     </>
   );

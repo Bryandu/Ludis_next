@@ -2,8 +2,9 @@ import { createWrapper, MakeStore } from 'next-redux-wrapper';
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware, { Task } from 'redux-saga';
+import { Context } from 'vm';
 
-import { userReducer } from './ducks/user/userReducer';
+import reducer from './ducks/user/userReducer';
 import { UserState } from './ducks/user/userTypes';
 import rootSaga from './sagas';
 
@@ -12,10 +13,11 @@ export interface SagaStore extends Store {
 }
 
 const reducers = combineReducers({
-  user: userReducer
+  user: reducer
 });
 
-const makeStore: MakeStore<UserState> = () => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const makeStore: MakeStore<UserState> = (context: Context) => {
   const sagaMiddleware = createSagaMiddleware();
   const store: SagaStore = createStore(
     reducers,
@@ -26,4 +28,4 @@ const makeStore: MakeStore<UserState> = () => {
   return store;
 };
 
-export const wrapper = createWrapper<UserState>(makeStore, { debug: true });
+export const storeWrapper = createWrapper<UserState>(makeStore, { debug: true });

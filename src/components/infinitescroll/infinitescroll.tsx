@@ -9,8 +9,8 @@ const InfineScroll = ({ loadmore }: InfinitScroll) => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '2000px',
-      threshold: 0.1
+      rootMargin: '1500px',
+      threshold: 1
     };
 
     const observer = new IntersectionObserver(([entry]) => {
