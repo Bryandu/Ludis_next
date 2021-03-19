@@ -24,6 +24,7 @@ export const TimelinePosts = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
+  min-height: 91.8vh;
   .warnings {
     display: flex;
     width: 100%;
@@ -43,7 +44,7 @@ export const TimelineLeft = styled.div`
   top: 55px;
   width: 100%;
   padding: 1rem;
-  max-height: 100vh;
+  height: 91.8vh;
   @media screen and (max-width: 768px) {
     position: relative;
     top: 0;
@@ -58,7 +59,7 @@ export const TimelineRight = styled.div`
   position: sticky;
   top: 71px;
   padding: 1rem;
-  height: 91.5vh;
+  height: 91.8vh;
   @media screen and (max-width: 1024px) {
     display: none;
   }

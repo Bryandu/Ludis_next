@@ -42,14 +42,14 @@ const Timeline = () => {
   }, [data, dispatch]);
 
   function loadMore() {
-    setPostlist(postlist + 10);
+    setPostlist(postlist + 3);
     return loading ? <Spinner /> : setSize(size + 1);
   }
 
   return (
     <>
       <Head>
-        <title>Timeline</title>
+        <title>Ludis</title>
       </Head>
       <Header position="fixed" />
       <TimelineContainer>
@@ -57,26 +57,25 @@ const Timeline = () => {
           <NewPost />
         </TimelineLeft>
         <TimelinePosts>
-          {posts &&
-            posts?.slice(10, postlist).map(post => {
-              return (
-                post && (
-                  <Post
-                    key={post?.id}
-                    name={String(post?.id)}
-                    body={post?.url}
-                    title={post?.title}
-                    profile={post?.thumbnailUrl}
-                  />
-                )
-              );
-            })}
+          {posts?.slice(size <= 10 ? 10 : size, postlist).map(post => {
+            return (
+              post && (
+                <Post
+                  key={post?.id}
+                  name={String(post?.id)}
+                  body={post?.url}
+                  title={post?.title}
+                  profile={post?.thumbnailUrl}
+                />
+              )
+            );
+          })}
           {loading && (
             <div className="warnings">
               <Spinner />
             </div>
           )}
-          {posts && !loading && <InfineScroll loadmore={loadMore} />}
+          {!loading && <InfineScroll loadmore={loadMore} />}
         </TimelinePosts>
         <TimelineRight></TimelineRight>
       </TimelineContainer>

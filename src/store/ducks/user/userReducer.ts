@@ -20,7 +20,10 @@ const User: UserState = {
 const reducer = (state = User, action: ActionUser | Action<GenericActions>): UserState => {
   switch (action.type) {
     case HYDRATE:
-      return { ...action.payload };
+      if (state === action.payload) {
+        return { ...state };
+      }
+      return { ...state, ...action.payload };
 
     case UserActions.USER_SINGUPFAIL:
       return { ...state, isActive: false };

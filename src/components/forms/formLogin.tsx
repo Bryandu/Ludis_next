@@ -32,7 +32,6 @@ const FormLogin = forwardRef(
       if (user?.isOn) {
         route.push('/timeline');
       }
-      console.log(user);
     }, [user, route]);
 
     const initialValues = {
