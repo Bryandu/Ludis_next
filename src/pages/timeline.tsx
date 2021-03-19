@@ -57,7 +57,7 @@ const Timeline = () => {
           <NewPost />
         </TimelineLeft>
         <TimelinePosts>
-          {posts?.slice(size <= 10 ? 10 : size, postlist).map(post => {
+          {posts?.slice(10, postlist).map(post => {
             return (
               post && (
                 <Post
