@@ -21,7 +21,8 @@ import {
 function* userSingupSaga(action: UserActionSingUp) {
   try {
     const { status }: AxiosResponse<Posts[]> = yield call(POST, 'user', action.payload);
-
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return yield status === 201 ? put(userSingupSeccsses()) : put(userSingupFail());
   } catch (error) {
     yield put(userSingupFail());
@@ -36,8 +37,12 @@ function* userLoginSaga(action: UserActionLoginSuccsses) {
       `user/?email=${action.payload.email}&password=${action.payload.password}`
     );
     response.data[0] == undefined
-      ? yield put(userLoginFail())
-      : yield put(userLoginSuccsses(response.data[0]));
+      ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        yield put(userLoginFail())
+      : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        yield put(userLoginSuccsses(response.data[0]));
     localStorage.setItem('token', String(Math.random()));
     yield put(loadingEndAction());
   } catch (error) {
