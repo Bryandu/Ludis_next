@@ -9,6 +9,12 @@
     "lint": "eslint --fix .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "format",
+      "pre-push": "yarn test"
+    }
+  },
   "lint-staged": {
     "./**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
