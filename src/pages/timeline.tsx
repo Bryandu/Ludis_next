@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
@@ -47,6 +48,9 @@ const Timeline = () => {
 
   return (
     <>
+      <Head>
+        <title>Timeline</title>
+      </Head>
       <Header position="fixed" />
       <TimelineContainer>
         <TimelineLeft>
