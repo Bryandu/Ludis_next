@@ -11,8 +11,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn test"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
@@ -23,6 +22,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "js-yaml": "3.13.1",
     "next": "^10.0.9",
     "nprogress": "^0.2.0",
     "react": "17.0.1",
