@@ -21,7 +21,8 @@ import {
 function* userSingupSaga(action: UserActionSingUp) {
   try {
     const { status }: AxiosResponse<Posts[]> = yield call(POST, 'user', action.payload);
-    status === 201 ? yield put(userSingupSeccsses()) : yield put(userSingupFail());
+
+    return yield status === 201 ? put(userSingupSeccsses()) : put(userSingupFail());
   } catch (error) {
     yield put(userSingupFail());
     console.log(error);
