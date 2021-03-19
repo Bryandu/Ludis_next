@@ -21,11 +21,7 @@ import {
 function* userSingupSaga(action: UserActionSingUp) {
   try {
     const { status }: AxiosResponse<Posts[]> = yield call(POST, 'user', action.payload);
-    status === 201
-      ? // @ts-ignore: Unreachable code error
-        yield put(userSingupSeccsses())
-      : // @ts-ignore: Unreachable code error
-        yield put(userSingupFail());
+    status === 201 ? yield put(userSingupSeccsses()) : yield put(userSingupFail());
   } catch (error) {
     yield put(userSingupFail());
     console.log(error);
@@ -39,10 +35,8 @@ function* userLoginSaga(action: UserActionLoginSuccsses) {
       `user/?email=${action.payload.email}&password=${action.payload.password}`
     );
     response.data[0] == undefined
-      ? // @ts-ignore: Unreachable code error
-        yield put(userLoginFail())
-      : // @ts-ignore: Unreachable code error
-        yield put(userLoginSuccsses(response.data[0]));
+      ? yield put(userLoginFail())
+      : yield put(userLoginSuccsses(response.data[0]));
     localStorage.setItem('token', String(Math.random()));
     yield put(loadingEndAction());
   } catch (error) {
