@@ -5,13 +5,11 @@ export const TimelineContainer = styled.section`
   grid-template-columns: 1fr 1.5fr 1fr;
   grid-template-rows: auto;
   position: relative;
-  width: 100%;
   justify-content: space-evenly;
   justify-items: center;
-  min-height: 93.41vh;
+  height: 100%;
   top: 55px;
   background-color: transparent;
-  padding: 1rem 0;
   @media screen and (max-width: 1024px) {
     grid-template-columns: 1fr 1.5fr;
   }
@@ -42,10 +40,10 @@ export const TimelinePosts = styled.div`
 export const TimelineLeft = styled.div`
   display: block;
   position: sticky;
-  top: 71px;
+  top: 55px;
   width: 100%;
   padding: 1rem;
-  height: 89.5vh;
+  max-height: 100vh;
   @media screen and (max-width: 768px) {
     position: relative;
     top: 0;
@@ -60,7 +58,7 @@ export const TimelineRight = styled.div`
   position: sticky;
   top: 71px;
   padding: 1rem;
-  height: 93.41vh;
+  height: 91.5vh;
   @media screen and (max-width: 1024px) {
     display: none;
   }

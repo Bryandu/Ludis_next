@@ -22,12 +22,9 @@ import {
 } from '../styles/timelineStyles';
 
 const Timeline = () => {
-  const fetcher = (url: string) => GET<Posts[]>(url).then(res => res?.data);
-  const posts = useSelector(postSelector);
   const [postlist, setPostlist] = useState(2);
-  const dispatch = useDispatch();
-
-  const { data, size, setSize } = useSWRInfinite(
+  const fetcher = (url: string) => GET<Posts[]>(url).then(res => res?.data);
+  const { data, error, size, setSize } = useSWRInfinite(
     index => `https://jsonplaceholder.typicode.com/photos?_page=${index}`,
     fetcher,
     {
@@ -35,6 +32,9 @@ const Timeline = () => {
       initialSize: 2
     }
   );
+  const loading = (!data && !error) || (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const posts = useSelector(postSelector);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(userGetMorePosts(data?.flat(1)));
@@ -42,7 +42,7 @@ const Timeline = () => {
 
   function loadMore() {
     setPostlist(postlist + 10);
-    setSize(size + 1);
+    return loading ? <Spinner /> : setSize(size + 1);
   }
 
   return (
@@ -67,10 +67,12 @@ const Timeline = () => {
                 )
               );
             })}
-          <div className="warnings">
-            {posts?.length !== data?.flat(1).length ? <div>Não há mais posts</div> : <Spinner />}
-          </div>
-          {posts && <InfineScroll loadmore={loadMore} />}
+          {loading && (
+            <div className="warnings">
+              <Spinner />
+            </div>
+          )}
+          {posts && !loading && <InfineScroll loadmore={loadMore} />}
         </TimelinePosts>
         <TimelineRight></TimelineRight>
       </TimelineContainer>

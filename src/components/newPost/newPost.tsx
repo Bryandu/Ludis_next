@@ -9,14 +9,14 @@ const NewPost = () => {
 
   return (
     <>
+      <Modal showModal={modal} hiddenModal={() => setModal(!modal)}>
+        <SetPost>
+          <SetPostHeader>
+            <h1>Nova publicação</h1>
+          </SetPostHeader>
+        </SetPost>
+      </Modal>
       <NewpostContainer>
-        <Modal showModal={modal} hiddenModal={() => setModal(!modal)}>
-          <SetPost>
-            <SetPostHeader>
-              <h1>Nova publicação</h1>
-            </SetPostHeader>
-          </SetPost>
-        </Modal>
         <p>Nova publicação</p>
         <PostTypes>
           <div>
