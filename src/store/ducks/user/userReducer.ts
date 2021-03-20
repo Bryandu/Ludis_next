@@ -5,10 +5,10 @@ import { GenericActions } from '../genericActions';
 import { ActionUser, UserActions, UserState } from './userTypes';
 
 const User: UserState = {
-  isOn: null,
-  isActive: null,
+  isOn: undefined,
+  isActive: undefined,
   loading: false,
-  token: null,
+  token: undefined,
   data: {
     id: null,
     email: null,
