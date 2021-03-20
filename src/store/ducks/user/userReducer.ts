@@ -5,16 +5,16 @@ import { GenericActions } from '../genericActions';
 import { ActionUser, UserActions, UserState } from './userTypes';
 
 const User: UserState = {
-  isOn: undefined,
-  isActive: undefined,
+  isOn: null,
+  isActive: null,
   loading: false,
-  token: undefined,
+  token: null,
   data: {
     id: null,
     email: null,
     password: null
   },
-  posts: undefined
+  posts: null
 };
 
 const reducer = (state = User, action: ActionUser | Action<GenericActions>): UserState => {

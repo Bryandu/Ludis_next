@@ -1,8 +1,6 @@
-import { FormikProps } from 'formik';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { createRef, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
@@ -80,7 +78,7 @@ const Home = () => {
                 <FormLogin submit={() => setToast(true)}>
                   <Button
                     width="100%"
-                    disabled={user.loading || user.isOn}
+                    disabled={user.loading || (user.isOn as undefined | boolean)}
                     name="Entrar"
                     type="submit"></Button>
                 </FormLogin>
