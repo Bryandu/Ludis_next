@@ -25,13 +25,13 @@ const Post = ({ name, body, title, profile }: Post) => {
   return (
     <PostContainer>
       <PostBody>
-        <Image objectFit="fill" layout="fill" alt="foto" src={body} />
+        <Image loading="eager" objectFit="fill" layout="fill" alt="photo" src={body} />
       </PostBody>
       <PostFooter>
         <PostFooterHeader>
           <div>
             <div>
-              <Image alt="you" layout="fill" src={profile} />
+              <Image loading="eager" alt="you" layout="fill" src={profile} />
             </div>
             <p>{name}</p>
           </div>
@@ -55,7 +55,7 @@ const Post = ({ name, body, title, profile }: Post) => {
       <PostCommentsContainer>
         <PostComment>
           <div>
-            <Image alt="friend" layout="fill" src={profile} />
+            <Image loading="eager" alt="friend" layout="fill" src={profile} />
           </div>
           <div className="postComments">
             <div>

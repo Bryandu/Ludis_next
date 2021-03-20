@@ -12,11 +12,11 @@ export type Posts = {
   thumbnailUrl: string;
 };
 export interface UserState {
-  isOn: boolean | null;
-  isActive: boolean | null;
-  loading: boolean | null;
-  token: string | null;
-  data: UserData | null;
+  isOn: boolean | undefined;
+  isActive: boolean | undefined;
+  loading: boolean | undefined;
+  token: string | undefined;
+  data: UserData | undefined;
   posts: Posts[] | undefined;
 }
 

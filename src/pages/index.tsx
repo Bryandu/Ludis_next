@@ -28,19 +28,7 @@ import {
 
 const Home = () => {
   const [toast, setToast] = useState<boolean>();
-  const [disabled, setDisabled] = useState<boolean>();
-  const route = useRouter();
   const user = useSelector(userSelector);
-  const refFormik = createRef<
-    FormikProps<{
-      email: string;
-      password: string;
-    }>
-  >();
-
-  useEffect(() => {
-    route.events.on('routeChangeStart', () => setDisabled(true));
-  }, [route.events]);
 
   return (
     <div>
@@ -89,10 +77,10 @@ const Home = () => {
                   </div>
                 </HomeIcons>
                 <div className="line">ou use seu email e senha</div>
-                <FormLogin ref={refFormik} submit={() => setToast(true)}>
+                <FormLogin submit={() => setToast(true)}>
                   <Button
                     width="100%"
-                    disabled={refFormik.current?.isSubmitting || disabled}
+                    disabled={user.loading || user.isOn}
                     name="Entrar"
                     type="submit"></Button>
                 </FormLogin>
@@ -105,9 +93,7 @@ const Home = () => {
           </HomeContainer>
         </ContainerHome>
       </Main>
-      <SpinnerPosition>
-        {refFormik.current?.isSubmitting && <Spinner size="26px" />}
-      </SpinnerPosition>
+      <SpinnerPosition>{user.loading && <Spinner size="26px" />}</SpinnerPosition>
     </div>
   );
 };
