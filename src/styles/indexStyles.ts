@@ -84,7 +84,7 @@ export const HomeImgTwo = styled.div`
   & > div {
     width: 310px;
     position: relative;
-    top: calc(45% - 212px);
+    top: calc(48% - 212px);
     & > div {
       margin: 1rem 0;
       h2 {

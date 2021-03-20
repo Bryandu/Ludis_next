@@ -29,7 +29,7 @@ const FormLogin = forwardRef(
     const route = useRouter();
 
     useEffect(() => {
-      if (user.isOn) {
+      if (user?.isOn) {
         route.push('/timeline');
       }
     }, [user, route]);
@@ -49,7 +49,7 @@ const FormLogin = forwardRef(
       dispatch(loadingAction());
       dispatch(userLogin(email, password));
       submit && submit();
-      user.isOn && actions.setSubmitting(false);
+      user?.isOn && actions.setSubmitting(false);
     };
 
     return (

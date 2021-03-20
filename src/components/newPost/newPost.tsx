@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BiImage, BiPlus, BiVideo } from 'react-icons/bi';
+import { BiImage, BiPlus, BiVideo, BiX } from 'react-icons/bi';
 
 import Modal from '../modal/modal';
 import { NewpostContainer, PostTypes, SetPost, SetPostHeader } from './styles';
@@ -9,14 +9,15 @@ const NewPost = () => {
 
   return (
     <>
+      <Modal showModal={modal} hiddenModal={() => setModal(!modal)}>
+        <SetPost>
+          <SetPostHeader>
+            <h1>Nova publicação</h1>
+            <BiX onClick={() => setModal(!modal)} size="24px" />
+          </SetPostHeader>
+        </SetPost>
+      </Modal>
       <NewpostContainer>
-        <Modal showModal={modal} hiddenModal={() => setModal(!modal)}>
-          <SetPost>
-            <SetPostHeader>
-              <h1>Nova publicação</h1>
-            </SetPostHeader>
-          </SetPost>
-        </Modal>
         <p>Nova publicação</p>
         <PostTypes>
           <div>

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { userSingup } from '../../store/ducks/user/userActions';
-import { Button } from '../button/button';
+import Button from '../button/button';
 import { Input } from '../input/input';
 import { ContainerField, DivButton, Label } from './styleForms';
 
@@ -81,9 +81,7 @@ export const FormSingup = ({ click, submit }: FormSingup) => {
               </Label>
             </ContainerField>
             <DivButton center>
-              <Button onClick={() => click && click()} type="submit">
-                Cadastrar
-              </Button>
+              <Button name="Cadastrar" onClick={() => click && click()} type="submit" />
             </DivButton>
           </Form>
         )}

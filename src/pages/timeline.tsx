@@ -1,5 +1,8 @@
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import { useDispatch, useSelector } from 'react-redux';
+import { END } from 'redux-saga';
+import { useSWRInfinite } from 'swr';
 
 import Header from '../components/header/header';
 import InfineScroll from '../components/infinitescroll/infinitescroll';
@@ -8,6 +11,10 @@ import Post from '../components/posts/post';
 import { Spinner } from '../components/spinner/spiner';
 import withAuth from '../HOC/auth/withAuth';
 import { GET } from '../service/axios';
+import { userGetInitialPosts, userGetMorePosts } from '../store/ducks/user/userActions';
+import { postSelector } from '../store/ducks/user/userSelectors';
+import { Posts } from '../store/ducks/user/userTypes';
+import { SagaStore, storeWrapper } from '../store/store';
 import {
   TimelineContainer,
   TimelineLeft,
@@ -15,62 +22,60 @@ import {
   TimelineRight
 } from '../styles/timelineStyles';
 
-type Posts = {
-  id: number;
-  albumId: number;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
-};
-
 const Timeline = () => {
+  const [postlist, setPostlist] = useState(2);
   const fetcher = (url: string) => GET<Posts[]>(url).then(res => res?.data);
-  const [post, setPosts] = useState<Posts[]>();
-  const [fullposts, setFullposts] = useState(0);
-  const [postCount, setPostcount] = useState(5);
-  const { data } = useSWR('https://jsonplaceholder.typicode.com/photos', fetcher);
+  const { data, error, size, setSize } = useSWRInfinite(
+    index => `https://jsonplaceholder.typicode.com/photos?_page=${index}`,
+    fetcher,
+    {
+      revalidateOnReconnect: true,
+      initialSize: 2
+    }
+  );
+  const loading = (!data && !error) || (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const posts = useSelector(postSelector);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (data) {
-      setPosts(data?.slice(0, postCount));
-      setFullposts(data?.length);
-    }
-  }, [postCount, data]);
+    dispatch(userGetMorePosts(data?.flat(1)));
+  }, [data, dispatch]);
 
-  async function loadMore() {
-    if (!post) {
-      return null;
-    }
-    if (post.length < fullposts - 1) {
-      data?.slice(postCount, postCount + 5);
-      setPostcount(postCount + 5);
-      if (data) {
-        setPosts(posts => posts?.concat(data));
-      }
-    }
+  function loadMore() {
+    setPostlist(postlist + 3);
+    return loading ? <Spinner /> : setSize(size + 1);
   }
 
   return (
     <>
+      <Head>
+        <title>Ludis</title>
+      </Head>
       <Header position="fixed" />
       <TimelineContainer>
         <TimelineLeft>
           <NewPost />
         </TimelineLeft>
         <TimelinePosts>
-          {post?.map(post => {
+          {posts?.slice(10, postlist).map(post => {
             return (
-              <Post
-                key={post.id}
-                name={String(post.id)}
-                body={post.url}
-                title={post.title}
-                profile={post.thumbnailUrl}
-              />
+              post && (
+                <Post
+                  key={post?.id}
+                  name={String(post?.id)}
+                  body={post?.url}
+                  title={post?.title}
+                  profile={post?.thumbnailUrl}
+                />
+              )
             );
           })}
-          <InfineScroll loadmore={loadMore} />
-          {post?.length === fullposts - 1 ? <div>Não há mais posts</div> : <Spinner />}
+          {loading && (
+            <div className="warnings">
+              <Spinner />
+            </div>
+          )}
+          {!loading && <InfineScroll loadmore={loadMore} />}
         </TimelinePosts>
         <TimelineRight></TimelineRight>
       </TimelineContainer>
@@ -79,3 +84,11 @@ const Timeline = () => {
 };
 
 export default withAuth(Timeline);
+
+export const getStaticProps = storeWrapper.getStaticProps(async ({ store }) => {
+  if (!store.getState().posts) {
+    store.dispatch(userGetInitialPosts());
+    store.dispatch(END);
+  }
+  await (store as SagaStore).sagaTask?.toPromise();
+});

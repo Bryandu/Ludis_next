@@ -13,15 +13,16 @@ const User: UserState = {
     id: null,
     email: null,
     password: null
-  }
+  },
+  posts: undefined
 };
 
-export const userReducer = (
-  state = User,
-  action: ActionUser | Action<GenericActions>
-): UserState => {
+const reducer = (state = User, action: ActionUser | Action<GenericActions>): UserState => {
   switch (action.type) {
     case HYDRATE:
+      if (state === action.payload) {
+        return { ...state };
+      }
       return { ...state, ...action.payload };
 
     case UserActions.USER_SINGUPFAIL:
@@ -36,6 +37,12 @@ export const userReducer = (
     case UserActions.USER_LOGINSUCCSSES:
       return { ...state, isOn: true, data: action.payload };
 
+    case UserActions.USER_GETPOSTSSUCSSES:
+      return { ...state, posts: action.payload };
+
+    case UserActions.USER_GETMOREPOSTS:
+      return { ...state, posts: action.payload };
+
     case GenericActions.LOADING:
       return { ...state, loading: true };
 
@@ -46,3 +53,5 @@ export const userReducer = (
       return state;
   }
 };
+
+export default reducer;

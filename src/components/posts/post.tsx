@@ -25,7 +25,7 @@ const Post = ({ name, body, title, profile }: Post) => {
   return (
     <PostContainer>
       <PostBody>
-        <Image layout="fill" alt="foto" src={body} />
+        <Image objectFit="fill" layout="fill" alt="foto" src={body} />
       </PostBody>
       <PostFooter>
         <PostFooterHeader>

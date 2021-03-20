@@ -68,8 +68,12 @@ export const SetPostHeader = styled.header`
   display: flex;
   border-bottom: 1px solid #000;
   align-items: center;
+  justify-content: space-between;
   padding: 0.5rem;
   h1 {
     font-weight: normal;
+  }
+  svg {
+    cursor: pointer;
   }
 `;
