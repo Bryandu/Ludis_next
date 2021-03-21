@@ -17,7 +17,7 @@ export interface UserState {
   loading: boolean | null;
   token: string | null;
   data: UserData | null;
-  posts: Posts[] | undefined;
+  posts: Posts[] | null;
 }
 
 export enum UserActions {

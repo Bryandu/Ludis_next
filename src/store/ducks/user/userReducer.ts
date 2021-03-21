@@ -14,7 +14,7 @@ const User: UserState = {
     email: null,
     password: null
   },
-  posts: undefined
+  posts: null
 };
 
 const reducer = (state = User, action: ActionUser | Action<GenericActions>): UserState => {

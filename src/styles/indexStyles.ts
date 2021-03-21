@@ -54,6 +54,9 @@ export const HomeImg = styled.div`
     font-size: 4em;
     margin-left: 3rem;
   }
+  img {
+    filter: brightness(0.5);
+  }
 `;
 
 export const HomeImgTwo = styled.div`

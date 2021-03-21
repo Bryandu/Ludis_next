@@ -41,9 +41,16 @@ const Timeline = () => {
     dispatch(userGetMorePosts(data?.flat(1)));
   }, [data, dispatch]);
 
+  useEffect(() => {
+    console.log(size);
+  }, [size]);
+
   function loadMore() {
     setPostlist(postlist + 3);
-    return loading ? <Spinner /> : setSize(size + 1);
+    if (!loading) {
+      setSize(size + 1);
+    }
+    return <Spinner />;
   }
 
   return (
