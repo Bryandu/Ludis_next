@@ -84,7 +84,7 @@ const Home = () => {
                 </FormLogin>
               </div>
               <SingUpLogin>
-                Não tem uma aconta?
+                Não tem uma conta?
                 <AnchorText>&nbsp;Cadastre-se aqui.</AnchorText>
               </SingUpLogin>
             </HomeImgTwo>
