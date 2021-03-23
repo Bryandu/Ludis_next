@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { END } from 'redux-saga';
+// import { END } from 'redux-saga';
 import { useSWRInfinite } from 'swr';
 
 import Header from '../components/header/header';
@@ -10,10 +11,10 @@ import Post from '../components/posts/post';
 import { Spinner } from '../components/spinner/spiner';
 import withAuth from '../HOC/auth/withAuth';
 import { GET } from '../service/axios';
-import { userGetInitialPosts, userGetMorePosts } from '../store/ducks/user/userActions';
+import { /*userGetInitialPosts,*/ userGetMorePosts } from '../store/ducks/user/userActions';
 import { postSelector } from '../store/ducks/user/userSelectors';
 import { Posts } from '../store/ducks/user/userTypes';
-import { SagaStore, storeWrapper } from '../store/store';
+import { /*SagaStore,*/ storeWrapper } from '../store/store';
 import {
   TimelineContainer,
   TimelineLeft,
@@ -24,53 +25,66 @@ import {
 const Timeline = () => {
   const fetcher = (url: string) => GET<Posts[]>(url).then(res => res?.data);
   const posts = useSelector(postSelector);
-  const [postlist, setPostlist] = useState(2);
-  const dispatch = useDispatch();
-
-  const { data, size, setSize } = useSWRInfinite(
-    index => `https://jsonplaceholder.typicode.com/photos?_page=${index}`,
+  const { data, error, size, setSize } = useSWRInfinite(
+    index => `http://localhost:3002/posts?_page=${index === 0 ? 1 : index}`,
     fetcher,
     {
-      revalidateOnReconnect: true,
-      initialSize: 2
+      refreshInterval: 30000
     }
   );
+  const dispatch = useDispatch();
+  const isLoading =
+    (!data && !error) || (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const isEmpty = data && data[size - 1]?.length === 0;
 
   useEffect(() => {
-    dispatch(userGetMorePosts(data?.flat(1)));
-  }, [data, dispatch]);
+    if (data) {
+      dispatch(userGetMorePosts(data?.slice(1, Number.MAX_SAFE_INTEGER)));
+    }
+  }, [dispatch, data]);
 
-  function loadMore() {
-    setPostlist(postlist + 10);
-    setSize(size + 1);
-  }
+  const loadMore = useCallback(() => {
+    if (!isLoading && !isEmpty) {
+      setSize(size => size + 1);
+    }
+    return <Spinner />;
+  }, [isEmpty, isLoading, setSize]);
 
   return (
     <>
+      <Head>
+        <title>Ludis</title>
+      </Head>
       <Header position="fixed" />
       <TimelineContainer>
         <TimelineLeft>
           <NewPost />
         </TimelineLeft>
         <TimelinePosts>
-          {posts &&
-            posts?.slice(10, postlist).map(post => {
-              return (
-                post && (
-                  <Post
-                    key={post?.id}
-                    name={String(post?.id)}
-                    body={post?.url}
-                    title={post?.title}
-                    profile={post?.thumbnailUrl}
-                  />
-                )
-              );
-            })}
-          <div className="warnings">
-            {posts?.length !== data?.flat(1).length ? <div>Não há mais posts</div> : <Spinner />}
-          </div>
-          {posts && <InfineScroll loadmore={loadMore} />}
+          {posts?.flat(1).map(post => {
+            return (
+              post && (
+                <Post
+                  key={post?.id}
+                  name={String(post?.name)}
+                  body={post?.url}
+                  title={post?.title}
+                  profile={post?.thumbnailUrl}
+                />
+              )
+            );
+          })}
+          {isLoading && (
+            <div className="warnings">
+              <Spinner />
+            </div>
+          )}
+          {!isLoading && <InfineScroll loadmore={loadMore} />}
+          {isEmpty && (
+            <div className="warnings">
+              <p>Acabaram os posts.</p>
+            </div>
+          )}
         </TimelinePosts>
         <TimelineRight></TimelineRight>
       </TimelineContainer>
@@ -80,10 +94,10 @@ const Timeline = () => {
 
 export default withAuth(Timeline);
 
-export const getStaticProps = storeWrapper.getStaticProps(async ({ store }) => {
-  if (!store.getState().posts) {
-    store.dispatch(userGetInitialPosts());
-    store.dispatch(END);
-  }
-  await (store as SagaStore).sagaTask?.toPromise();
+export const getStaticProps = storeWrapper.getStaticProps(async () => {
+  // if (!store.getState().posts) {
+  //   store.dispatch(userGetInitialPosts());
+  //   store.dispatch(END);
+  // }
+  // await (store as SagaStore).sagaTask?.toPromise();
 });

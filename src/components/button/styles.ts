@@ -15,7 +15,6 @@ export interface BtnOutline extends HTMLAttributes<HTMLButtonElement> {
 export const Btn = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
 `;
 
 export const ButtonContainer = styled.button<BtnOutline>`

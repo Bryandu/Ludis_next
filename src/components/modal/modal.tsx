@@ -19,6 +19,7 @@ const Modal = ({ showModal, hiddenModal, children }: Modal) => {
     setModalroot(document.getElementById('modal-root'));
     setWindow(true);
   }, [showModal]);
+
   function closeModal(e: EventTarget) {
     (e as HTMLDivElement).id === 'modal' ? hiddenModal() : false;
   }

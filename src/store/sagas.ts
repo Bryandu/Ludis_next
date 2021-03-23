@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { GET, POST } from '../service/axios';
@@ -9,12 +10,20 @@ import {
   userSingupFail,
   userSingupSeccsses
 } from './ducks/user/userActions';
-import { UserActionLoginSuccsses, UserActions, UserActionSingUp } from './ducks/user/userTypes';
+import {
+  Posts,
+  UserActionLoginSuccsses,
+  UserActions,
+  UserActionSingUp,
+  UserData
+} from './ducks/user/userTypes';
 
 function* userSingupSaga(action: UserActionSingUp) {
   try {
-    const { status } = yield call(POST, 'user', action.payload);
-    status === 201 ? yield put(userSingupSeccsses()) : yield put(userSingupFail());
+    const { status }: AxiosResponse<Posts[]> = yield call(POST, 'user', action.payload);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return yield status === 201 ? put(userSingupSeccsses()) : put(userSingupFail());
   } catch (error) {
     yield put(userSingupFail());
     console.log(error);
@@ -23,13 +32,17 @@ function* userSingupSaga(action: UserActionSingUp) {
 
 function* userLoginSaga(action: UserActionLoginSuccsses) {
   try {
-    const response = yield call(
+    const response: AxiosResponse<UserData[]> = yield call(
       GET,
       `user/?email=${action.payload.email}&password=${action.payload.password}`
     );
     response.data[0] == undefined
-      ? yield put(userLoginFail())
-      : yield put(userLoginSuccsses(response.data[0]));
+      ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        yield put(userLoginFail())
+      : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        yield put(userLoginSuccsses(response.data[0]));
     localStorage.setItem('token', String(Math.random()));
     yield put(loadingEndAction());
   } catch (error) {
@@ -41,7 +54,10 @@ function* userLoginSaga(action: UserActionLoginSuccsses) {
 
 function* userInitialPostsSaga() {
   try {
-    const response = yield call(GET, 'https://jsonplaceholder.typicode.com/photos?_page=1');
+    const response: AxiosResponse<Posts[]> = yield call(
+      GET,
+      'https://jsonplaceholder.typicode.com/photos?_page=1'
+    );
     yield put(userGetPostsSucsses(response.data));
   } catch (error) {
     console.log(error);

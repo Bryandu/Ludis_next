@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BsGear } from 'react-icons/bs';
 import { FiBell, FiMap, FiShoppingBag } from 'react-icons/fi';
 import { IoIosArrowDropdown } from 'react-icons/io';
@@ -9,28 +9,33 @@ import MenuDrop from '../menudrop/medudrop';
 import { List } from './styles';
 
 const Menu = () => {
+  const [elementtarget, setElementtaerget] = useState<HTMLElement>();
   const [drop, setDrop] = useState<boolean>();
   const modalRef = useRef(null);
+
+  useEffect(() => {
+    const main = document.getElementById('__next');
+    main && setElementtaerget(main);
+  }, []);
 
   const showDrop = () => {
     if (drop) {
       setDrop(false);
     } else {
-      const main = document.querySelector('div');
       setDrop(true);
-      main?.addEventListener('click', removeDrop);
+      elementtarget?.addEventListener('click', removeDrop);
     }
   };
 
   const removeDrop = (e: Event) => {
     const event = e.target as HTMLDivElement;
+    e.preventDefault();
     e.stopPropagation();
     if (event.id === 'dropmenu') {
       setDrop(true);
     } else {
-      const main = document.querySelector('div');
       setDrop(false);
-      main?.removeEventListener('click', removeDrop);
+      elementtarget?.removeEventListener('click', removeDrop);
     }
   };
 

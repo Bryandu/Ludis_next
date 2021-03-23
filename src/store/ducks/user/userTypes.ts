@@ -6,6 +6,7 @@ export type UserData = {
 
 export type Posts = {
   id: number;
+  name: string;
   albumId: number;
   title: string;
   url: string;
@@ -17,7 +18,7 @@ export interface UserState {
   loading: boolean | null;
   token: string | null;
   data: UserData | null;
-  posts: Posts[] | undefined;
+  posts: Posts[] | null;
 }
 
 export enum UserActions {

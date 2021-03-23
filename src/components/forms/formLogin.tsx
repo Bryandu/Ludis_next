@@ -10,7 +10,7 @@ import { loadingAction } from '../../store/ducks/genericActions';
 import { userLogin } from '../../store/ducks/user/userActions';
 import { userSelector } from '../../store/ducks/user/userSelectors';
 import { AnchorText } from '../anchor/styles';
-import { Input } from '../input/input';
+import { Input } from '../inputs/input';
 import { DivButton, Rememberme } from './styleForms';
 
 type Login = {
@@ -32,7 +32,6 @@ const FormLogin = forwardRef(
       if (user?.isOn) {
         route.push('/timeline');
       }
-      console.log(user);
     }, [user, route]);
 
     const initialValues = {

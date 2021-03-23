@@ -1,8 +1,6 @@
-import { FormikProps } from 'formik';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { createRef, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
@@ -28,19 +26,7 @@ import {
 
 const Home = () => {
   const [toast, setToast] = useState<boolean>();
-  const [disabled, setDisabled] = useState<boolean>();
-  const route = useRouter();
   const user = useSelector(userSelector);
-  const refFormik = createRef<
-    FormikProps<{
-      email: string;
-      password: string;
-    }>
-  >();
-
-  useEffect(() => {
-    route.events.on('routeChangeStart', () => setDisabled(true));
-  }, [route.events]);
 
   return (
     <div>
@@ -89,25 +75,23 @@ const Home = () => {
                   </div>
                 </HomeIcons>
                 <div className="line">ou use seu email e senha</div>
-                <FormLogin ref={refFormik} submit={() => setToast(true)}>
+                <FormLogin submit={() => setToast(true)}>
                   <Button
                     width="100%"
-                    disabled={refFormik.current?.isSubmitting || disabled}
+                    disabled={user.loading || (user.isOn as undefined | boolean)}
                     name="Entrar"
                     type="submit"></Button>
                 </FormLogin>
               </div>
               <SingUpLogin>
-                Não tem uma aconta?
+                Não tem uma conta?
                 <AnchorText>&nbsp;Cadastre-se aqui.</AnchorText>
               </SingUpLogin>
             </HomeImgTwo>
           </HomeContainer>
         </ContainerHome>
       </Main>
-      <SpinnerPosition>
-        {refFormik.current?.isSubmitting && <Spinner size="26px" />}
-      </SpinnerPosition>
+      <SpinnerPosition>{user.loading && <Spinner size="26px" />}</SpinnerPosition>
     </div>
   );
 };

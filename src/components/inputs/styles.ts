@@ -34,3 +34,16 @@ export const DivInput = styled.div.attrs((props: DivInputI) => ({
   width: ${props => props.width};
   height: ${props => props.height};
 `;
+
+export const DivInputIcon = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  label {
+    display: contents;
+  }
+  input {
+    display: none;
+  }
+`;
