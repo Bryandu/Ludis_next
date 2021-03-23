@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export const baseURL = axios.create({
-  baseURL: 'https://my-json-server.typicode.com/Bryandu/fake_dbludis'
+  baseURL: 'http://localhost:3002/'
 });
 
 export async function GET<T>(
@@ -33,7 +33,7 @@ export async function PUT<T>(
   config?: AxiosRequestConfig
 ): Promise<AxiosResponse<T> | undefined> {
   try {
-    return await baseURL.post(path, data, config);
+    return await baseURL.put(path, data, config);
   } catch (error) {
     console.log(error);
   }

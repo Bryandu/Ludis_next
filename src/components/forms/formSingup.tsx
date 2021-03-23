@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 
 import { userSingup } from '../../store/ducks/user/userActions';
 import Button from '../button/button';
-import { Input } from '../input/input';
+import { Input } from '../inputs/input';
 import { ContainerField, DivButton, Label } from './styleForms';
 
 type SingUp = {

@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import { BsSearch } from 'react-icons/bs';
 
-import { Input } from '../input/input';
+import { Input } from '../inputs/input';
 
 const FormSearch = () => {
   const initialValues = {

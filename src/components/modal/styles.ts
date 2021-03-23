@@ -1,7 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { Colors } from '../../styles/global';
-
 interface ModalStyle {
   showModal?: boolean;
 }
@@ -38,10 +36,10 @@ export const ModalContainer = styled.div<ModalStyle>`
 
 export const ModalBody = styled.article`
   display: flex;
-  width: max-content;
   position: absolute;
-  background-color: ${Colors.blackBackground};
-  box-shadow: 0px 0px 20px 2px rgba (0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
   border-radius: 5px;
   overflow-y: auto;
   & :hover {

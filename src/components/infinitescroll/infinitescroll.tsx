@@ -9,7 +9,7 @@ const InfineScroll = ({ loadmore }: InfinitScroll) => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '1500px',
+      rootMargin: '2000px',
       threshold: 1
     };
 

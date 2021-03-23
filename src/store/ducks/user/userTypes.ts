@@ -6,6 +6,7 @@ export type UserData = {
 
 export type Posts = {
   id: number;
+  name: string;
   albumId: number;
   title: string;
   url: string;

@@ -50,7 +50,8 @@ export const PostFooterHeader = styled.div`
 export const PostBody = styled.div`
   display: block;
   position: relative;
-  min-height: 310px;
+  min-height: 300px;
+  max-height: 600px;
   div {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -127,6 +128,34 @@ export const PostComment = styled.div`
         display: flex;
         align-items: center;
       }
+    }
+  }
+`;
+
+export const ShowPost = styled.div`
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+`;
+
+export const PostModalBody = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  svg {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    & :hover {
+      opacity: 0.5;
     }
   }
 `;

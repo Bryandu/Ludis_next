@@ -20,9 +20,6 @@ const User: UserState = {
 const reducer = (state = User, action: ActionUser | Action<GenericActions>): UserState => {
   switch (action.type) {
     case HYDRATE:
-      if (state === action.payload) {
-        return { ...state };
-      }
       return { ...state, ...action.payload };
 
     case UserActions.USER_SINGUPFAIL:
@@ -36,9 +33,6 @@ const reducer = (state = User, action: ActionUser | Action<GenericActions>): Use
 
     case UserActions.USER_LOGINSUCCSSES:
       return { ...state, isOn: true, data: action.payload };
-
-    case UserActions.USER_GETPOSTSSUCSSES:
-      return { ...state, posts: action.payload };
 
     case UserActions.USER_GETMOREPOSTS:
       return { ...state, posts: action.payload };

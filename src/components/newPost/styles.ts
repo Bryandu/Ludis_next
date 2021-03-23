@@ -56,12 +56,16 @@ export const PostTypes = styled.footer`
 `;
 
 export const SetPost = styled.section`
-  display: block;
+  display: flex;
+  position: relative;
   flex-direction: column;
   width: 600px;
-  min-height: 350px;
   justify-content: space-between;
   background-color: ${Colors.blackBody};
+  @media screen and (max-width: 620px) {
+    width: 100%;
+    min-height: 100vh;
+  }
 `;
 
 export const SetPostHeader = styled.header`
@@ -75,5 +79,51 @@ export const SetPostHeader = styled.header`
   }
   svg {
     cursor: pointer;
+  }
+`;
+
+export const NewPostContent = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: max-content;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  textarea {
+    width: 100%;
+    height: auto;
+    resize: none;
+    outline: none;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+  }
+`;
+
+export const SetPostPreview = styled.section`
+  display: flex;
+  margin: 1rem;
+  position: relative;
+  min-height: 450px;
+  overflow-y: auto;
+`;
+
+export const SetPostFooter = styled.footer`
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  border-top: solid 1px #000;
+`;
+
+export const IconsFiles = styled.div`
+  display: flex;
+  align-items: center;
+  div {
+    margin-right: 0.5rem;
   }
 `;
