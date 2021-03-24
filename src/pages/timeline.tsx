@@ -66,10 +66,10 @@ const Timeline = () => {
               post && (
                 <Post
                   key={post?.id}
-                  name={String(post?.name)}
+                  nameUser={String(post?.name)}
                   body={post?.url}
-                  title={post?.title}
-                  profile={post?.thumbnailUrl}
+                  message={post?.title}
+                  photoUser={post?.thumbnailUrl}
                 />
               )
             );

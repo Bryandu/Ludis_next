@@ -2,24 +2,23 @@ import styled from 'styled-components';
 
 export const TimelineContainer = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: auto;
   position: relative;
   justify-content: space-evenly;
   justify-items: center;
-  height: 100%;
   top: 55px;
   background-color: transparent;
   @media screen and (max-width: 1024px) {
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr 2fr;
   }
   @media screen and (max-width: 768px) {
-    grid-template-columns: 1.5fr;
+    grid-template-columns: 2fr;
   }
 `;
 
 export const TimelinePosts = styled.div`
-  width: 550px;
+  width: 100%;
   flex-direction: column;
   position: relative;
   justify-content: center;
@@ -32,10 +31,6 @@ export const TimelinePosts = styled.div`
     align-items: center;
     margin-top: 1rem;
   }
-  @media screen and (max-width: 1024px) {
-    width: auto;
-    max-width: 500px;
-  }
 `;
 
 export const TimelineLeft = styled.div`
@@ -47,10 +42,9 @@ export const TimelineLeft = styled.div`
   height: 91.8vh;
   @media screen and (max-width: 768px) {
     position: relative;
-    top: 0;
-    margin: 0;
     height: auto;
-    max-width: 500px;
+    top: 0;
+    padding-bottom: 0;
   }
 `;
 
@@ -62,8 +56,5 @@ export const TimelineRight = styled.div`
   height: 91.8vh;
   @media screen and (max-width: 1024px) {
     display: none;
-  }
-  @media screen and (max-width: 768px) {
-    padding: 0 1rem;
   }
 `;

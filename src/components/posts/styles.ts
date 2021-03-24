@@ -50,9 +50,14 @@ export const PostFooterHeader = styled.div`
 export const PostBody = styled.div`
   display: block;
   position: relative;
-  min-height: 300px;
-  max-height: 600px;
+  width: 100%;
+  img {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+  }
   div {
+    position: relative !important;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
@@ -137,6 +142,8 @@ export const ShowPost = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
+  max-width: 1920px;
+  max-height: 1080px;
 `;
 
 export const PostModalBody = styled.div`
