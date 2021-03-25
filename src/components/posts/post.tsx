@@ -66,7 +66,7 @@ const Post = ({ nameUser, body, message, photoUser, comments }: Post) => {
           <PostFooterHeader>
             <div>
               <div>
-                <Image loading="eager" alt="you" layout="fill" src={photoUser} />
+                <Image loading="eager" alt="you" layout="fill" src={photoUser ?? '/img/eu.jpg'} />
               </div>
               <p>{nameUser}</p>
             </div>

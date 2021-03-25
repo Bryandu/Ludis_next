@@ -12,9 +12,10 @@ export const PostContainer = styled.article`
   margin: 1rem;
   background-color: ${Colors.blackBody};
   border-radius: 5px;
+  box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 1);
+  max-width: 600px;
   hr {
     border-color: ${Colors.redSecundary};
-    margin: 0 0 1rem;
   }
 `;
 
@@ -55,6 +56,7 @@ export const PostBody = styled.div`
     position: relative !important;
     width: 100% !important;
     height: auto !important;
+    max-height: 768px !important;
   }
   div {
     position: relative !important;
@@ -91,6 +93,10 @@ export const PostFooter = styled.footer`
 export const PostDescription = styled.div`
   display: block;
   padding: 0.5rem;
+  p {
+    font-size: 14px;
+    font-weight: 100;
+  }
 `;
 
 export const PostCommentsContainer = styled.aside`

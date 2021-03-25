@@ -2,56 +2,20 @@ import styled from 'styled-components';
 
 import { Colors } from '../../styles/global';
 
-export const NewpostContainer = styled.header`
+export const NewpostContainer = styled.div`
   display: flex;
-  flex-direction: column;
   position: relative;
-  width: 100%;
-  background-color: ${Colors.blackBody};
-  border: 1px solid black;
   align-items: center;
   border-radius: 5px;
   justify-content: center;
+  padding: 0.5rem 0;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    color: ${Colors.redSecundary};
+    cursor: pointer;
+  }
   p {
-    font-size: 1em;
-    padding: 0.5rem;
-  }
-`;
-
-export const PostTypes = styled.footer`
-  display: flex;
-  width: 100%;
-  height: 32px;
-  align-items: center;
-  justify-content: center;
-  span {
-    display: block;
-    width: 2px;
-    background: ${Colors.redSecundary};
-    height: 20px;
-  }
-  svg {
-    width: 30px;
-    height: auto;
-    & :hover {
-      cursor: pointer;
-    }
-  }
-  div {
-    display: flex;
-    width: 100%;
-    height: 31px;
-    justify-content: center;
-    & :first-child {
-      border-bottom-left-radius: 5px;
-    }
-    & :last-child {
-      border-bottom-right-radius: 5px;
-    }
-    &:hover {
-      cursor: pointer;
-      background-color: ${Colors.blackBackground};
-    }
+    margin-left: 5px;
   }
 `;
 
@@ -63,14 +27,14 @@ export const SetPost = styled.section`
   justify-content: space-between;
   background-color: ${Colors.blackBody};
   @media screen and (max-width: 620px) {
-    width: 100%;
-    min-height: 100vh;
+    width: 310px;
+    max-height: 500px;
   }
 `;
 
 export const SetPostHeader = styled.header`
   display: flex;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid ${Colors.blackBody};
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
@@ -86,15 +50,16 @@ export const NewPostContent = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  height: max-content;
-  overflow-y: auto;
   align-items: center;
   justify-content: center;
   textarea {
+    display: flex;
+    position: relative;
     width: 100%;
-    height: auto;
     resize: none;
     outline: none;
+    min-height: 100px;
+    height: auto;
     background-color: transparent;
     color: #fff;
     border: none;
@@ -103,11 +68,10 @@ export const NewPostContent = styled.div`
 `;
 
 export const SetPostPreview = styled.section`
-  display: flex;
+  display: block;
   margin: 1rem;
   position: relative;
-  min-height: 450px;
-  overflow-y: auto;
+  height: 400px;
 `;
 
 export const SetPostFooter = styled.footer`

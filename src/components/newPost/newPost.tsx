@@ -1,10 +1,11 @@
 import { Field, Form, Formik } from 'formik';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { BiImage, BiPlus, BiVideo, BiX } from 'react-icons/bi';
-import { FcStackOfPhotos, FcVideoCall } from 'react-icons/fc';
+import { memo, useEffect, useState } from 'react';
+import { BiPlusCircle, BiX } from 'react-icons/bi';
+import * as Yup from 'yup';
 
 import { POST } from '../../service/axios';
+import { Colors } from '../../styles/global';
 import Button from '../button/button';
 import { InputIcon } from '../inputs/inputIcon';
 import Modal from '../modal/modal';
@@ -12,21 +13,29 @@ import {
   IconsFiles,
   NewpostContainer,
   NewPostContent,
-  PostTypes,
   SetPost,
   SetPostFooter,
   SetPostHeader,
   SetPostPreview
 } from './styles';
 
-const NewPost = () => {
+interface NewPostI {
+  statusPost: (status: { show: boolean; message: string }) => void;
+}
+
+const NewPost = ({ statusPost }: NewPostI) => {
   const [modal, setModal] = useState(false);
   const [file, setFile] = useState<File | Blob>();
   const [preview, setPreview] = useState<string | ArrayBuffer | null>('');
+  const [message, setMessage] = useState<string>();
 
   const initialValues = {
     postmessage: ''
   };
+
+  const validateSchema = Yup.object().shape({
+    postmessage: Yup.string().optional()
+  });
 
   useEffect(() => {
     const fileReader = new FileReader();
@@ -53,7 +62,12 @@ const NewPost = () => {
       thumbnailUrl: preview
     };
     setModal(false);
-    await POST('/posts', obj);
+    try {
+      const response = await POST<typeof obj>('/posts', obj);
+      response && statusPost({ show: true, message: response?.statusText });
+    } catch (error) {
+      statusPost({ show: true, message: error });
+    }
   }
 
   return (
@@ -64,7 +78,11 @@ const NewPost = () => {
             <h1>Nova publicação</h1>
             <BiX onClick={() => setModal(!modal)} size="24px" />
           </SetPostHeader>
-          <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          <Formik
+            validationSchema={validateSchema}
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validate={e => setMessage(e.postmessage)}>
             <Form>
               <NewPostContent>
                 <Field
@@ -89,8 +107,9 @@ const NewPost = () => {
                     }}
                     accept="image/*"
                     name="foto"
-                    iconsize="35px"
-                    icon={FcStackOfPhotos}
+                    width={35}
+                    height={40}
+                    src="https://img.icons8.com/fluent/48/000000/image.png"
                   />
                   <InputIcon
                     onChange={e => {
@@ -100,34 +119,23 @@ const NewPost = () => {
                     }}
                     accept="video/*"
                     name="video"
-                    iconsize="35px"
-                    icon={FcVideoCall}
+                    width={35}
+                    height={40}
+                    src="https://img.icons8.com/fluent/48/000000/video-call.png"
                   />
                 </IconsFiles>
-                <Button type="submit" name="Publicar" />
+                <Button disabled={!file && !message} type="submit" name="Publicar" />
               </SetPostFooter>
             </Form>
           </Formik>
         </SetPost>
       </Modal>
-      <NewpostContainer>
+      <NewpostContainer onClick={() => setModal(true)}>
+        <BiPlusCircle color={Colors.redSecundary} size="24px" />
         <p>Nova publicação</p>
-        <PostTypes>
-          <div>
-            <BiImage />
-          </div>
-          <span></span>
-          <div aria-hidden="true" onClick={() => setModal(true)}>
-            <BiPlus />
-          </div>
-          <span></span>
-          <div>
-            <BiVideo />
-          </div>
-        </PostTypes>
       </NewpostContainer>
     </>
   );
 };
 
-export default NewPost;
+export default memo(NewPost);
