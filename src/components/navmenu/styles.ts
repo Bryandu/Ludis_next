@@ -5,7 +5,7 @@ export interface NavMenuIstyles extends HTMLAttributes<HTMLDivElement> {
   backgroundColor?: string;
 }
 
-export const NavMenuContainer = styled.aside<NavMenuIstyles>`
+export const NavMenuContainer = styled.nav<NavMenuIstyles>`
   display: block;
   position: relative;
   width: 100%;
@@ -13,7 +13,7 @@ export const NavMenuContainer = styled.aside<NavMenuIstyles>`
   background-color: ${props => props.backgroundColor || 'transparent'};
 `;
 
-export const NavMenus = styled.nav`
+export const NavMenus = styled.ul`
   display: block;
   position: relative;
   width: 100%;

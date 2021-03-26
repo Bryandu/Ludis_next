@@ -25,7 +25,8 @@ interface NewPostI {
 
 const NewPost = ({ statusPost }: NewPostI) => {
   const [modal, setModal] = useState(false);
-  const [file, setFile] = useState<File | Blob>();
+  const [photo, setPhoto] = useState<File | Blob>();
+  const [video, setVideo] = useState<File | Blob>();
   const [preview, setPreview] = useState<string | ArrayBuffer | null>('');
   const [message, setMessage] = useState<string>();
 
@@ -39,15 +40,17 @@ const NewPost = ({ statusPost }: NewPostI) => {
 
   useEffect(() => {
     const fileReader = new FileReader();
-    file && fileReader.readAsDataURL(file);
+    photo && fileReader.readAsDataURL(photo);
+    video && fileReader.readAsDataURL(video);
     fileReader.onloadend = () => {
       setPreview(fileReader.result);
     };
     if (!modal) {
-      setFile(undefined);
+      setPhoto(undefined);
+      setVideo(undefined);
       fileReader.abort();
     }
-  }, [preview, modal, file]);
+  }, [photo, video, modal]);
 
   async function onSubmit(values: typeof initialValues) {
     const { postmessage } = values;
@@ -94,15 +97,23 @@ const NewPost = ({ statusPost }: NewPostI) => {
               </NewPostContent>
               {preview && (
                 <SetPostPreview>
-                  <Image layout="fill" objectFit="contain" src={preview as string} alt="previw" />
+                  {photo && (
+                    <Image layout="fill" objectFit="contain" src={preview as string} alt="previw" />
+                  )}
+                  {video && (
+                    <video width="100%" height="100%" controls src={preview as string}>
+                      <track default kind="captions" />
+                    </video>
+                  )}
                 </SetPostPreview>
               )}
               <SetPostFooter>
                 <IconsFiles>
                   <InputIcon
                     onChange={e => {
+                      setPhoto(undefined);
                       if (e.currentTarget.files) {
-                        setFile(e.currentTarget.files[0]);
+                        setPhoto(e.currentTarget.files[0]);
                       }
                     }}
                     accept="image/*"
@@ -113,8 +124,9 @@ const NewPost = ({ statusPost }: NewPostI) => {
                   />
                   <InputIcon
                     onChange={e => {
+                      setVideo(undefined);
                       if (e.currentTarget.files) {
-                        setFile(e.currentTarget.files[0]);
+                        setVideo(e.currentTarget.files[0]);
                       }
                     }}
                     accept="video/*"
@@ -124,7 +136,7 @@ const NewPost = ({ statusPost }: NewPostI) => {
                     src="https://img.icons8.com/fluent/48/000000/video-call.png"
                   />
                 </IconsFiles>
-                <Button disabled={!file && !message} type="submit" name="Publicar" />
+                <Button disabled={!photo || (!video && !message)} type="submit" name="Publicar" />
               </SetPostFooter>
             </Form>
           </Formik>

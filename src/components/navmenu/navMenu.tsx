@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactChild } from 'react';
+import { HTMLAttributes, memo, ReactChild } from 'react';
 
 import { NavMenuContainer, NavMenus } from './styles';
 
@@ -11,18 +11,12 @@ const NavMenu = ({ children, backgroundColor }: NavMenuI) => {
   return (
     <NavMenuContainer backgroundColor={backgroundColor}>
       <NavMenus>
-        <ul>
-          {children?.map((value, i) => {
-            return (
-              <>
-                <li key={i}>{value}</li>
-              </>
-            );
-          })}
-        </ul>
+        {children?.map((value, i) => {
+          return <li key={i}>{value}</li>;
+        })}
       </NavMenus>
     </NavMenuContainer>
   );
 };
 
-export default NavMenu;
+export default memo(NavMenu);
