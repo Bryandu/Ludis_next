@@ -1,56 +1,68 @@
 import styled from 'styled-components';
 
+import { Colors } from './global';
+
 export const TimelineContainer = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
-  grid-template-rows: auto;
+  grid-template-columns: minmax(100px, 450px) max-content minmax(100px, 450px);
+  flex-direction: row-reverse;
   position: relative;
-  justify-content: space-evenly;
-  justify-items: center;
-  height: 100%;
-  top: 55px;
+  justify-content: center;
   background-color: transparent;
+  top: 56px;
   @media screen and (max-width: 1024px) {
-    grid-template-columns: 1fr 1.5fr;
-  }
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1.5fr;
+    grid-template-columns: minmax(100px, 450px) max-content;
   }
 `;
 
 export const TimelinePosts = styled.div`
-  width: 550px;
+  display: flex;
   flex-direction: column;
   position: relative;
-  justify-content: center;
-  align-items: center;
-  min-height: 91.8vh;
+  min-height: calc(100vh - 56px);
+  justify-self: center;
   .warnings {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
-  }
-  @media screen and (max-width: 1024px) {
-    width: auto;
-    max-width: 500px;
+    margin-bottom: 1rem;
   }
 `;
 
 export const TimelineLeft = styled.div`
   display: block;
   position: sticky;
-  top: 55px;
-  width: 100%;
   padding: 1rem;
-  height: 91.8vh;
+  top: 56px;
+  height: calc(100vh - 56px);
+  //background-color: ${Colors.blackBody};
   @media screen and (max-width: 768px) {
-    position: relative;
-    top: 0;
-    margin: 0;
-    height: auto;
-    max-width: 500px;
+    display: none;
+  }
+`;
+
+export const NavProfile = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  background-color: ${Colors.blackBody};
+  padding: 0.5rem;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  div {
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 0;
+    margin-right: 0;
+    left: 2px;
   }
 `;
 
@@ -59,11 +71,8 @@ export const TimelineRight = styled.div`
   position: sticky;
   top: 71px;
   padding: 1rem;
-  height: 91.8vh;
+  height: calc(100vh - 55px);
   @media screen and (max-width: 1024px) {
     display: none;
-  }
-  @media screen and (max-width: 768px) {
-    padding: 0 1rem;
   }
 `;

@@ -3,8 +3,9 @@ import { createGlobalStyle } from 'styled-components';
 export const Colors = {
   redPrimary: '#cf1020',
   redSecundary: '#DC143C',
-  blackBackground: '#111111',
-  blackBody: '#1c1c1c'
+  blackBackground: '#1c1c1c',
+  blackBody: '#151515',
+  greenSucsses: '#4EAA00'
 };
 
 export default createGlobalStyle`

@@ -19,6 +19,7 @@ export interface UserState {
   token: string | null;
   data: UserData | null;
   posts: Posts[] | null;
+  photoProfile: string | null;
 }
 
 export enum UserActions {

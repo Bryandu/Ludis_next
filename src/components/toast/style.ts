@@ -21,13 +21,14 @@ const ToastShowTop = keyframes`
 `;
 
 const ToastShowBottom = keyframes`
-  from{height: 0;}
-  to{height: 50px;}
+  to{opacity: 1;}
 `;
+
+export const ToastContainer = styled.div``;
 
 export const ToastBody = styled.div<ToastI>`
   position: absolute;
-  z-index: 999;
+  z-index: 1000;
   display: none;
   width: 100%;
   max-height: 50px;
@@ -74,8 +75,9 @@ export const ToastBody = styled.div<ToastI>`
   ${props =>
     props.bottom &&
     css`
-      bottom: 0;
-      animation: ${ToastShowBottom} 150ms ease-in;
+      top: calc(100vh - 50px);
+      position: fixed;
+      animation: ${ToastShowBottom} 200ms ease-in;
     `}
   ${props =>
     props.show &&

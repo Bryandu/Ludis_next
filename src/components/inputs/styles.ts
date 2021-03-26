@@ -1,6 +1,8 @@
 import { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
+import { Colors } from '../../styles/global';
+
 interface DivInputI extends HTMLAttributes<HTMLDivElement> {
   width?: string;
   height?: string;
@@ -35,15 +37,31 @@ export const DivInput = styled.div.attrs((props: DivInputI) => ({
   height: ${props => props.height};
 `;
 
-export const DivInputIcon = styled.div`
+export const DivInputIcon = styled.div<DivInputI>`
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
+  width: ${props => props.width ?? 'auto'};
+  height: ${props => props.height ?? 'auto'};
   label {
     display: contents;
   }
   input {
     display: none;
+  }
+  svg {
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    & :hover {
+      color: ${Colors.redSecundary} !important;
+    }
+  }
+  img {
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    & :hover {
+      opacity: 0.8;
+    }
   }
 `;

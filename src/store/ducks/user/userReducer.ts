@@ -9,6 +9,7 @@ const User: UserState = {
   isActive: null,
   loading: false,
   token: null,
+  photoProfile: null,
   data: {
     id: null,
     email: null,

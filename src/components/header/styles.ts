@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { Colors } from '../../styles/global';
 import { IHeader } from './header';
 
 export const HeaderComp = styled.header<IHeader>`
@@ -10,7 +9,7 @@ export const HeaderComp = styled.header<IHeader>`
   justify-content: space-between;
   width: 100%;
   padding: 10px;
-  background: ${Colors.blackBody};
+  background: #000;
   z-index: 99;
 `;
 
