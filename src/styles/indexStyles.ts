@@ -72,7 +72,7 @@ export const HomeImgTwo = styled.div`
   }
   & > header {
     display: flex;
-    position: absolute;
+    position: relative;
     top: 15px;
     width: 100%;
     align-items: center;
@@ -84,11 +84,21 @@ export const HomeImgTwo = styled.div`
   & > div {
     width: 310px;
     position: relative;
-    top: calc(48% - 212px);
+    top: -20px;
+    @media screen and (max-width: 768px) {
+      top: 0;
+    }
     & > div {
       margin: 1rem 0;
       h2 {
         font-size: 2.5em;
+      }
+    }
+  }
+  form {
+    div {
+      div {
+        width: 100%;
       }
     }
   }
