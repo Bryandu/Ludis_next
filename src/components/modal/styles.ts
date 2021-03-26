@@ -22,7 +22,7 @@ export const ModalContainer = styled.div<ModalStyle>`
   z-index: 1000;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
   animation: ${modalshow} 200ms ease-in-out;
   & :hover {
     cursor: pointer;
