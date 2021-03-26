@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { ComponentType, PropsWithChildren, useEffect } from 'react';
+import { ComponentType, memo, PropsWithChildren, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { userSelector } from '../../store/ducks/user/userSelectors';

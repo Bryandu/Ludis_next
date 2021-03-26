@@ -12,9 +12,10 @@ export const PostContainer = styled.article`
   margin: 1rem;
   background-color: ${Colors.blackBody};
   border-radius: 5px;
+  box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 1);
+  max-width: 600px;
   hr {
     border-color: ${Colors.redSecundary};
-    margin: 0 0 1rem;
   }
 `;
 
@@ -50,9 +51,15 @@ export const PostFooterHeader = styled.div`
 export const PostBody = styled.div`
   display: block;
   position: relative;
-  min-height: 300px;
-  max-height: 600px;
+  width: 100%;
+  img {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 768px !important;
+  }
   div {
+    position: relative !important;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
@@ -86,6 +93,10 @@ export const PostFooter = styled.footer`
 export const PostDescription = styled.div`
   display: block;
   padding: 0.5rem;
+  p {
+    font-size: 14px;
+    font-weight: 100;
+  }
 `;
 
 export const PostCommentsContainer = styled.aside`
@@ -137,6 +148,8 @@ export const ShowPost = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
+  max-width: 1920px;
+  max-height: 1080px;
 `;
 
 export const PostModalBody = styled.div`

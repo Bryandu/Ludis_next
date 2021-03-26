@@ -19,45 +19,56 @@ import {
   ShowPost
 } from './styles';
 
+interface Comments {
+  id: string;
+  photoUserComments: string;
+  nameUser: string;
+  comment: string;
+  likes: number;
+}
 interface Post {
-  name: string;
-  body: string;
-  title: string;
-  profile: string;
+  nameUser: string;
+  body?: string;
+  message?: string;
+  photoUser: string;
+  comments?: Comments[];
 }
 
-const Post = ({ name, body, title, profile }: Post) => {
+const Post = ({ nameUser, body, message, photoUser, comments }: Post) => {
   const [modal, setModal] = useState(false);
   return (
     <>
-      <Modal showModal={modal} hiddenModal={() => setModal(false)}>
-        <PostModalBody>
-          <IoClose size="32px" onClick={() => setModal(false)} />
-          <ShowPost>
-            <Image objectFit="contain" layout="fill" alt="post" src={body} />
-          </ShowPost>
-        </PostModalBody>
-      </Modal>
+      {body && (
+        <Modal showModal={modal} hiddenModal={() => setModal(false)}>
+          <PostModalBody>
+            <IoClose size="32px" onClick={() => setModal(false)} />
+            <ShowPost>
+              <Image objectFit="contain" layout="fill" alt="post" src={body} />
+            </ShowPost>
+          </PostModalBody>
+        </Modal>
+      )}
       <PostContainer>
-        <PostBody onClick={() => setModal(!modal)}>
-          {body && (
+        {body && (
+          <PostBody onClick={() => setModal(!modal)}>
             <Image
               className="zoomimagepost"
               loading="eager"
-              objectFit="fill"
+              objectFit="cover"
+              objectPosition="center"
               layout="fill"
               alt="photo"
               src={body}
             />
-          )}
-        </PostBody>
+          </PostBody>
+        )}
         <PostFooter>
           <PostFooterHeader>
             <div>
               <div>
-                {profile && <Image loading="eager" alt="you" layout="fill" src={profile} />}
+                <Image loading="eager" alt="you" layout="fill" src={photoUser ?? '/img/eu.jpg'} />
               </div>
-              <p>{name}</p>
+              <p>{nameUser}</p>
             </div>
             <div>
               Varginha, MG
@@ -65,7 +76,7 @@ const Post = ({ name, body, title, profile }: Post) => {
             </div>
           </PostFooterHeader>
           <PostDescription>
-            <p>{title}</p>
+            <p>{message}</p>
           </PostDescription>
           <div>
             <BsFillLightningFill color="yellow" size="24px" />
@@ -76,22 +87,34 @@ const Post = ({ name, body, title, profile }: Post) => {
           </div>
           <hr />
         </PostFooter>
-        <PostCommentsContainer>
-          <PostComment>
-            <div>
-              {profile && <Image loading="eager" alt="friend" layout="fill" src={profile} />}
-            </div>
-            <div className="postComments">
-              <div>
-                <p>{name}</p>
-                <p>{title}</p>
-              </div>
-              <div>
-                <AiOutlineHeart />
-              </div>
-            </div>
-          </PostComment>
-        </PostCommentsContainer>
+        {comments &&
+          comments.map(comment => {
+            return (
+              <PostCommentsContainer key={comment.id}>
+                <PostComment>
+                  <div>
+                    {comment.photoUserComments && (
+                      <Image
+                        loading="eager"
+                        alt="friend"
+                        layout="fill"
+                        src={comment.photoUserComments}
+                      />
+                    )}
+                  </div>
+                  <div className="postComments">
+                    <div>
+                      <p>{comment.nameUser}</p>
+                      <p>{comment.comment}</p>
+                    </div>
+                    <div>
+                      <AiOutlineHeart />
+                    </div>
+                  </div>
+                </PostComment>
+              </PostCommentsContainer>
+            );
+          })}
       </PostContainer>
     </>
   );

@@ -1,10 +1,11 @@
 import { Field, Form, Formik } from 'formik';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { BiImage, BiPlus, BiVideo, BiX } from 'react-icons/bi';
-import { FcStackOfPhotos, FcVideoCall } from 'react-icons/fc';
+import { memo, useEffect, useState } from 'react';
+import { BiPlusCircle, BiX } from 'react-icons/bi';
+import * as Yup from 'yup';
 
 import { POST } from '../../service/axios';
+import { Colors } from '../../styles/global';
 import Button from '../button/button';
 import { InputIcon } from '../inputs/inputIcon';
 import Modal from '../modal/modal';
@@ -12,33 +13,44 @@ import {
   IconsFiles,
   NewpostContainer,
   NewPostContent,
-  PostTypes,
   SetPost,
   SetPostFooter,
   SetPostHeader,
   SetPostPreview
 } from './styles';
 
-const NewPost = () => {
+interface NewPostI {
+  statusPost: (status: { show: boolean; message: string }) => void;
+}
+
+const NewPost = ({ statusPost }: NewPostI) => {
   const [modal, setModal] = useState(false);
-  const [file, setFile] = useState<File | Blob>();
+  const [photo, setPhoto] = useState<File | Blob>();
+  const [video, setVideo] = useState<File | Blob>();
   const [preview, setPreview] = useState<string | ArrayBuffer | null>('');
+  const [message, setMessage] = useState<string>();
 
   const initialValues = {
     postmessage: ''
   };
 
+  const validateSchema = Yup.object().shape({
+    postmessage: Yup.string().optional()
+  });
+
   useEffect(() => {
     const fileReader = new FileReader();
-    file && fileReader.readAsDataURL(file);
+    photo && fileReader.readAsDataURL(photo);
+    video && fileReader.readAsDataURL(video);
     fileReader.onloadend = () => {
       setPreview(fileReader.result);
     };
     if (!modal) {
-      setFile(undefined);
+      setPhoto(undefined);
+      setVideo(undefined);
       fileReader.abort();
     }
-  }, [preview, modal, file]);
+  }, [photo, video, modal]);
 
   async function onSubmit(values: typeof initialValues) {
     const { postmessage } = values;
@@ -53,7 +65,12 @@ const NewPost = () => {
       thumbnailUrl: preview
     };
     setModal(false);
-    await POST('/posts', obj);
+    try {
+      const response = await POST<typeof obj>('/posts', obj);
+      response && statusPost({ show: true, message: response?.statusText });
+    } catch (error) {
+      statusPost({ show: true, message: error });
+    }
   }
 
   return (
@@ -64,7 +81,11 @@ const NewPost = () => {
             <h1>Nova publicação</h1>
             <BiX onClick={() => setModal(!modal)} size="24px" />
           </SetPostHeader>
-          <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          <Formik
+            validationSchema={validateSchema}
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validate={e => setMessage(e.postmessage)}>
             <Form>
               <NewPostContent>
                 <Field
@@ -76,58 +97,57 @@ const NewPost = () => {
               </NewPostContent>
               {preview && (
                 <SetPostPreview>
-                  <Image layout="fill" objectFit="contain" src={preview as string} alt="previw" />
+                  {photo && (
+                    <Image layout="fill" objectFit="contain" src={preview as string} alt="previw" />
+                  )}
+                  {video && (
+                    <video width="100%" height="100%" controls src={preview as string}>
+                      <track default kind="captions" />
+                    </video>
+                  )}
                 </SetPostPreview>
               )}
               <SetPostFooter>
                 <IconsFiles>
                   <InputIcon
                     onChange={e => {
+                      setPhoto(undefined);
                       if (e.currentTarget.files) {
-                        setFile(e.currentTarget.files[0]);
+                        setPhoto(e.currentTarget.files[0]);
                       }
                     }}
                     accept="image/*"
                     name="foto"
-                    iconsize="35px"
-                    icon={FcStackOfPhotos}
+                    width={35}
+                    height={40}
+                    src="https://img.icons8.com/fluent/48/000000/image.png"
                   />
                   <InputIcon
                     onChange={e => {
+                      setVideo(undefined);
                       if (e.currentTarget.files) {
-                        setFile(e.currentTarget.files[0]);
+                        setVideo(e.currentTarget.files[0]);
                       }
                     }}
                     accept="video/*"
                     name="video"
-                    iconsize="35px"
-                    icon={FcVideoCall}
+                    width={35}
+                    height={40}
+                    src="https://img.icons8.com/fluent/48/000000/video-call.png"
                   />
                 </IconsFiles>
-                <Button type="submit" name="Publicar" />
+                <Button disabled={!photo || (!video && !message)} type="submit" name="Publicar" />
               </SetPostFooter>
             </Form>
           </Formik>
         </SetPost>
       </Modal>
-      <NewpostContainer>
+      <NewpostContainer onClick={() => setModal(true)}>
+        <BiPlusCircle color={Colors.redSecundary} size="24px" />
         <p>Nova publicação</p>
-        <PostTypes>
-          <div>
-            <BiImage />
-          </div>
-          <span></span>
-          <div aria-hidden="true" onClick={() => setModal(true)}>
-            <BiPlus />
-          </div>
-          <span></span>
-          <div>
-            <BiVideo />
-          </div>
-        </PostTypes>
       </NewpostContainer>
     </>
   );
 };
 
-export default NewPost;
+export default memo(NewPost);
