@@ -1,10 +1,11 @@
-import Image from 'next/image';
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, memo } from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { RiMenuUnfoldFill } from 'react-icons/ri';
 
 import FormSearch from '../forms/formSearch';
 import Logo from '../logo/logo';
 import Menu from '../menu/menu';
-import { HeaderComp, ImgHeader } from './styles';
+import { HeaderComp, HeaderIcons, SearchHeader } from './styles';
 
 export interface IHeader extends HTMLAttributes<HTMLDivElement> {
   position?: string;
@@ -15,21 +16,19 @@ const Header = ({ position }: IHeader) => {
     <>
       <HeaderComp position={position}>
         <Logo fontsize="30px">Ludis</Logo>
-        <ImgHeader>
-          <Image
-            className="imgProfile"
-            width={18}
-            height={35}
-            title="perfil"
-            alt="perfil"
-            src="/img/eu.jpg"
-          />
+        <SearchHeader>
+          <AiOutlineSearch title="Pesquisar" color="#fff" size="2em" />
           <FormSearch />
-        </ImgHeader>
-        <Menu />
+        </SearchHeader>
+        <HeaderIcons>
+          <nav>
+            <RiMenuUnfoldFill title="Opções" size="2em" />
+          </nav>
+          <Menu />
+        </HeaderIcons>
       </HeaderComp>
     </>
   );
 };
 
-export default Header;
+export default memo(Header);

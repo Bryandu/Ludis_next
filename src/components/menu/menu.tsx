@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { BsGear } from 'react-icons/bs';
 import { FiBell, FiMap, FiShoppingBag } from 'react-icons/fi';
 import { IoIosArrowDropdown } from 'react-icons/io';
@@ -6,7 +7,7 @@ import { IconContext } from 'react-icons/lib';
 
 import { Colors } from '../../styles/global';
 import MenuDrop from '../menudrop/medudrop';
-import { List } from './styles';
+import { List, Nav } from './styles';
 
 const Menu = () => {
   const [elementtarget, setElementtaerget] = useState<HTMLElement>();
@@ -41,7 +42,10 @@ const Menu = () => {
 
   return (
     <>
-      <nav>
+      <Nav>
+        <div>
+          <AiOutlineSearch title="Pesquisar" size="2em" />
+        </div>
         <List>
           <li id="drop">
             <IoIosArrowDropdown
@@ -67,7 +71,7 @@ const Menu = () => {
             </li>
           </IconContext.Provider>
         </List>
-      </nav>
+      </Nav>
       <MenuDrop showDrop={drop} ref={modalRef} />
     </>
   );

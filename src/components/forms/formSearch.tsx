@@ -1,7 +1,4 @@
 import { Form, Formik } from 'formik';
-import { BsSearch } from 'react-icons/bs';
-
-import { Input } from '../inputs/input';
 
 const FormSearch = () => {
   const initialValues = {
@@ -17,7 +14,7 @@ const FormSearch = () => {
       {() => (
         <Form>
           <label htmlFor="inputsearch">
-            <Input id="inputsearch" name="search" height="30px" icon={BsSearch} iconSize="20px" />
+            <input placeholder="lugares, pessoas, lojas..." id="inputsearch" name="search" />
           </label>
         </Form>
       )}

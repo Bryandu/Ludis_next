@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import Image from 'next/image';
-import { memo, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiPlusCircle, BiX } from 'react-icons/bi';
 import * as Yup from 'yup';
 
@@ -150,4 +150,4 @@ const NewPost = ({ statusPost }: NewPostI) => {
   );
 };
 
-export default memo(NewPost);
+export default NewPost;

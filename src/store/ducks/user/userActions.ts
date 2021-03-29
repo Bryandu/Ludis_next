@@ -60,7 +60,7 @@ export const userGetPostsSucsses = (posts: Posts[]) => {
   };
 };
 
-export const userGetMorePosts = (posts: (Posts[] | undefined)[]) => {
+export const userGetMorePosts = (posts: (Posts | undefined)[]) => {
   return {
     type: UserActions.USER_GETMOREPOSTS,
     payload: posts

@@ -71,7 +71,7 @@ const Post = ({ nameUser, body, message, photoUser, comments }: Post) => {
               <p>{nameUser}</p>
             </div>
             <div>
-              Varginha, MG
+              <p>Varginha, MG</p>
               <MdLocationOn color="#EA4335" size="24px" />
             </div>
           </PostFooterHeader>

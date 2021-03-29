@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef, HTMLAttributes } from 'react';
+import { ForwardedRef, forwardRef, HTMLAttributes, memo } from 'react';
 import { BsGear } from 'react-icons/bs';
 import { FiBell, FiMap, FiShoppingBag } from 'react-icons/fi';
 import { IconContext } from 'react-icons/lib';
@@ -37,6 +37,6 @@ const MenuDrop = forwardRef(({ showDrop }: ShowDrop, ref: ForwardedRef<HTMLDivEl
   );
 });
 
-export default MenuDrop;
+export default memo(MenuDrop);
 
 MenuDrop.displayName = 'MenuDrop';

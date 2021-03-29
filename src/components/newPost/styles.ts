@@ -27,8 +27,7 @@ export const SetPost = styled.section`
   justify-content: space-between;
   background-color: ${Colors.blackBody};
   @media screen and (max-width: 620px) {
-    width: 310px;
-    max-height: 500px;
+    width: 90vw;
   }
 `;
 

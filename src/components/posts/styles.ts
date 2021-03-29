@@ -9,11 +9,10 @@ export const NewPost = styled.div`
 export const PostContainer = styled.article`
   display: block;
   position: relative;
-  margin: 1rem;
+  margin: 0.5rem 1rem;
   background-color: ${Colors.blackBody};
   border-radius: 5px;
   box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 1);
-  max-width: 600px;
   hr {
     border-color: ${Colors.redSecundary};
   }
@@ -42,7 +41,12 @@ export const PostFooterHeader = styled.div`
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        margin-right: 0.5rem;
+        margin: 0 0.5rem;
+        @media screen and (max-width: 768px) {
+          width: 25px;
+          height: 25px;
+          margin: 0 0.2rem;
+        }
       }
     }
   }
@@ -54,9 +58,9 @@ export const PostBody = styled.div`
   width: 100%;
   img {
     position: relative !important;
-    width: 100% !important;
+    width: 80vw !important;
     height: auto !important;
-    max-height: 768px !important;
+    max-height: 90vh !important;
   }
   div {
     position: relative !important;
@@ -70,8 +74,11 @@ export const PostFooter = styled.footer`
   position: relative;
   width: 100%;
   padding: 1rem;
+  p {
+    font-size: max(12px, 1.2vw);
+  }
   & :nth-child(2) {
-    padding: 0.5rem 1rem 0;
+    padding: 0 0.5rem 0;
   }
   div {
     & :nth-child(3) {
@@ -92,11 +99,7 @@ export const PostFooter = styled.footer`
 
 export const PostDescription = styled.div`
   display: block;
-  padding: 0.5rem;
-  p {
-    font-size: 14px;
-    font-weight: 100;
-  }
+  padding: 0.5rem 1rem;
 `;
 
 export const PostCommentsContainer = styled.aside`
@@ -117,7 +120,7 @@ export const PostComment = styled.div`
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      margin-right: 0.5rem;
+      margin: 0 0.5rem;
     }
   }
   p {

@@ -4,11 +4,11 @@ export const baseURL = axios.create({
   baseURL: 'http://localhost:3002/'
 });
 
-export function GET<T>(
+export async function GET<T>(
   path: string,
   config?: AxiosRequestConfig
 ): Promise<AxiosResponse<T> | undefined> {
-  return baseURL.get(path, config);
+  return await baseURL.get(path, config);
 }
 
 export function POST<T>(

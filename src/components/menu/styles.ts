@@ -6,21 +6,38 @@ interface List {
   colored?: boolean;
 }
 
+export const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  & > div {
+    display: none;
+    @media screen and (max-width: 767px) {
+      display: flex;
+    }
+
+    & > svg {
+      transition: 0.2s ease-in-out;
+      margin: 0 0.5rem;
+      &:hover {
+        cursor: pointer;
+        opacity: 0.6;
+      }
+    }
+  }
+`;
+
 export const List = styled.ul<List>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin: 0 0 0 8px;
   #drop {
     display: none;
     color: ${props => (props.colored ? Colors.redPrimary : '#fff')};
-    &:focus {
-      background-color: #444;
-    }
     &:hover {
       cursor: pointer;
       color: ${Colors.redPrimary};
+      opacity: 0.6;
     }
     @media screen and (max-width: 767px) {
       display: flex;
@@ -29,8 +46,11 @@ export const List = styled.ul<List>`
   li {
     display: flex;
     align-items: center;
-    margin: 0 0.5rem;
+    margin-right: 0.5rem;
     transition: 100ms ease-in-out;
+    &:not(#drop) {
+      margin: 0 0.5rem;
+    }
     &:hover {
       cursor: pointer;
       color: ${Colors.redPrimary};
