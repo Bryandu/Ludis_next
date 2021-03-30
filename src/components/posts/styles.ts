@@ -10,7 +10,7 @@ export const PostContainer = styled.article`
   display: block;
   position: relative;
   margin: 0.5rem 1rem;
-  background-color: ${Colors.blackBody};
+  background-color: ${props => props.theme.foreground};
   border-radius: 5px;
   box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 1);
   hr {
@@ -61,6 +61,9 @@ export const PostBody = styled.div`
     width: 80vw !important;
     height: auto !important;
     max-height: 90vh !important;
+    @media screen and (max-width: 480px) {
+      width: 100vw !important;
+    }
   }
   div {
     position: relative !important;

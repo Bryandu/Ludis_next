@@ -10,7 +10,7 @@ export const BtnAnchor = styled.a`
   align-items: center;
   background: ${Colors.redSecundary};
   padding: 8px;
-  color: #ffffff;
+  color: ${props => props.theme.color};
   border: none;
   border-radius: 3px;
   outline: none;

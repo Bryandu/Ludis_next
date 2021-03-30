@@ -25,7 +25,7 @@ export const SetPost = styled.section`
   flex-direction: column;
   width: 600px;
   justify-content: space-between;
-  background-color: ${Colors.blackBody};
+  background-color: ${props => props.theme.foreground};
   @media screen and (max-width: 620px) {
     width: 90vw;
   }
@@ -33,7 +33,7 @@ export const SetPost = styled.section`
 
 export const SetPostHeader = styled.header`
   display: flex;
-  border-bottom: 1px solid ${Colors.blackBody};
+  border-bottom: 1px solid ${props => props.theme.foreground};
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
@@ -60,7 +60,7 @@ export const NewPostContent = styled.div`
     min-height: 100px;
     height: auto;
     background-color: transparent;
-    color: #fff;
+    color: ${props => props.theme.color};
     border: none;
     padding: 1rem;
   }
@@ -80,7 +80,7 @@ export const SetPostFooter = styled.footer`
   padding: 0.5rem;
   align-items: center;
   justify-content: space-between;
-  border-top: solid 1px #000;
+  border-top: solid 1px ${props => props.theme.background};
 `;
 
 export const IconsFiles = styled.div`

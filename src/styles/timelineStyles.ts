@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { Colors } from './global';
-
 export const TimelineContainer = styled.section`
   display: grid;
   grid-template-columns: minmax(200px, 400px) minmax(min-content, 550px) minmax(200px, 400px);
@@ -53,7 +51,7 @@ export const NavProfile = styled.div`
   justify-content: flex-start;
   width: 100%;
   align-items: center;
-  background-color: ${Colors.blackBody};
+  background-color: ${props => props.theme.foreground};
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;

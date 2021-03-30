@@ -22,7 +22,7 @@ export const Input = ({ icon: Icon, lineDown, ...props }: InputI) => {
     <>
       <DivInput width={props.width} height={props.height}>
         <InputComp {...field} {...props} />
-        {Icon && <Icon size={props.iconSize} color={props.iconColor || Colors.blackBody} />}
+        {Icon && <Icon size={props.iconSize} color={props.iconColor || Colors.blackForeground} />}
       </DivInput>
       {meta.error && meta.touched && <Erros>{meta.error}</Erros>}
       {lineDown && <br />}

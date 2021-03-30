@@ -9,7 +9,7 @@ interface DivInputI extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const InputComp = styled.input`
-  color: #000000;
+  color: ${props => props.theme.background};
   background: transparent;
   width: 100%;
   height: auto;
@@ -18,7 +18,7 @@ export const InputComp = styled.input`
   font-size: 1rem;
   padding-right: 3px;
   &::placeholder {
-    color: #1c1c1c;
+    color: ${Colors.blackBackground};
     font-size: 1rem;
   }
 `;

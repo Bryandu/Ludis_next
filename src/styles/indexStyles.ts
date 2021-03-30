@@ -53,6 +53,7 @@ export const HomeImg = styled.div`
     z-index: 2;
     font-size: 4em;
     margin-left: 3rem;
+    color: #ffffff;
   }
   img {
     filter: brightness(0.5);
@@ -123,7 +124,7 @@ export const HomeIcons = styled.div`
       cursor: pointer;
       background: ${Colors.redSecundary};
       color: ${Colors.blackBackground};
-      border-color: ${Colors.blackBody};
+      border-color: ${props => props.theme.foreground};
     }
   }
 `;

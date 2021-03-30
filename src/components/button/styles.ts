@@ -24,7 +24,7 @@ export const ButtonContainer = styled.button<BtnOutline>`
   border-style: none;
   background-color: ${Colors.redPrimary};
   font-size: 1rem;
-  color: #ffffff;
+  color: ${props => props.theme.color};
   outline: ${Colors.redSecundary};
   box-shadow: 0 4px 14px 0 rgba(207, 16, 32, 0.4);
   &:hover {
@@ -39,7 +39,7 @@ export const ButtonContainer = styled.button<BtnOutline>`
       color: ${Colors.redSecundary};
       &:hover {
         cursor: pointer;
-        color: #ffffff;
+        color: ${props => props.theme.color};
       }
     `}
   ${props =>

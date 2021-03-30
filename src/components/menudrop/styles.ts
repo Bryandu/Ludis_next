@@ -20,11 +20,11 @@ const show = keyframes`
 export const ContainerDrop = styled.div<ShowDrop>`
   display: none;
   position: absolute;
-  top: 65px;
+  top: 54px;
   right: 12px;
   z-index: 100;
   border-radius: 5px;
-  background-color: #151515;
+  background-color: ${props => props.theme.background};
   padding: 0 1rem;
   transition: 100ms ease-in-out;
   ${props =>

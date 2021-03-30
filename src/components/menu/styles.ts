@@ -11,7 +11,7 @@ export const Nav = styled.nav`
   align-items: center;
   & > div {
     display: none;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 769px) {
       display: flex;
     }
 
@@ -33,13 +33,9 @@ export const List = styled.ul<List>`
   width: 100%;
   #drop {
     display: none;
-    color: ${props => (props.colored ? Colors.redPrimary : '#fff')};
-    &:hover {
-      cursor: pointer;
-      color: ${Colors.redPrimary};
-      opacity: 0.6;
-    }
-    @media screen and (max-width: 767px) {
+    color: ${props => (props.colored ? Colors.redPrimary : props.theme.color)};
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
       display: flex;
     }
   }
@@ -47,7 +43,9 @@ export const List = styled.ul<List>`
     display: flex;
     align-items: center;
     margin-right: 0.5rem;
-    transition: 100ms ease-in-out;
+    svg {
+      transition: 0.2s ease-in-out;
+    }
     &:not(#drop) {
       margin: 0 0.5rem;
     }
@@ -55,7 +53,7 @@ export const List = styled.ul<List>`
       cursor: pointer;
       color: ${Colors.redPrimary};
     }
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
       display: none;
     }
     .iconDrop {

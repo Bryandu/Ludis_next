@@ -50,7 +50,7 @@ export const AsideForm = styled.aside`
   justify-content: center;
   align-items: center;
   width: 400px;
-  background-color: ${Colors.blackBody};
+  background-color: ${Colors.blackForeground};
   @media screen and (max-width: 420px) {
     width: 100%;
     height: 100vh;

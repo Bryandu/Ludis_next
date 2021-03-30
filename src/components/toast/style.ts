@@ -34,7 +34,7 @@ export const ToastBody = styled.div<ToastI>`
   max-height: 50px;
   justify-content: center;
   align-items: center;
-  background-color: ${Colors.blackBody};
+  background-color: ${props => props.theme.foreground};
   overflow: hidden;
   border: solid 1px ${Colors.blackBackground};
   & > article {
