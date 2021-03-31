@@ -8,16 +8,16 @@ import { AnchorText } from '../anchor/styles';
 import { Input } from '../inputs/input';
 import { DivButton, Rememberme } from './styleForms';
 
-export type Login = {
+export type LoginValues = {
   email: string;
   password: string;
 };
 interface FormLogin extends HTMLAttributes<HTMLDivElement> {
-  submit: (values: Login, actions: FormikHelpers<Login>) => void;
+  submit: (values: LoginValues, actions: FormikHelpers<LoginValues>) => void;
 }
 
 const FormLogin = forwardRef(
-  ({ submit, ...props }: FormLogin, ref: ForwardedRef<FormikProps<Login>>) => {
+  ({ submit, ...props }: FormLogin, ref: ForwardedRef<FormikProps<LoginValues>>) => {
     const initialValues = {
       email: '',
       password: ''

@@ -32,6 +32,7 @@ export enum UserActions {
   USER_GETINITIALPOSTS = 'USER_GETINITIALPOSTS',
   USER_GETMOREPOSTS = 'USER_GETMOREPOSTS',
   USER_GETPOSTSSUCSSES = 'USER_GETINITIALPOSTSSUCSSES',
+  USER_SETTOKEN = 'USER_SETTOKEN',
   __NEXT_REDUX_WRAPPER_HYDRATE__ = '__NEXT_REDUX_WRAPPER_HYDRATE__'
 }
 
@@ -86,6 +87,11 @@ export interface UserActionGetPostsSucsses {
   payload: Posts[];
 }
 
+export interface UserActionSetToken {
+  type: UserActions.USER_SETTOKEN;
+  payload: string;
+}
+
 export type ActionUser =
   | UserActionHydrate
   | UserActionSingUp
@@ -96,4 +102,5 @@ export type ActionUser =
   | UserActionLoginFail
   | UserActionGetInitilPosts
   | UserActionGetMorePosts
-  | UserActionGetPostsSucsses;
+  | UserActionGetPostsSucsses
+  | UserActionSetToken;

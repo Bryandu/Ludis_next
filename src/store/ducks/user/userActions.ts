@@ -3,6 +3,7 @@ import {
   UserActionGetInitilPosts,
   UserActionLoginSuccsses,
   UserActions,
+  UserActionSetToken,
   UserActionSingUp,
   UserActionSingupSuccsses,
   UserData
@@ -64,5 +65,12 @@ export const userGetMorePosts = (posts: (Posts | undefined)[]) => {
   return {
     type: UserActions.USER_GETMOREPOSTS,
     payload: posts
+  };
+};
+
+export const userSetToken = (token: string): UserActionSetToken => {
+  return {
+    type: UserActions.USER_SETTOKEN,
+    payload: token
   };
 };

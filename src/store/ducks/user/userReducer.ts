@@ -33,10 +33,13 @@ const reducer = (state = User, action: ActionUser | Action<GenericActions>): Use
       return { ...state, isOn: false };
 
     case UserActions.USER_LOGINSUCCSSES:
-      return { ...state, isOn: true, data: action.payload };
+      return { ...state, isOn: true, token: String(Math.random()), data: action.payload };
 
     case UserActions.USER_GETMOREPOSTS:
       return { ...state, posts: action.payload };
+
+    case UserActions.USER_SETTOKEN:
+      return { ...state, token: action.payload };
 
     case GenericActions.LOADING:
       return { ...state, loading: true };
