@@ -4,10 +4,11 @@ import React, { AnchorHTMLAttributes } from 'react';
 import { AnchorText, BtnAnchor } from './styles';
 interface Anchor extends AnchorHTMLAttributes<HTMLAnchorElement> {
   button?: boolean;
+  hrefAnchor: string;
 }
-const Anchor = ({ button, ...props }: Anchor) => {
+const Anchor = ({ button, hrefAnchor, ...props }: Anchor) => {
   return (
-    <Link href={`${props.href}`} passHref>
+    <Link href={hrefAnchor} passHref>
       {button ? (
         <BtnAnchor {...props}>{props.children}</BtnAnchor>
       ) : (

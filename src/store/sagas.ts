@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { GET, POST } from '../service/axios';
-import { loadingEndAction } from './ducks/genericActions';
+import { loadingAction, loadingEndAction } from './ducks/genericActions';
 import {
   userGetPostsSucsses,
   userLoginFail,
@@ -32,6 +32,7 @@ function* userSingupSaga(action: UserActionSingUp) {
 
 function* userLoginSaga(action: UserActionLoginSuccsses) {
   try {
+    yield put(loadingAction());
     const response: AxiosResponse<UserData[]> = yield call(
       GET,
       `user/?email=${action.payload.email}&password=${action.payload.password}`

@@ -22,13 +22,13 @@ import {
 } from '../styles/singupStyles';
 
 const SingUp = () => {
-  const user: UserState = useSelector(userSelector);
+  const user = useSelector(userSelector);
   const [toast, setToast] = useState<boolean>();
   const router = useRouter();
 
-  useEffect(() => {
-    console.log(user);
-  }, [user, router]);
+  // useEffect(() => {
+  //   !user.loading && !user.isActive && setToast(true);
+  // }, [user, router]);
 
   return (
     <>
@@ -51,7 +51,7 @@ const SingUp = () => {
               <p>Cadastre-se no Ludis preenchendo os campos abaixo.</p>
             </DivText>
             <FormContainer>
-              <FormSingup submit={() => useEffect} />
+              <FormSingup submit={() => console.log('submited')} />
             </FormContainer>
           </AsideForm>
         </DivForm>

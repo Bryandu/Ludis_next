@@ -1,16 +1,18 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { AnchorText } from '../components/anchor/styles';
+import Anchor from '../components/anchor/anchor';
 import Button from '../components/button/button';
-import FormLogin from '../components/forms/formLogin';
+import FormLogin, { Login } from '../components/forms/formLogin';
 import Logo from '../components/logo/logo';
 import { Spinner } from '../components/spinner/spiner';
 import Toast from '../components/toast/toast';
+import { userLogin } from '../store/ducks/user/userActions';
 import { userSelector } from '../store/ducks/user/userSelectors';
 import { Colors } from '../styles/global';
 import {
@@ -27,6 +29,20 @@ import {
 const Home = () => {
   const [toast, setToast] = useState<boolean>();
   const user = useSelector(userSelector);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+    user.isOn && router.push('timeline');
+  }, [router, user.isOn]);
+
+  const submiting = useCallback(
+    (values: Login) => {
+      dispatch(userLogin(values.email, values.password));
+      setToast(true);
+    },
+    [dispatch]
+  );
 
   return (
     <div>
@@ -75,7 +91,7 @@ const Home = () => {
                   </div>
                 </HomeIcons>
                 <div className="line">ou use seu email e senha</div>
-                <FormLogin submit={() => setToast(true)}>
+                <FormLogin submit={submiting}>
                   <Button
                     width="100%"
                     disabled={user.loading || (user.isOn as undefined | boolean)}
@@ -84,8 +100,8 @@ const Home = () => {
                 </FormLogin>
               </div>
               <SingUpLogin>
-                Não tem uma conta?
-                <AnchorText>&nbsp;Cadastre-se aqui.</AnchorText>
+                Não tem uma conta?&nbsp;
+                <Anchor hrefAnchor="/singUp">Cadastre-se aqui.</Anchor>
               </SingUpLogin>
             </HomeImgTwo>
           </HomeContainer>

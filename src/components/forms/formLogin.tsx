@@ -1,39 +1,23 @@
 import { Form, Formik, FormikHelpers, FormikProps } from 'formik';
-import { useRouter } from 'next/router';
-import { ForwardedRef, forwardRef, HTMLAttributes, useEffect } from 'react';
+import { ForwardedRef, forwardRef, HTMLAttributes } from 'react';
 import { BiKey } from 'react-icons/bi';
 import { HiOutlineMail } from 'react-icons/hi';
-import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
-import { loadingAction } from '../../store/ducks/genericActions';
-import { userLogin } from '../../store/ducks/user/userActions';
-import { userSelector } from '../../store/ducks/user/userSelectors';
 import { AnchorText } from '../anchor/styles';
 import { Input } from '../inputs/input';
 import { DivButton, Rememberme } from './styleForms';
 
-type Login = {
+export type Login = {
   email: string;
   password: string;
 };
-
 interface FormLogin extends HTMLAttributes<HTMLDivElement> {
-  submit?: VoidFunction;
+  submit: (values: Login, actions: FormikHelpers<Login>) => void;
 }
 
 const FormLogin = forwardRef(
   ({ submit, ...props }: FormLogin, ref: ForwardedRef<FormikProps<Login>>) => {
-    const dispatch = useDispatch();
-    const user = useSelector(userSelector);
-    const route = useRouter();
-
-    useEffect(() => {
-      if (user?.isOn) {
-        route.push('/timeline');
-      }
-    }, [user, route]);
-
     const initialValues = {
       email: '',
       password: ''
@@ -43,20 +27,11 @@ const FormLogin = forwardRef(
       password: Yup.string().min(8, 'Minímo oito caractéries.').required('Senha obrigatório.')
     });
 
-    const onSubmit = async (values: Login, actions: FormikHelpers<Login>) => {
-      const { email, password } = values;
-      actions.setSubmitting(true);
-      dispatch(loadingAction());
-      dispatch(userLogin(email, password));
-      submit && submit();
-      user?.isOn && actions.setSubmitting(false);
-    };
-
     return (
       <Formik
         innerRef={ref}
         initialValues={initialValues}
-        onSubmit={onSubmit}
+        onSubmit={submit}
         validationSchema={validationSchema}>
         {() => (
           <Form style={{ width: '100%' }}>
