@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Colors } from './global';
+import { Colors } from '../../styles/global';
 
 export const Main = styled.main`
   display: flex;

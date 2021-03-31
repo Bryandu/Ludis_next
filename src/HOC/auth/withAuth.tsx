@@ -1,22 +1,33 @@
-import { useRouter } from 'next/router';
-import { ComponentType, PropsWithChildren, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { ComponentType, PropsWithChildren, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import Login from '../../components/login/login';
+import { userSetToken } from '../../store/ducks/user/userActions';
 import { userSelector } from '../../store/ducks/user/userSelectors';
 
 function withAuth<T>(WrappedComponent: ComponentType<PropsWithChildren<T>>) {
   const WithAuthRedirect = (props: PropsWithChildren<T>) => {
-    const router = useRouter();
+    const dispatch = useDispatch();
     const user = useSelector(userSelector);
+    const [token, setToken] = useState<string | null>('loading');
 
     useEffect(() => {
-      // if (!localStorage.getItem('token')) {
-      //   router.push({ pathname: '/', query: 'error' });
-      // }
-      // if (!user?.isOn) {
-      //   router.push({ pathname: '/', query: 'error' });
-      // }
-    }, [router]);
+      const localtoken = localStorage.getItem('token') ?? user.token;
+      setToken(localtoken);
+    }, [user.token]);
+
+    useEffect(() => {
+      token && token !== 'loading' && dispatch(userSetToken(token));
+    }, [token, dispatch]);
+
+    switch (token) {
+      case 'loading':
+        return <></>;
+      case null:
+        return <Login />;
+      default:
+        break;
+    }
 
     return <WrappedComponent {...props} {...user} />;
   };
