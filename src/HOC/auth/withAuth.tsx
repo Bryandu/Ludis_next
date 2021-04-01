@@ -2,6 +2,7 @@ import { ComponentType, PropsWithChildren, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Login from '../../components/login/login';
+import { Spinner } from '../../components/spinner/spiner';
 import { userSetToken } from '../../store/ducks/user/userActions';
 import { userSelector } from '../../store/ducks/user/userSelectors';
 
@@ -22,7 +23,11 @@ function withAuth<T>(WrappedComponent: ComponentType<PropsWithChildren<T>>) {
 
     switch (token) {
       case 'loading':
-        return <></>;
+        return (
+          <>
+            <Spinner />
+          </>
+        );
       case null:
         return <Login />;
       default:

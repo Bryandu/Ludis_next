@@ -1,6 +1,6 @@
 import { ComponentType, HTMLAttributes } from 'react';
 import { IconBaseProps } from 'react-icons/lib';
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import { Colors } from '../../styles/global';
 
@@ -15,39 +15,30 @@ export interface ToastI extends HTMLAttributes<HTMLDivElement> {
   colorIcon?: string;
 }
 
-const ToastShow = keyframes`
-  from{transform: translateY(-100%);}
-  to{transform: translateY(0);}
-`;
-
-const ToastHide = keyframes`
-  from{transform: translateY(0);}
-  to{transform: translateY(-100%);}
-`;
-
 export const ToastBody = styled.div<ToastI>`
-  position: absolute;
+  position: fixed;
   z-index: 1000;
   display: flex;
   width: 100%;
-  max-height: 50px;
+  transform: ${props => {
+    return (
+      (props.show && props.top && 'translateY(0)') ||
+      (!props.show && props.top && 'translateY(-100%)') ||
+      (props.show && props.bottom && 'translateY(0)') ||
+      (props.bottom && !props.show && 'translateY(100%)')
+    );
+  }};
   justify-content: center;
   align-items: center;
   background-color: ${props => props.theme.foreground};
   overflow: hidden;
   border: solid 1px ${Colors.blackBackground};
-  animation-name: ${props => (props.show ? ToastShow : ToastHide)};
-  animation-duration: 200ms;
-  animation-timing-function: ease-in-out;
-  pointer-events: none;
-  transition: 200ms opacity;
+  transition: transform 0.2s linear 0s;
   top: ${props => (props.top ? 0 : 'calc(100vh - 50px)')};
-  opacity: 0;
   & > article {
     display: flex;
     z-index: 2;
     width: 100%;
-    height: 100%;
     padding: 5px;
     justify-content: left;
     align-items: center;
@@ -72,22 +63,4 @@ export const ToastBody = styled.div<ToastI>`
       }
     }
   }
-  ${props =>
-    props.top &&
-    props.show &&
-    css`
-      top: 0;
-      position: fixed;
-      pointer-events: all;
-      opacity: 1;
-    `};
-  ${props =>
-    props.bottom &&
-    props.show &&
-    css`
-      top: calc(100vh - 50px);
-      position: fixed;
-      opacity: 1;
-      pointer-events: all;
-    `}
 `;

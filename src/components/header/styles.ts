@@ -98,7 +98,7 @@ export const DropSearch = styled.aside<DropSearch>`
   display: none;
   position: fixed;
   z-index: 99;
-  height: ${props => (props.show ? '45px' : '0')};
+  height: ${props => (props.show ? '35px' : '0')};
   top: 54px;
   padding: 0 15px 10px 15px;
   background-color: ${props => props.theme.background};

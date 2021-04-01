@@ -39,12 +39,13 @@ const Index = () => {
   const isLoading =
     (!data && !error) || (size > 0 && data && typeof data[size - 1] === 'undefined');
   const isEmpty = data && data[size - 1]?.length === 0;
-  const timeoutToast = (e: { show: boolean; message: string } | undefined) => {
+
+  const timeoutToast = useCallback((e: { show: boolean; message: string } | undefined) => {
     setToast(e);
     setTimeout(() => {
-      setToast({ show: false, message: '' });
+      e && setToast({ show: false, message: e?.message });
     }, 10000);
-  };
+  }, []);
 
   const loadMore = useCallback(() => {
     if (!isLoading && !isEmpty) {
