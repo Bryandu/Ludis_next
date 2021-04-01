@@ -2,7 +2,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { Action } from 'redux';
 
 import { GenericActions } from '../genericActions';
-import { ActionUser, Posts, UserActions, UserState } from './userTypes';
+import { ActionUser, UserActions, UserState } from './userTypes';
 
 const User: UserState = {
   isOn: null,

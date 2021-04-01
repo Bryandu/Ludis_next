@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 
@@ -9,7 +8,6 @@ import { FormSingup } from '../components/forms/formSingup';
 import Logo from '../components/logo/logo';
 import Toast from '../components/toast/toast';
 import { userSelector } from '../store/ducks/user/userSelectors';
-import { UserState } from '../store/ducks/user/userTypes';
 import { Colors } from '../styles/global';
 import {
   AsideForm,
@@ -24,11 +22,6 @@ import {
 const SingUp = () => {
   const user = useSelector(userSelector);
   const [toast, setToast] = useState<boolean>();
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   !user.loading && !user.isActive && setToast(true);
-  // }, [user, router]);
 
   return (
     <>
