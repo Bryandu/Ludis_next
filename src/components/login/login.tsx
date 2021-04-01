@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
+import { createRef, useCallback, useEffect, useState } from 'react';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,10 +29,11 @@ const Login = () => {
   const [toast, setToast] = useState<boolean>();
   const user = useSelector(userSelector);
   const dispatch = useDispatch();
+  const toastRedf = createRef();
 
   useEffect(() => {
     user.isOn && localStorage.setItem('token', String(Math.random()));
-  }, [user.isOn]);
+  }, [user.isOn, toastRedf]);
 
   const submiting = useCallback(
     (values: LoginValues) => {

@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import { Colors } from '../../styles/global';
 import { IHeader } from './header';
@@ -6,15 +6,6 @@ import { IHeader } from './header';
 export interface DropSearch {
   show: boolean;
 }
-
-const searchshow = keyframes`
-  from{ top: 0; }
-  to{ top: 54px }
-`;
-const searchhide = keyframes`
-  from{ top: 54px; }
-  to{ top: 0; }
-`;
 
 export const HeaderComp = styled.header<IHeader>`
   display: flex;
@@ -58,7 +49,6 @@ export const SearchHeader = styled.div`
     border: none;
     outline: none;
     background-color: transparent;
-    color: ${props => props.theme.color} !important;
     input:-webkit-autofill {
       box-shadow: unset;
       -webkit-text-fill-color: ${props => props.theme.color} !important;
@@ -108,30 +98,24 @@ export const DropSearch = styled.aside<DropSearch>`
   display: none;
   position: fixed;
   z-index: 99;
-  top: ${props => (props.show ? '54px' : '0')};
+  height: ${props => (props.show ? '45px' : '0')};
+  top: 54px;
   padding: 0 15px 10px 15px;
   background-color: ${props => props.theme.background};
+  transition: height 0.2s ease 0s;
   @media screen and (max-width: 768px) {
-    /* display: ${props => (props.show ? 'block' : 'none')}; */
     display: block;
   }
   div,
   form,
   label,
   input {
-    height: 35px;
+    display: block;
+    position: relative;
+    height: ${props => (props.show ? '35px' : '0')};
+    transition: height 0.3s ease 0s;
     display: block;
     width: 100%;
     margin: 0;
   }
-  ${props =>
-    props.show &&
-    css`
-      animation: 200ms linear ${searchshow};
-    `}
-  ${props =>
-    !props.show &&
-    css`
-      animation: 200ms linear ${searchhide};
-    `}
 `;

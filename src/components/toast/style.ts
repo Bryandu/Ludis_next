@@ -15,21 +15,20 @@ export interface ToastI extends HTMLAttributes<HTMLDivElement> {
   colorIcon?: string;
 }
 
-const ToastShowTop = keyframes`
-  from{height: 0;}
-  to{height: 50px;}
+const ToastShow = keyframes`
+  from{transform: translateY(-100%);}
+  to{transform: translateY(0);}
 `;
 
-const ToastShowBottom = keyframes`
-  to{opacity: 1;}
+const ToastHide = keyframes`
+  from{transform: translateY(0);}
+  to{transform: translateY(-100%);}
 `;
-
-export const ToastContainer = styled.div``;
 
 export const ToastBody = styled.div<ToastI>`
   position: absolute;
   z-index: 1000;
-  display: none;
+  display: flex;
   width: 100%;
   max-height: 50px;
   justify-content: center;
@@ -37,6 +36,13 @@ export const ToastBody = styled.div<ToastI>`
   background-color: ${props => props.theme.foreground};
   overflow: hidden;
   border: solid 1px ${Colors.blackBackground};
+  animation-name: ${props => (props.show ? ToastShow : ToastHide)};
+  animation-duration: 200ms;
+  animation-timing-function: ease-in-out;
+  pointer-events: none;
+  transition: 200ms opacity;
+  top: ${props => (props.top ? 0 : 'calc(100vh - 50px)')};
+  opacity: 0;
   & > article {
     display: flex;
     z-index: 2;
@@ -68,20 +74,20 @@ export const ToastBody = styled.div<ToastI>`
   }
   ${props =>
     props.top &&
+    props.show &&
     css`
       top: 0;
-      animation: ${ToastShowTop} 150ms ease-in;
+      position: fixed;
+      pointer-events: all;
+      opacity: 1;
     `};
   ${props =>
     props.bottom &&
+    props.show &&
     css`
       top: calc(100vh - 50px);
       position: fixed;
-      animation: ${ToastShowBottom} 200ms ease-in;
-    `}
-  ${props =>
-    props.show &&
-    css`
-      display: flex;
+      opacity: 1;
+      pointer-events: all;
     `}
 `;
