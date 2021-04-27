@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { createRef, useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ import Anchor from '../anchor/anchor';
 import Button from '../button/button';
 import FormLogin, { LoginValues } from '../forms/formLogin';
 import Logo from '../logo/logo';
-import { Spinner } from '../spinner/spiner';
+import { Spinner } from '../spinner/spinner';
 import Toast from '../toast/toast';
 import {
   ContainerHome,
@@ -29,13 +29,8 @@ const Login = () => {
   const [toast, setToast] = useState<boolean>();
   const user = useSelector(userSelector);
   const dispatch = useDispatch();
-  const toastRedf = createRef();
 
-  useEffect(() => {
-    user.isOn && localStorage.setItem('token', String(Math.random()));
-  }, [user.isOn, toastRedf]);
-
-  const submiting = useCallback(
+  const submitting = useCallback(
     (values: LoginValues) => {
       dispatch(userLogin(values.email, values.password));
       setToast(true);
@@ -56,7 +51,7 @@ const Login = () => {
               setToast(false);
             }}
             Icon={FiAlertCircle}
-            colorIcon={Colors.redSecundary}
+            colorIcon={Colors.redSecondary}
             top
             show={toast && !user.loading && !user.isOn}>
             Email ou senha incorretos.
@@ -90,7 +85,7 @@ const Login = () => {
                   </div>
                 </HomeIcons>
                 <div className="line">ou use seu email e senha</div>
-                <FormLogin submit={submiting}>
+                <FormLogin submit={submitting}>
                   <Button
                     width="100%"
                     disabled={user.loading || (user.isOn as undefined | boolean)}
@@ -100,7 +95,7 @@ const Login = () => {
               </div>
               <SingUpLogin>
                 Não tem uma conta?&nbsp;
-                <Anchor hrefAnchor="/singUp">Cadastre-se aqui.</Anchor>
+                <Anchor href="/singUp">Cadastre-se aqui.</Anchor>
               </SingUpLogin>
             </HomeImgTwo>
           </HomeContainer>

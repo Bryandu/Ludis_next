@@ -23,7 +23,7 @@ export const InputIcon = ({ icon: Icon, src, width, height, ...props }: InputIco
       <DivInputIcon>
         <label>
           <input type="file" {...field} {...props} />
-          {Icon && <Icon size={props.iconsize} color={props.iconColor ?? Colors.blackBody} />}
+          {Icon && <Icon size={props.iconsize} color={props.iconColor ?? Colors.blackBackground} />}
           {src && <Image width={width} height={height} src={src} />}
         </label>
       </DivInputIcon>

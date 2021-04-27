@@ -11,7 +11,7 @@ export const NewpostContainer = styled.div`
   padding: 0.5rem 0;
   transition: 0.2s ease-in-out;
   &:hover {
-    color: ${Colors.redSecundary};
+    color: ${Colors.redSecondary};
     cursor: pointer;
   }
   p {

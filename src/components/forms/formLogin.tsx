@@ -24,7 +24,7 @@ const FormLogin = forwardRef(
     };
     const validationSchema = Yup.object().shape({
       email: Yup.string().email('Email inválido.').required('Email obrigatório.'),
-      password: Yup.string().min(8, 'Minímo oito caractéries.').required('Senha obrigatório.')
+      password: Yup.string().min(8, 'Mínimo oito caracteres.').required('Senha obrigatório.')
     });
 
     return (
@@ -67,7 +67,7 @@ const FormLogin = forwardRef(
             <Rememberme>
               <div>
                 <label>
-                  <input type="checkbox" name="remenber" />
+                  <input type="checkbox" name="remember" />
                   &nbsp;lembre-me
                 </label>
               </div>

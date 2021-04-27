@@ -25,18 +25,18 @@ export const ButtonContainer = styled.button<BtnOutline>`
   background-color: ${Colors.redPrimary};
   font-size: 1rem;
   color: ${props => props.theme.color};
-  outline: ${Colors.redSecundary};
+  outline: ${Colors.redSecondary};
   box-shadow: 0 4px 14px 0 rgba(207, 16, 32, 0.4);
   &:hover {
     cursor: pointer;
-    background-color: ${Colors.redSecundary};
+    background-color: ${Colors.redSecondary};
   }
   ${props =>
     props.outline &&
     css`
       background: transparent;
-      border: 2px solid ${Colors.redSecundary};
-      color: ${Colors.redSecundary};
+      border: 2px solid ${Colors.redSecondary};
+      color: ${Colors.redSecondary};
       &:hover {
         cursor: pointer;
         color: ${props => props.theme.color};

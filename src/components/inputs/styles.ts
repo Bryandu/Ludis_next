@@ -53,7 +53,7 @@ export const DivInputIcon = styled.div<DivInputI>`
     cursor: pointer;
     transition: 0.2s ease-in-out;
     & :hover {
-      color: ${Colors.redSecundary} !important;
+      color: ${Colors.redSecondary} !important;
     }
   }
   img {

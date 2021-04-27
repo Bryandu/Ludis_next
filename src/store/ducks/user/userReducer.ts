@@ -8,14 +8,15 @@ const User: UserState = {
   isOn: null,
   isActive: null,
   loading: false,
-  token: null,
-  photoProfile: null,
-  data: {
+  user: {
+    token: null,
     id: null,
+    name: null,
+    photoProfile: null,
     email: null,
-    password: null
-  },
-  posts: null
+    password: null,
+    posts: null
+  }
 };
 
 const reducer = (state = User, action: ActionUser | Action<GenericActions>): UserState => {
@@ -32,14 +33,14 @@ const reducer = (state = User, action: ActionUser | Action<GenericActions>): Use
     case UserActions.USER_LOGINFAIL:
       return { ...state, isOn: false };
 
-    case UserActions.USER_LOGINSUCCSSES:
-      return { ...state, isOn: true, token: String(Math.random()), data: action.payload };
+    case UserActions.USER_LOGINSUCCESSES:
+      return { ...state, isOn: true, user: action.payload };
 
     case UserActions.USER_GETMOREPOSTS:
-      return { ...state, posts: action.payload };
+      return { ...state, user: { posts: action.payload } };
 
     case UserActions.USER_SETTOKEN:
-      return { ...state, token: action.payload };
+      return { ...state, user: { token: action.payload } };
 
     case GenericActions.LOADING:
       return { ...state, loading: true };

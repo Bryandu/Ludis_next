@@ -27,7 +27,7 @@ export const ContainerField = styled.div`
 `;
 
 export const Erros = styled.bdo`
-  color: ${Colors.redSecundary};
+  color: ${Colors.redSecondary};
   font-size: 0.85rem;
 `;
 

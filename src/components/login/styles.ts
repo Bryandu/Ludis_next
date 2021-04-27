@@ -116,13 +116,13 @@ export const HomeIcons = styled.div`
     justify-content: center;
     padding: 0.7rem;
     border-radius: 50%;
-    border: 2px solid ${Colors.redSecundary};
+    border: 2px solid ${Colors.redSecondary};
     margin-right: 10px;
-    color: ${Colors.redSecundary};
+    color: ${Colors.redSecondary};
     transition: 200ms ease-in-out;
     & :hover {
       cursor: pointer;
-      background: ${Colors.redSecundary};
+      background: ${Colors.redSecondary};
       color: ${Colors.blackBackground};
       border-color: ${props => props.theme.foreground};
     }
@@ -133,9 +133,9 @@ export const SingUpLogin = styled.span`
   display: flex;
   padding: 1rem;
   a {
-    text-decoration: underline ${Colors.redSecundary} 2px;
+    text-decoration: underline ${Colors.redSecondary} 2px;
     & :hover {
-      color: ${Colors.redSecundary};
+      color: ${Colors.redSecondary};
     }
   }
 `;

@@ -19,7 +19,7 @@ export const Spinner = styled.span<Spin>`
   height: ${props => (props.size ? props.size : '40px')};
   border-radius: 50%;
   border: 2px solid transparent;
-  border-left-color: ${Colors.redSecundary};
+  border-left-color: ${Colors.redSecondary};
   background: transparent;
   animation: ${spin} 500ms linear infinite;
 `;

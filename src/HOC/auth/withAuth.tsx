@@ -2,7 +2,7 @@ import { ComponentType, PropsWithChildren, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Login from '../../components/login/login';
-import { Spinner } from '../../components/spinner/spiner';
+import { Spinner } from '../../components/spinner/spinner';
 import { userSetToken } from '../../store/ducks/user/userActions';
 import { userSelector } from '../../store/ducks/user/userSelectors';
 
@@ -10,12 +10,12 @@ function withAuth<T>(WrappedComponent: ComponentType<PropsWithChildren<T>>) {
   const WithAuthRedirect = (props: PropsWithChildren<T>) => {
     const dispatch = useDispatch();
     const user = useSelector(userSelector);
-    const [token, setToken] = useState<string | null>('loading');
+    const [token, setToken] = useState<string | undefined | null>('loading');
 
     useEffect(() => {
-      const localtoken = localStorage.getItem('token') ?? user.token;
+      const localtoken = localStorage.getItem('token') ?? user.user?.token;
       setToken(localtoken);
-    }, [user.token]);
+    }, [user.user?.token, token]);
 
     useEffect(() => {
       token && token !== 'loading' && dispatch(userSetToken(token));
@@ -29,6 +29,8 @@ function withAuth<T>(WrappedComponent: ComponentType<PropsWithChildren<T>>) {
           </>
         );
       case null:
+        return <Login />;
+      case undefined:
         return <Login />;
       default:
         break;

@@ -1,11 +1,15 @@
 export type UserData = {
-  id: number | string | null;
-  email: string | null;
-  password: string | null;
+  id?: string | null;
+  name?: string | null;
+  email?: string | null;
+  password?: string | null;
+  posts?: Posts[] | null;
+  photoProfile?: string | null;
+  token?: string | null;
 };
 
 export type Posts = {
-  id: number;
+  id: string;
   name: string;
   albumId: number;
   title: string;
@@ -16,17 +20,14 @@ export interface UserState {
   isOn: boolean | null;
   isActive: boolean | null;
   loading: boolean | null;
-  token: string | null;
-  data: UserData | null;
-  posts: Posts[] | null;
-  photoProfile: string | null;
+  user: UserData | null;
 }
 
 export enum UserActions {
   USER_LOGIN = 'USER_LOGIN',
   USER_SINGUP = 'USER_SINGUP',
   USER_SINGUPSUCCSSES = 'USER_SINGUPSUCCSSES',
-  USER_LOGINSUCCSSES = 'USER_LOGINSUCCSSES',
+  USER_LOGINSUCCESSES = 'USER_LOGINSUCCESSES',
   USER_LOGINFAIL = 'USER_LOGINFAIL',
   USER_SINGUPFAIL = 'USER_SINGUPFAIL',
   USER_GETINITIALPOSTS = 'USER_GETINITIALPOSTS',
@@ -48,13 +49,9 @@ export interface UserActionLogin {
     password: string;
   };
 }
-export interface UserActionLoginSuccsses {
-  type: UserActions.USER_LOGINSUCCSSES;
-  payload: {
-    id: number | string | null;
-    email: string | null;
-    password: string | null;
-  };
+export interface UserActionLoginSuccesses {
+  type: UserActions.USER_LOGINSUCCESSES;
+  payload: UserData;
 }
 export interface UserActionLoginFail {
   type: UserActions.USER_LOGINFAIL;
@@ -62,18 +59,19 @@ export interface UserActionLoginFail {
 export interface UserActionSingUp {
   type: UserActions.USER_SINGUP;
   payload: {
+    name: string;
     email: string;
     password: string;
   };
 }
-export interface UserActionSingupSuccsses {
+export interface UserActionSingupSuccesses {
   type: UserActions.USER_SINGUPSUCCSSES;
 }
 export interface UserActionSingupFail {
   type: UserActions.USER_SINGUPFAIL;
 }
 
-export interface UserActionGetInitilPosts {
+export interface UserActionGetInitialPosts {
   type: UserActions.USER_GETINITIALPOSTS;
 }
 
@@ -82,7 +80,7 @@ export interface UserActionGetMorePosts {
   payload: Posts[];
 }
 
-export interface UserActionGetPostsSucsses {
+export interface UserActionGetPostsSuccesses {
   type: UserActions.USER_GETPOSTSSUCSSES;
   payload: Posts[];
 }
@@ -95,12 +93,12 @@ export interface UserActionSetToken {
 export type ActionUser =
   | UserActionHydrate
   | UserActionSingUp
-  | UserActionSingupSuccsses
+  | UserActionSingupSuccesses
   | UserActionSingupFail
   | UserActionLogin
-  | UserActionLoginSuccsses
+  | UserActionLoginSuccesses
   | UserActionLoginFail
-  | UserActionGetInitilPosts
+  | UserActionGetInitialPosts
   | UserActionGetMorePosts
-  | UserActionGetPostsSucsses
+  | UserActionGetPostsSuccesses
   | UserActionSetToken;

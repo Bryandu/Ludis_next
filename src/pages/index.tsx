@@ -6,11 +6,11 @@ import { useSelector } from 'react-redux';
 import { useSWRInfinite } from 'swr';
 
 import Header from '../components/header/header';
-import InfineScroll from '../components/infinitescroll/infinitescroll';
+import InfiniteScroll from '../components/infinitescroll/infinitescroll';
 import NavMenu from '../components/navmenu/navMenu';
 import NewPost from '../components/newPost/newPost';
 import Post from '../components/posts/post';
-import { Spinner } from '../components/spinner/spiner';
+import { Spinner } from '../components/spinner/spinner';
 import Toast from '../components/toast/toast';
 import withAuth from '../HOC/auth/withAuth';
 import { GET } from '../service/axios';
@@ -60,7 +60,7 @@ const Index = () => {
       </Head>
       <Toast
         bottom
-        colorIcon={toast?.message === 'Created' ? Colors.greenSucsses : Colors.redSecundary}
+        colorIcon={toast?.message === 'Created' ? Colors.greenSuccess : Colors.redSecondary}
         Icon={toast?.message === 'Created' ? FiCheckCircle : FiAlertCircle}
         show={toast?.show}>
         {toast?.message === 'Created' ? 'Publicação feita' : 'Falha na publicação'}
@@ -91,7 +91,7 @@ const Index = () => {
                     nameUser={String(post?.name)}
                     body={post?.url}
                     message={post?.title}
-                    photoUser={user.photoProfile as string}
+                    photoUser={user?.user?.photoProfile as string}
                   />
                 )
               );
@@ -99,7 +99,7 @@ const Index = () => {
 
           <div className="warnings">
             {isLoading && !error && <Spinner />}
-            {!isLoading && data && <InfineScroll loadmore={loadMore} />}
+            {!isLoading && data && <InfiniteScroll loadmore={loadMore} />}
             {isEmpty && <p>Acabaram os posts.</p>}
           </div>
         </TimelinePosts>

@@ -1,4 +1,5 @@
 import { Form, Formik } from 'formik';
+import { AiOutlineUser } from 'react-icons/ai';
 import { BiKey } from 'react-icons/bi';
 import { CgPassword } from 'react-icons/cg';
 import { HiOutlineMail } from 'react-icons/hi';
@@ -11,6 +12,7 @@ import { Input } from '../inputs/input';
 import { ContainerField, DivButton, Label } from './styleForms';
 
 type SingUp = {
+  name: string;
   email: string;
   password: string;
   passwordConfirm: string;
@@ -25,21 +27,24 @@ export const FormSingup = ({ click, submit }: FormSingup) => {
   const dispatch = useDispatch();
 
   const initialValues = {
+    name: '',
     email: '',
     password: '',
     passwordConfirm: ''
   };
 
   const validationSchema = Yup.object().shape({
+    name: Yup.string().min(2, 'O nome é muito pequeno.').required('Campo obrigatório'),
     email: Yup.string().email('Email inválido.').required('Campo obrigatório'),
-    password: Yup.string().min(8, 'Minimo oite caractéries.').required('Campo obrigatório'),
+    password: Yup.string().min(8, 'Mínimo oito caracteres.').required('Campo obrigatório'),
     passwordConfirm: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Senhas não são iguais.')
       .required('Campo obrigatório')
   });
 
   const onSubmit = (values: SingUp) => {
-    dispatch(userSingup(values.email, values.password));
+    const { name, email, password } = values;
+    dispatch(userSingup(name, email, password));
     return submit && submit();
   };
 
@@ -48,6 +53,12 @@ export const FormSingup = ({ click, submit }: FormSingup) => {
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         {() => (
           <Form>
+            <ContainerField>
+              <Label>
+                Nome
+                <Input name="name" icon={AiOutlineUser} height="40px" iconSize="25px" lineDown />
+              </Label>
+            </ContainerField>
             <ContainerField>
               <Label>
                 Email

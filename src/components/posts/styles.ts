@@ -14,7 +14,7 @@ export const PostContainer = styled.article`
   border-radius: 5px;
   box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 1);
   hr {
-    border-color: ${Colors.redSecundary};
+    border-color: ${Colors.redSecondary};
   }
 `;
 

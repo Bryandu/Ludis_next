@@ -98,7 +98,12 @@ const NewPost = ({ statusPost }: NewPostI) => {
               {preview && (
                 <SetPostPreview>
                   {photo && (
-                    <Image layout="fill" objectFit="contain" src={preview as string} alt="previw" />
+                    <Image
+                      layout="fill"
+                      objectFit="contain"
+                      src={preview as string}
+                      alt="preview"
+                    />
                   )}
                   {video && (
                     <video width="100%" height="100%" controls src={preview as string}>
@@ -143,7 +148,7 @@ const NewPost = ({ statusPost }: NewPostI) => {
         </SetPost>
       </Modal>
       <NewpostContainer onClick={() => setModal(true)}>
-        <BiPlusCircle color={Colors.redSecundary} size="24px" />
+        <BiPlusCircle color={Colors.redSecondary} size="24px" />
         <p>Nova publicação</p>
       </NewpostContainer>
     </>

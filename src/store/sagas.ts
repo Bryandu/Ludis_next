@@ -4,52 +4,51 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { GET, POST } from '../service/axios';
 import { loadingAction, loadingEndAction } from './ducks/genericActions';
 import {
-  userGetPostsSucsses,
+  userGetPostsSuccesses,
   userLoginFail,
-  userLoginSuccsses,
+  userLoginSuccesses,
   userSingupFail,
-  userSingupSeccsses
+  userSingupSuccesses
 } from './ducks/user/userActions';
 import {
   Posts,
-  UserActionLoginSuccsses,
+  UserActionLoginSuccesses as UserActionLoginSuccesses,
   UserActions,
-  UserActionSingUp,
-  UserData
+  UserActionSingUp
 } from './ducks/user/userTypes';
 
 function* userSingupSaga(action: UserActionSingUp) {
   try {
-    const { status }: AxiosResponse<Posts[]> = yield call(POST, 'user', action.payload);
+    const { status }: AxiosResponse<Posts[]> = yield call(POST, 'users/', action.payload);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return yield status === 201 ? put(userSingupSeccsses()) : put(userSingupFail());
+    return yield status === 201 ? put(userSingupSuccesses()) : put(userSingupFail());
   } catch (error) {
     yield put(userSingupFail());
     console.log(error);
   }
 }
 
-function* userLoginSaga(action: UserActionLoginSuccsses) {
+function* userLoginSaga(action: UserActionLoginSuccesses) {
   try {
+    const { password, email } = action.payload;
     yield put(loadingAction());
-    const response: AxiosResponse<UserData[]> = yield call(
-      GET,
-      `user/?email=${action.payload.email}&password=${action.payload.password}`
-    );
-    response.data[0] == undefined
+    const response: AxiosResponse<{ token: string }> = yield call(POST, `users/authenticate`, {
+      email,
+      password
+    });
+    response.data.token == undefined
       ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         yield put(userLoginFail())
       : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        yield put(userLoginSuccsses(response.data[0]));
-    localStorage.setItem('token', String(Math.random()));
+        yield put(userLoginSuccesses(response.data.token));
+    localStorage.setItem('token', response.data.token);
     yield put(loadingEndAction());
   } catch (error) {
     yield put(userLoginFail());
     yield put(loadingEndAction());
-    console.log(error);
   }
 }
 
@@ -59,20 +58,11 @@ function* userInitialPostsSaga() {
       GET,
       'https://jsonplaceholder.typicode.com/photos?_page=1'
     );
-    yield put(userGetPostsSucsses(response.data));
+    yield put(userGetPostsSuccesses(response.data));
   } catch (error) {
     console.log(error);
   }
 }
-
-// function* userGetMorePostsSaga(action: UserActionGetMorePosts) {
-//   try {
-//     const response = yield call(GET, 'https://jsonplaceholder.typicode.com/photos?_page=1');
-//     yield put(userGetPostsSucsses(response.data));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 
 function* rootSaga() {
   yield all([

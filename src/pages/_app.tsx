@@ -4,7 +4,7 @@ import '../../public/nprogress.css';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Nprogres from 'nprogress';
+import Nprogress from 'nprogress';
 import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
@@ -26,9 +26,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   };
 
   useEffect(() => {
-    Nprogres.configure({ showSpinner: false });
-    router.events.on('routeChangeStart', () => Nprogres.start());
-    router.events.on('routeChangeComplete', () => Nprogres.done());
+    Nprogress.configure({ showSpinner: false });
+    router.events.on('routeChangeStart', () => Nprogress.start());
+    router.events.on('routeChangeComplete', () => Nprogress.done());
     setTheme();
   }, [router.events]);
 

@@ -31,7 +31,7 @@ const SingUp = () => {
       <Section>
         <Toast
           Icon={FiAlertCircle}
-          colorIcon={Colors.redSecundary}
+          colorIcon={Colors.redSecondary}
           hide={() => setToast(false)}
           top
           show={toast && !user.isActive}>
@@ -44,7 +44,7 @@ const SingUp = () => {
               <p>Cadastre-se no Ludis preenchendo os campos abaixo.</p>
             </DivText>
             <FormContainer>
-              <FormSingup submit={() => console.log('submited')} />
+              <FormSingup submit={() => console.log('submitted')} />
             </FormContainer>
           </AsideForm>
         </DivForm>

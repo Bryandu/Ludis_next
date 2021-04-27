@@ -5,7 +5,7 @@ import { IoIosArrowDropdown } from 'react-icons/io';
 import { IconContext } from 'react-icons/lib';
 
 import { Colors } from '../../styles/global';
-import MenuDrop from '../menudrop/medudrop';
+import MenuDrop from '../menudrop/menudrop';
 import { List, Nav } from './styles';
 
 export interface MenuI {
@@ -13,13 +13,13 @@ export interface MenuI {
 }
 
 const Menu = () => {
-  const [elementtarget, setElementtaerget] = useState<HTMLElement>();
+  const [elementtarget, setElementtarget] = useState<HTMLElement>();
   const [drop, setDrop] = useState<boolean>();
   const modalRef = useRef(null);
 
   useEffect(() => {
     const main = document.getElementById('__next');
-    main && setElementtaerget(main);
+    main && setElementtarget(main);
   }, []);
 
   const showDrop = () => {
