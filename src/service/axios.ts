@@ -1,41 +1,33 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export const baseURL = axios.create({
-  baseURL: process.env.NEXT_APP_API //'https://my-json-server.typicode.com/Bryandu/fake_dbludis'
+  baseURL: 'https://ludis-api.herokuapp.com/'
 });
 
 export async function GET<T>(
   path: string,
   config?: AxiosRequestConfig
 ): Promise<AxiosResponse<T> | undefined> {
-  try {
-    return await baseURL.get(path, config);
-  } catch (error) {
-    console.log(error);
-  }
+  return await baseURL.get(path, config);
 }
 
-export async function POST<T>(
+export function POST<T>(
   path: string,
-  data: unknown,
+  data: T,
   config?: AxiosRequestConfig
 ): Promise<AxiosResponse<T> | undefined> {
-  try {
-    return await baseURL.post(path, data, config);
-  } catch (error) {
-    console.log(error);
-  }
+  return baseURL.post(path, data, config);
 }
 
 export async function PUT<T>(
   path: string,
-  data: unknown,
+  data: T,
   config?: AxiosRequestConfig
 ): Promise<AxiosResponse<T> | undefined> {
   try {
-    return await baseURL.post(path, data, config);
+    return await baseURL.put(path, data, config);
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }
 
@@ -46,6 +38,6 @@ export async function DELETE<T>(
   try {
     return await baseURL.delete(path, config);
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }

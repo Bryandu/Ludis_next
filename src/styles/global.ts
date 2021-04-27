@@ -2,9 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 
 export const Colors = {
   redPrimary: '#cf1020',
-  redSecundary: '#DC143C',
-  blackBackground: '#111111',
-  blackBody: '#1c1c1c'
+  redSecondary: '#DC143C',
+  blackBackground: '#1c1c1c',
+  blackForeground: '#151515',
+  greenSuccess: '#4EAA00'
 };
 
 export default createGlobalStyle`
@@ -37,5 +38,4 @@ export default createGlobalStyle`
         background: ${props => props.theme.background};
         color: ${props => props.theme.color};
     }
-    
 `;

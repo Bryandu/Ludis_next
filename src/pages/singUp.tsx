@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 
@@ -9,7 +8,6 @@ import { FormSingup } from '../components/forms/formSingup';
 import Logo from '../components/logo/logo';
 import Toast from '../components/toast/toast';
 import { userSelector } from '../store/ducks/user/userSelectors';
-import { UserState } from '../store/ducks/user/userTypes';
 import { Colors } from '../styles/global';
 import {
   AsideForm,
@@ -22,13 +20,8 @@ import {
 } from '../styles/singupStyles';
 
 const SingUp = () => {
-  const user: UserState = useSelector(userSelector);
+  const user = useSelector(userSelector);
   const [toast, setToast] = useState<boolean>();
-  const router = useRouter();
-
-  useEffect(() => {
-    console.log(user);
-  }, [user, router]);
 
   return (
     <>
@@ -38,7 +31,7 @@ const SingUp = () => {
       <Section>
         <Toast
           Icon={FiAlertCircle}
-          colorIcon={Colors.redSecundary}
+          colorIcon={Colors.redSecondary}
           hide={() => setToast(false)}
           top
           show={toast && !user.isActive}>
@@ -51,7 +44,7 @@ const SingUp = () => {
               <p>Cadastre-se no Ludis preenchendo os campos abaixo.</p>
             </DivText>
             <FormContainer>
-              <FormSingup submit={() => useEffect} />
+              <FormSingup submit={() => console.log('submitted')} />
             </FormContainer>
           </AsideForm>
         </DivForm>

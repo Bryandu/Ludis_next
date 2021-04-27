@@ -9,12 +9,12 @@ export const NewPost = styled.div`
 export const PostContainer = styled.article`
   display: block;
   position: relative;
-  margin: 1rem;
-  background-color: ${Colors.blackBody};
+  margin: 0.5rem 1rem;
+  background-color: ${props => props.theme.foreground};
   border-radius: 5px;
+  box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 1);
   hr {
-    border-color: ${Colors.redSecundary};
-    margin: 0 0 1rem;
+    border-color: ${Colors.redSecondary};
   }
 `;
 
@@ -41,7 +41,12 @@ export const PostFooterHeader = styled.div`
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        margin-right: 0.5rem;
+        margin: 0 0.5rem;
+        @media screen and (max-width: 768px) {
+          width: 25px;
+          height: 25px;
+          margin: 0 0.2rem;
+        }
       }
     }
   }
@@ -50,8 +55,18 @@ export const PostFooterHeader = styled.div`
 export const PostBody = styled.div`
   display: block;
   position: relative;
-  min-height: 310px;
+  width: 100%;
+  img {
+    position: relative !important;
+    width: 80vw !important;
+    height: auto !important;
+    max-height: 90vh !important;
+    @media screen and (max-width: 480px) {
+      width: 100vw !important;
+    }
+  }
   div {
+    position: relative !important;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
@@ -62,8 +77,11 @@ export const PostFooter = styled.footer`
   position: relative;
   width: 100%;
   padding: 1rem;
+  p {
+    font-size: max(12px, 1.2vw);
+  }
   & :nth-child(2) {
-    padding: 0.5rem 1rem 0;
+    padding: 0 0.5rem 0;
   }
   div {
     & :nth-child(3) {
@@ -84,7 +102,7 @@ export const PostFooter = styled.footer`
 
 export const PostDescription = styled.div`
   display: block;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 `;
 
 export const PostCommentsContainer = styled.aside`
@@ -105,7 +123,7 @@ export const PostComment = styled.div`
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      margin-right: 0.5rem;
+      margin: 0 0.5rem;
     }
   }
   p {
@@ -127,6 +145,36 @@ export const PostComment = styled.div`
         display: flex;
         align-items: center;
       }
+    }
+  }
+`;
+
+export const ShowPost = styled.div`
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  max-width: 1920px;
+  max-height: 1080px;
+`;
+
+export const PostModalBody = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  svg {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    & :hover {
+      opacity: 0.5;
     }
   }
 `;

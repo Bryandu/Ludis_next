@@ -1,6 +1,6 @@
 import { ComponentType, HTMLAttributes } from 'react';
 import { IconBaseProps } from 'react-icons/lib';
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import { Colors } from '../../styles/global';
 
@@ -15,32 +15,30 @@ export interface ToastI extends HTMLAttributes<HTMLDivElement> {
   colorIcon?: string;
 }
 
-const ToastShowTop = keyframes`
-  from{height: 0;}
-  to{height: 50px;}
-`;
-
-const ToastShowBottom = keyframes`
-  from{height: 0;}
-  to{height: 50px;}
-`;
-
 export const ToastBody = styled.div<ToastI>`
-  position: absolute;
-  z-index: 999;
-  display: none;
+  position: fixed;
+  z-index: 1000;
+  display: flex;
   width: 100%;
-  max-height: 50px;
+  transform: ${props => {
+    return (
+      (props.show && props.top && 'translateY(0)') ||
+      (!props.show && props.top && 'translateY(-100%)') ||
+      (props.show && props.bottom && 'translateY(0)') ||
+      (props.bottom && !props.show && 'translateY(100%)')
+    );
+  }};
   justify-content: center;
   align-items: center;
-  background-color: ${Colors.blackBody};
+  background-color: ${props => props.theme.foreground};
   overflow: hidden;
   border: solid 1px ${Colors.blackBackground};
+  transition: transform 0.2s linear 0s;
+  top: ${props => (props.top ? 0 : 'calc(100vh - 50px)')};
   & > article {
     display: flex;
     z-index: 2;
     width: 100%;
-    height: 100%;
     padding: 5px;
     justify-content: left;
     align-items: center;
@@ -65,21 +63,4 @@ export const ToastBody = styled.div<ToastI>`
       }
     }
   }
-  ${props =>
-    props.top &&
-    css`
-      top: 0;
-      animation: ${ToastShowTop} 150ms ease-in;
-    `};
-  ${props =>
-    props.bottom &&
-    css`
-      bottom: 0;
-      animation: ${ToastShowBottom} 150ms ease-in;
-    `}
-  ${props =>
-    props.show &&
-    css`
-      display: flex;
-    `}
 `;

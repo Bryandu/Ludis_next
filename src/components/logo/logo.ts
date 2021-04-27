@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { Colors } from '../../styles/global';
 interface Logo {
   fontsize?: string;
 }
@@ -10,7 +11,7 @@ const Logo = styled.h1.attrs((props: Logo) => ({
   font-family: 'Androgyne';
   font-size: ${props => props.fontsize};
   font-weight: normal;
-  color: #cf1020;
+  color: ${Colors.redPrimary};
   padding-top: 5px;
 `;
 

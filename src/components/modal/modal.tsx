@@ -14,18 +14,21 @@ const Modal = ({ showModal, hiddenModal, children }: Modal) => {
   const [modalroot, setModalroot] = useState<HTMLElement | null>();
 
   useEffect(() => {
+    const scrollbody = document.body;
+    showModal ? (scrollbody.style.overflow = 'hidden') : (scrollbody.style.overflow = 'auto');
     setModalroot(document.getElementById('modal-root'));
     setWindow(true);
-  }, []);
-  const closeModal = (e: unknown) => {
-    (e as HTMLDivElement).id === 'modal' ? hiddenModal() : false;
-  };
+  }, [showModal]);
 
-  const modal = showModal ? (
+  function closeModal(e: EventTarget) {
+    (e as HTMLDivElement).id === 'modal' ? hiddenModal() : false;
+  }
+
+  const modal = showModal && (
     <ModalContainer showModal={showModal} onClick={e => closeModal(e.target)} id="modal">
       <ModalBody>{children}</ModalBody>
     </ModalContainer>
-  ) : null;
+  );
 
   if (isWindow && modalroot) {
     return createPortal(modal, modalroot);

@@ -8,9 +8,9 @@ export const BtnAnchor = styled.a`
   text-align: center;
   justify-content: center;
   align-items: center;
-  background: ${Colors.redSecundary};
+  background: ${Colors.redSecondary};
   padding: 8px;
-  color: #ffffff;
+  color: ${props => props.theme.color};
   border: none;
   border-radius: 3px;
   outline: none;
@@ -18,18 +18,17 @@ export const BtnAnchor = styled.a`
   text-decoration: none;
   &:hover {
     cursor: pointer;
-    background: ${Colors.redSecundary};
+    background: ${Colors.redSecondary};
   }
 `;
 
 export const AnchorText = styled.a`
   color: #ffffff;
-  margin: 0 0.5rem;
   text-decoration: none;
-  outline-color: ${Colors.redSecundary};
+  outline-color: ${Colors.redSecondary};
   transition: 200ms ease-in-out;
   &:hover {
     cursor: pointer;
-    color: ${Colors.redSecundary};
+    color: ${Colors.redSecondary};
   }
 `;

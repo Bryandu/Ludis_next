@@ -5,13 +5,17 @@ import { AnchorText, BtnAnchor } from './styles';
 interface Anchor extends AnchorHTMLAttributes<HTMLAnchorElement> {
   button?: boolean;
 }
-const Anchor = ({ button, ...props }: Anchor) => {
+const Anchor = ({ button, href, ...props }: Anchor) => {
   return (
-    <Link href={`${props.href}`} passHref>
+    <Link href={`${href}`} passHref>
       {button ? (
-        <BtnAnchor {...props}>{props.children}</BtnAnchor>
+        <BtnAnchor data-testid="anchor_button" {...props}>
+          {props.children}
+        </BtnAnchor>
       ) : (
-        <AnchorText {...props}>{props.children}</AnchorText>
+        <AnchorText data-testid="anchor_text" {...props}>
+          {props.children}
+        </AnchorText>
       )}
     </Link>
   );

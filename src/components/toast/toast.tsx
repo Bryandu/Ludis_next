@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { IoClose } from 'react-icons/io5';
 
 import { ToastBody, ToastI } from './style';
@@ -17,5 +18,4 @@ const Toast = ({ bottom, top, show, hide, Icon, colorIcon, ...props }: ToastI) =
     </ToastBody>
   );
 };
-
-export default Toast;
+export default memo(Toast);

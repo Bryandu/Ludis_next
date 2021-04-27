@@ -1,95 +1,112 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
-import { FiAlertCircle } from 'react-icons/fi';
-import { IoLogoFacebook } from 'react-icons/io';
+import { useCallback, useState } from 'react';
+import { FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
+import { useSWRInfinite } from 'swr';
 
-import { AnchorText } from '../components/anchor/styles';
-import FormLogin from '../components/forms/formLogin';
-import Logo from '../components/logo/logo';
+import Header from '../components/header/header';
+import InfiniteScroll from '../components/infinitescroll/infinitescroll';
+import NavMenu from '../components/navmenu/navMenu';
+import NewPost from '../components/newPost/newPost';
+import Post from '../components/posts/post';
+import { Spinner } from '../components/spinner/spinner';
 import Toast from '../components/toast/toast';
+import withAuth from '../HOC/auth/withAuth';
+import { GET } from '../service/axios';
 import { userSelector } from '../store/ducks/user/userSelectors';
+import { Posts } from '../store/ducks/user/userTypes';
 import { Colors } from '../styles/global';
-import { ContainerHome, HomeContainer, HomeIcons, HomeImg, Main } from '../styles/indexStyles';
+import {
+  NavProfile,
+  TimelineContainer,
+  TimelineLeft,
+  TimelinePosts,
+  TimelineRight
+} from '../styles/timelineStyles';
 
-const Home = () => {
-  const [toast, setToast] = useState<boolean>();
-  const route = useRouter();
+const Index = () => {
+  const [toast, setToast] = useState<{ show: boolean; message: string }>();
+  const fetcher = (url: string) => GET<Posts[]>(url).then(res => res?.data);
   const user = useSelector(userSelector);
+  const { data, error, size, setSize } = useSWRInfinite(
+    index => `http://localhost:3002/posts?_page=${index}`,
+    fetcher,
+    {
+      refreshInterval: 30000
+    }
+  );
+  const isLoading =
+    (!data && !error) || (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const isEmpty = data && data[size - 1]?.length === 0;
 
-  useEffect(() => {
-    if (route.query.error) {
-      setToast(true);
+  const timeoutToast = useCallback((e: { show: boolean; message: string } | undefined) => {
+    setToast(e);
+    setTimeout(() => {
+      e && setToast({ show: false, message: e?.message });
+    }, 10000);
+  }, []);
+
+  const loadMore = useCallback(() => {
+    if (!isLoading && !isEmpty) {
+      setSize(size => size + 1);
     }
-    if (user.isOn == false) {
-      console.log('noOn');
-    }
-  }, [route, user]);
+  }, [isEmpty, isLoading, setSize]);
 
   return (
-    <div>
+    <>
       <Head>
         <title>Ludis</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Toast
+        bottom
+        colorIcon={toast?.message === 'Created' ? Colors.greenSuccess : Colors.redSecondary}
+        Icon={toast?.message === 'Created' ? FiCheckCircle : FiAlertCircle}
+        show={toast?.show}>
+        {toast?.message === 'Created' ? 'Publicação feita' : 'Falha na publicação'}
+      </Toast>
+      <Header position="fixed" />
+      <TimelineContainer>
+        <TimelineLeft>
+          <NavProfile>
+            <div>
+              <Image layout="fill" src="/img/eu.jpg" alt="you" />
+            </div>
+            <h2>Bryan Willes</h2>
+          </NavProfile>
+          <NavMenu>
+            <NewPost statusPost={timeoutToast} />
+            <div></div>
+          </NavMenu>
+        </TimelineLeft>
+        <TimelinePosts>
+          {data
+            ?.slice(1, Number.MAX_SAFE_INTEGER)
+            ?.flat(1)
+            ?.map(post => {
+              return (
+                post && (
+                  <Post
+                    key={post?.id}
+                    nameUser={String(post?.name)}
+                    body={post?.url}
+                    message={post?.title}
+                    photoUser={user?.user?.photoProfile as string}
+                  />
+                )
+              );
+            })}
 
-      <Main>
-        <ContainerHome>
-          <Toast
-            hide={() => {
-              setToast(false);
-            }}
-            Icon={FiAlertCircle}
-            colorIcon={Colors.redSecundary}
-            top
-            show={toast && !user.loading && !user.isOn}>
-            Email ou senha incorretos.
-          </Toast>
-          <header>
-            <Logo fontsize="2.5em">Ludis</Logo>
-          </header>
-          <HomeContainer>
-            <HomeImg>
-              <h2>
-                <span>Conecte-se&nbsp;</span>com seus&nbsp;<span>amigos,&nbsp;</span>encontre
-                <span>&nbsp;lugares</span>&nbsp;e bora jogar!
-              </h2>
-              <div>
-                <Image alt="time" src="/svg/team.svg" layout="fill" />
-              </div>
-            </HomeImg>
-            <HomeImg>
-              <div>
-                <h3>Faça seu login</h3>
-                <HomeIcons>
-                  <div>
-                    <FcGoogle size="1.5em" />
-                    Google
-                  </div>
-                  <div>
-                    <IoLogoFacebook size="1.5em" />
-                    Facebook
-                  </div>
-                </HomeIcons>
-                <div className="line">
-                  <span></span>
-                  <p>Ou</p>
-                  <span></span>
-                </div>
-                <FormLogin submit={() => setToast(true)} />
-                <aside>
-                  <AnchorText href="/">Esqueceu a senha?</AnchorText>
-                </aside>
-              </div>
-            </HomeImg>
-          </HomeContainer>
-        </ContainerHome>
-      </Main>
-    </div>
+          <div className="warnings">
+            {isLoading && !error && <Spinner />}
+            {!isLoading && data && <InfiniteScroll loadmore={loadMore} />}
+            {isEmpty && <p>Acabaram os posts.</p>}
+          </div>
+        </TimelinePosts>
+        <TimelineRight></TimelineRight>
+      </TimelineContainer>
+    </>
   );
 };
 
-export default Home;
+export default withAuth(Index);

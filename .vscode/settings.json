@@ -1,3 +1,37 @@
 {
-    "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "cSpell.words": [
+    "Formik",
+    "GETINITIALPOSTS",
+    "GETINITIALPOSTSSUCSSES",
+    "GETMOREPOSTS",
+    "GETPOSTSSUCSSES",
+    "Istyles",
+    "LOADINGEND",
+    "LOGINFAIL",
+    "LOGINSUCCESSES",
+    "Newpost",
+    "Rememberme",
+    "SETTOKEN",
+    "SINGUPFAIL",
+    "SINGUPSUCCSSES",
+    "dropmenu",
+    "elementtarget",
+    "iconsize",
+    "inputsearch",
+    "loadmore",
+    "localtoken",
+    "menudrop",
+    "modalroot",
+    "modalshow",
+    "navmenu",
+    "nprogress",
+    "postmessage",
+    "scrollbody",
+    "searchdrop",
+    "singup",
+    "testid",
+    "themeuser",
+    "zoomimagepost"
+  ]
 }

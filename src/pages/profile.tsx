@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { Button } from '../components/button/button';
+import Button from '../components/button/button';
 import Header from '../components/header/header';
 import { SectionProfile } from '../styles/profileStyle';
 
@@ -12,7 +12,7 @@ const Profile = () => {
       </Head>
       <Header />
       <SectionProfile id="profile">
-        <Button>s</Button>
+        <Button name="s" />
       </SectionProfile>
     </>
   );

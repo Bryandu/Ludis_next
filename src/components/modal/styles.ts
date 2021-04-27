@@ -1,7 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { Colors } from '../../styles/global';
-
 interface ModalStyle {
   showModal?: boolean;
 }
@@ -16,17 +14,16 @@ const modalshow = keyframes`
 `;
 
 export const ModalContainer = styled.div<ModalStyle>`
-  display: block;
   position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: #000;
-  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  animation: ${modalshow} 100ms ease-in-out;
+  background-color: rgba(0, 0, 0, 0.9);
+  animation: ${modalshow} 200ms ease-in-out;
   & :hover {
     cursor: pointer;
   }
@@ -39,11 +36,12 @@ export const ModalContainer = styled.div<ModalStyle>`
 
 export const ModalBody = styled.article`
   display: flex;
-  width: max-content;
   position: absolute;
-  z-index: 1000;
-  background-color: ${Colors.blackBackground};
-  box-shadow: 0px 0px 20px 2px rgba (0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 5px;
+  overflow-y: auto;
   & :hover {
     cursor: default;
   }

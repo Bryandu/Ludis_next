@@ -1,16 +1,16 @@
 import { useEffect, useRef } from 'react';
 
-type InfinitScroll = {
+type InfiniteScroll = {
   loadmore: VoidFunction;
 };
 
-const InfineScroll = ({ loadmore }: InfinitScroll) => {
+const InfiniteScroll = ({ loadmore }: InfiniteScroll) => {
   const observerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: '2000px',
-      threshold: 0.1
+      threshold: 1
     };
 
     const observer = new IntersectionObserver(([entry]) => {
@@ -30,4 +30,4 @@ const InfineScroll = ({ loadmore }: InfinitScroll) => {
   return <div ref={observerRef} />;
 };
 
-export default InfineScroll;
+export default InfiniteScroll;
