@@ -12,7 +12,7 @@ import NewPost from '../components/newPost/newPost';
 import Post from '../components/posts/post';
 import { Spinner } from '../components/spinner/spinner';
 import Toast from '../components/toast/toast';
-import withAuth from '../HOC/auth/withAuth';
+import withAuth from '../hoc/auth/withAuth';
 import { GET } from '../service/axios';
 import { userSelector } from '../store/ducks/user/userSelectors';
 import { Posts } from '../store/ducks/user/userTypes';
