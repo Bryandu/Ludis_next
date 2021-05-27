@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, CallEffect, put, PutEffect, takeLatest } from 'redux-saga/effects';
 
 import { GET, POST } from '../service/axios';
 import { loadingAction, loadingEndAction } from './ducks/genericActions';
@@ -17,15 +17,14 @@ import {
   UserActionSingUp
 } from './ducks/user/userTypes';
 
-function* userSingupSaga(action: UserActionSingUp) {
+function* userSingupSaga(
+  action: UserActionSingUp
+): Generator<CallEffect | PutEffect, void, AxiosResponse<Posts[]>> {
   try {
-    const { status }: AxiosResponse<Posts[]> = yield call(POST, 'users/', action.payload);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return yield status === 201 ? put(userSingupSuccesses()) : put(userSingupFail());
+    const { status } = yield call(POST, 'users/', action.payload);
+    yield status === 201 ? put(userSingupSuccesses()) : put(userSingupFail());
   } catch (error) {
     yield put(userSingupFail());
-    console.log(error);
   }
 }
 
@@ -33,17 +32,13 @@ function* userLoginSaga(action: UserActionLoginSuccesses) {
   try {
     const { password, email } = action.payload;
     yield put(loadingAction());
-    const response: AxiosResponse<{ token: string }> = yield call(POST, `users/authenticate`, {
+    const response: AxiosResponse<{ token: string }> = yield call(POST, `users/login`, {
       email,
       password
     });
-    response.data.token == undefined
-      ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        yield put(userLoginFail())
-      : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        yield put(userLoginSuccesses(response.data.token));
+    yield response.data.token == undefined
+      ? put(userLoginFail())
+      : put(userLoginSuccesses(response.data));
     localStorage.setItem('token', response.data.token);
     yield put(loadingEndAction());
   } catch (error) {

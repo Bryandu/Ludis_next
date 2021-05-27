@@ -1,4 +1,6 @@
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import { AiOutlineLogout } from 'react-icons/ai';
 import { BsGear } from 'react-icons/bs';
 import { FiBell, FiMap, FiShoppingBag } from 'react-icons/fi';
 import { IoIosArrowDropdown } from 'react-icons/io';
@@ -16,6 +18,7 @@ const Menu = () => {
   const [elementtarget, setElementtarget] = useState<HTMLElement>();
   const [drop, setDrop] = useState<boolean>();
   const modalRef = useRef(null);
+  const route = useRouter();
 
   useEffect(() => {
     const main = document.getElementById('__next');
@@ -43,6 +46,11 @@ const Menu = () => {
     }
   };
 
+  const logOut = () => {
+    localStorage.removeItem('token');
+    route.reload();
+  };
+
   return (
     <>
       <Nav>
@@ -68,6 +76,9 @@ const Menu = () => {
             </li>
             <li>
               <BsGear title="Configurações" />
+            </li>
+            <li>
+              <AiOutlineLogout onClick={logOut} title="Sair" />
             </li>
           </IconContext.Provider>
         </List>
