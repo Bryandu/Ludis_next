@@ -41,7 +41,6 @@ export const ModalBody = styled.article`
   justify-content: center;
   background-color: transparent;
   border-radius: 5px;
-  overflow-y: auto;
   & :hover {
     cursor: default;
   }
