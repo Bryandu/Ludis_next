@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import Anchor from '../components/anchor/anchor';
+import Anchor from '../../../components/anchor/anchor';
 
 describe('<Anchor />', () => {
   it('should render as a Text style', () => {

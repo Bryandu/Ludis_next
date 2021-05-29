@@ -7,23 +7,31 @@ export const baseURL = axios.create({
 export async function GET<T>(
   path: string,
   config?: AxiosRequestConfig
-): Promise<AxiosResponse<T> | undefined> {
-  return await baseURL.get(path, config);
+): Promise<AxiosResponse<T> | Error> {
+  try {
+    return await baseURL.get(path, config);
+  } catch (error) {
+    return error;
+  }
 }
 
 export function POST<T>(
   path: string,
   data: T,
   config?: AxiosRequestConfig
-): Promise<AxiosResponse<T> | undefined> {
-  return baseURL.post(path, data, config);
+): Promise<AxiosResponse<T> | Error> {
+  try {
+    return baseURL.post(path, data, config);
+  } catch (error) {
+    return error;
+  }
 }
 
 export async function PUT<T>(
   path: string,
   data: T,
   config?: AxiosRequestConfig
-): Promise<AxiosResponse<T> | undefined> {
+): Promise<AxiosResponse<T> | Error> {
   try {
     return await baseURL.put(path, data, config);
   } catch (error) {
@@ -34,7 +42,7 @@ export async function PUT<T>(
 export async function DELETE<T>(
   path: string,
   config?: AxiosRequestConfig
-): Promise<AxiosResponse<T> | undefined> {
+): Promise<AxiosResponse<T> | Error> {
   try {
     return await baseURL.delete(path, config);
   } catch (error) {
