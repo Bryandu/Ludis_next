@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
+import { userSelector } from 'store/ducks/user/userSelectors';
 
 import { userLogin } from '../../store/ducks/user/userActions';
-import { userSelector } from '../../store/ducks/user/userSelectors';
 import { Colors } from '../../styles/global';
 import Anchor from '../anchor/anchor';
 import Button from '../button/button';
@@ -27,16 +27,13 @@ import {
 
 const Login = () => {
   const [toast, setToast] = useState<boolean>();
-  const user = useSelector(userSelector);
+  const userState = useSelector(userSelector);
   const dispatch = useDispatch();
 
-  const submitting = useCallback(
-    (values: LoginValues) => {
-      dispatch(userLogin(values.email, values.password));
-      setToast(true);
-    },
-    [dispatch]
-  );
+  const submitting = (values: LoginValues) => {
+    dispatch(userLogin(values.email, values.password));
+    setToast(true);
+  };
 
   return (
     <div>
@@ -53,7 +50,7 @@ const Login = () => {
             Icon={FiAlertCircle}
             colorIcon={Colors.redSecondary}
             top
-            show={toast && !user.loading && !user.isOn}>
+            show={toast && !userState.loading && !userState.isOn}>
             Email ou senha incorretos.
           </Toast>
           <HomeContainer>
@@ -88,7 +85,7 @@ const Login = () => {
                 <FormLogin submit={submitting}>
                   <Button
                     width="100%"
-                    disabled={user.loading || (user.isOn as undefined | boolean)}
+                    disabled={userState.loading || userState.isOn}
                     name="Entrar"
                     type="submit"></Button>
                 </FormLogin>
@@ -101,7 +98,7 @@ const Login = () => {
           </HomeContainer>
         </ContainerHome>
       </Main>
-      <SpinnerPosition>{user.loading && <Spinner size="26px" />}</SpinnerPosition>
+      <SpinnerPosition>{userState.loading && <Spinner size="26px" />}</SpinnerPosition>
     </div>
   );
 };

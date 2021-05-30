@@ -17,10 +17,10 @@ export type Posts = {
   thumbnailUrl: string;
 };
 export interface UserState {
-  isOn: boolean | null;
-  isActive: boolean | null;
-  loading: boolean | null;
-  user: UserData | null;
+  isOn: boolean | undefined;
+  isActive: boolean | undefined;
+  loading: boolean | undefined;
+  user: UserData | undefined;
 }
 
 export enum UserActions {

@@ -1,15 +1,15 @@
 import { Posts, UserState } from './userTypes';
-interface UserSelector {
-  user: UserState;
+export interface UserSelector {
+  userState: UserState;
 }
-interface PostSelector {
+export interface PostSelector {
   user: {
     posts: Posts[];
   };
 }
 
 export const userSelector = (state: UserSelector) => {
-  return state.user;
+  return state.userState;
 };
 
 export const postSelector = (state: PostSelector) => {

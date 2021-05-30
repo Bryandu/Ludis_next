@@ -1,15 +1,13 @@
 import { AxiosResponse } from 'axios';
-import { all, call, CallEffect, put, PutEffect, takeLatest } from 'redux-saga/effects';
+import { all, call, CallEffect, put, PutEffect, takeLatest, takeLeading } from 'redux-saga/effects';
 
 import { GET, POST } from '../service/axios';
-import { loadingAction, loadingEndAction } from './ducks/genericActions';
 import {
   userGetPostsSuccesses,
-  userLoginFail,
-  userLoginSuccesses,
   userSingupFail,
   userSingupSuccesses
 } from './ducks/user/userActions';
+import { loading, loginFail, loginSuccesses } from './ducks/user/userSlice';
 import {
   Posts,
   UserActionLoginSuccesses as UserActionLoginSuccesses,
@@ -31,19 +29,17 @@ function* userSingupSaga(
 function* userLoginSaga(action: UserActionLoginSuccesses) {
   try {
     const { password, email } = action.payload;
-    yield put(loadingAction());
+    yield put(loading(true));
     const response: AxiosResponse<{ token: string }> = yield call(POST, `users/login`, {
       email,
       password
     });
-    yield response.data.token == undefined
-      ? put(userLoginFail())
-      : put(userLoginSuccesses(response.data));
-    localStorage.setItem('token', response.data.token);
-    yield put(loadingEndAction());
+    yield response.data.token == undefined ? put(loginFail()) : put(loginSuccesses(response.data));
+    yield localStorage.setItem('token', response.data.token);
+    yield put(loading(false));
   } catch (error) {
-    yield put(userLoginFail());
-    yield put(loadingEndAction());
+    yield put(loginFail());
+    yield put(loading(false));
   }
 }
 
@@ -61,7 +57,7 @@ function* userInitialPostsSaga() {
 
 function* rootSaga() {
   yield all([
-    takeLatest(UserActions.USER_LOGIN, userLoginSaga),
+    takeLeading(UserActions.USER_LOGIN, userLoginSaga),
     takeLatest(UserActions.USER_SINGUP, userSingupSaga),
     takeLatest(UserActions.USER_GETINITIALPOSTS, userInitialPostsSaga)
   ]);
