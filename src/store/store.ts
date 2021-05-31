@@ -26,20 +26,7 @@ export const makeStore = () => {
 
   return store;
 };
-// const reducers = combineReducers({
-//   user: reducer
-// });
 
-// const makeStore: MakeStore<UserState> = () => {
-//   const sagaMiddleware = createSagaMiddleware();
-//   const store: SagaStore = createStore(
-//     reducers,
-//     composeWithDevTools(applyMiddleware(sagaMiddleware))
-//   );
-//   store.sagaTask = sagaMiddleware.run(rootSaga);
-
-//   return store;
-// };
 export type AppStore = ReturnType<typeof makeStore>;
 
-export const storeWrapper = createWrapper(makeStore, { debug: true });
+export const storeWrapper = createWrapper(makeStore, { debug: false });
