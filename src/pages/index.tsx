@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { useCallback, useState } from 'react';
 import { FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
-import { storeWrapper } from 'store/store';
 import { useSWRInfinite } from 'swr';
 
 import Header from '../components/header/header';
@@ -109,13 +108,5 @@ const Index = () => {
     </>
   );
 };
-
-export const getStaticProps = storeWrapper.getStaticProps(async ({ store }) => {
-  return {
-    props: {
-      teste: 'teste'
-    }
-  };
-});
 
 export default withAuth(Index);
